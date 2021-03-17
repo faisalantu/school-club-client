@@ -1,7 +1,10 @@
-import '../styles/globals.css'
+//import '../styles/globals.css'
+import 'tailwindcss/tailwind.css'
 
-function MyApp({ Component, pageProps }) {
+import { wrapper } from '../store/store'
+
+const WrappedApp = ({ Component, pageProps }) => {
   return <Component {...pageProps} />
 }
 
-export default MyApp
+export default wrapper.withRedux(WrappedApp)
