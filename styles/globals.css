@@ -14,3 +14,28 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.home-icon{
+  /* home / home_fill */
+
+position: absolute;
+width: 24px;
+height: 24px;
+left: 21px;
+top: 15px;
+
+
+
+/* Subtract */
+
+position: absolute;
+left: 16.67%;
+right: 16.67%;
+top: 14.23%;
+bottom: 8.33%;
+
+background: #000000;
+
+}
+
+
