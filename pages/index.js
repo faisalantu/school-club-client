@@ -4,21 +4,23 @@ import TopNavbar from "../components/navBar/topNavbar"
 import { wrapper } from '../store/store'
 
 const Index = (props) => {
-  return(
-    <div>
-      <TopNavbar/>
-      <SideBar/>
-    </div>
+  return (
+    <>
+      <TopNavbar />
+      <div className=" container mx-auto">
+        <SideBar />        
+      </div>
+    </>
   )
 }
 
 // redux setup
 export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {
-  
+
 })
 
 const mapDispatchToProps = (dispatch) => {
-  return { }
+  return {}
 }
 
 export default connect(null, mapDispatchToProps)(Index)
