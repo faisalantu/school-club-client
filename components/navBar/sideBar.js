@@ -16,7 +16,7 @@ export default function SideBar() {
     <>
       <div className=' w-60 pl-14 pt-2.5'>
         <div className='class pb-2.5 cursor-pointer flex items-center'>
-          <HiHome className='text-2xl mr-2' />
+          <HiHome className='text-xl p-0 m-0 mr-2' />
           <span>Home</span>
         </div>
         <div
@@ -27,7 +27,7 @@ export default function SideBar() {
         >
           <div className='flex'>
             <div className='flex items-center'>
-              <BsFillInfoSquareFill className='ml-1 text-xl mr-2' />
+              <BsFillInfoSquareFill className='p-0 ml-0.5 text-md mr-2' />
               <span>Club information</span>
             </div>
             {infoVisibility ? (
@@ -56,7 +56,7 @@ export default function SideBar() {
         >
           <div className='flex'>
             <div className='flex items-center'>
-              <MdEventNote className='ml-1 text-xl mr-2' />
+              <MdEventNote className='p-0 m-0 text-xl mr-2' />
               <span>Club Events</span>
             </div>
             {infoVisibility ? (
@@ -85,7 +85,7 @@ export default function SideBar() {
         >
           <div className='flex'>
             <div className='flex items-center'>
-              <BsFileText className='ml-1 text-xl mr-2' />
+              <BsFileText className='p-0 m-0 text-xl mr-2' />
               <span>Club Posts</span>
             </div>
             {infoVisibility ? (
