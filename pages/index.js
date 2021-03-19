@@ -1,10 +1,12 @@
 import { connect } from 'react-redux'
 import SideBar from '../components/navBar/sideBar'
+import TopNavbar from "../components/navBar/topNavbar"
 import { wrapper } from '../store/store'
 
 const Index = (props) => {
   return(
     <div>
+      <TopNavbar/>
       <SideBar/>
     </div>
   )
