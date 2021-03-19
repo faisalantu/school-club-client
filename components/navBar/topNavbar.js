@@ -16,7 +16,7 @@ function topNavbar({ close }) {
 
   return (
     
-    <div className='w-full h-12 bg-gray-900 flex justify-between items-center'>
+    <div className='w-full h-12 bg-gray-900 flex justify-between items-center mb-5'>
       <div className="pl-4">
         <h1 className='text-gray-100 font-semibold text-lg'>LOGO</h1>
       </div>
