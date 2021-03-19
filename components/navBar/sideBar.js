@@ -15,7 +15,7 @@ export default function SideBar() {
 
   return (
     <>
-      <div className='pt-2.5 px-10'>
+      <div className='pt-2.5 px-14 lg:text-xl'>
         <div className='class pb-2.5 cursor-pointer flex items-center'>
           <HiHome className='text-xl p-0 m-0 mr-2' />
           <span>Home</span>
