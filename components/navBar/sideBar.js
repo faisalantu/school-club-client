@@ -8,9 +8,9 @@ import { BsFillInfoSquareFill, BsFileText } from "react-icons/bs";
 import { MdKeyboardArrowRight, MdEventNote } from "react-icons/md";
 
 export default function SideBar() {
-  const [infoVisibility, setInfoVisibility] = useState(true);
+  const [infoExpand, setInfoExpand] = useState(true);
   const [clubPostExpand, setClubPostExpand] = useState(true);
-  const [eventVisibility, setEventVisibility] = useState(true);
+  const [eventExpand, setEventExpand] = useState(true);
 
   return (
     <>
@@ -22,7 +22,7 @@ export default function SideBar() {
         <div
           className='class pb-2.5 cursor-pointer '
           onClick={function () {
-            setInfoVisibility(!infoVisibility);
+            setInfoExpand(!infoExpand);
           }}
         >
           <div className='flex'>
@@ -30,7 +30,7 @@ export default function SideBar() {
               <BsFillInfoSquareFill className='p-0 ml-0.5 text-md mr-2' />
               <span>Club information</span>
             </div>
-            {infoVisibility ? (
+            {infoExpand ? (
               <MdKeyboardArrowRight className=' inline-block mt-0.5 text-xl' />
             ) : (
               <MdKeyboardArrowRight className=' inline-block mt-0.5 text-xl transform rotate-90' />
@@ -38,7 +38,7 @@ export default function SideBar() {
           </div>
           <div
             className={`border-l-2 border-black ml-2 pl-10 mt-2 py-0 mb-0 ${
-              infoVisibility ? "hidden" : " "
+              infoExpand ? "hidden" : " "
             }`}
           >
             <div>CSE</div>
@@ -51,7 +51,7 @@ export default function SideBar() {
         <div
           className='class pb-2.5 cursor-pointer '
           onClick={function () {
-            setEventVisibility(!eventVisibility);
+            setEventExpand(!eventExpand);
           }}
         >
           <div className='flex'>
@@ -59,7 +59,7 @@ export default function SideBar() {
               <MdEventNote className='p-0 m-0 text-xl mr-2' />
               <span>Club Events</span>
             </div>
-            {infoVisibility ? (
+            {infoExpand ? (
               <MdKeyboardArrowRight className=' inline-block mt-0.5 text-xl' />
             ) : (
               <MdKeyboardArrowRight className=' inline-block mt-0.5 text-xl transform rotate-90' />
@@ -67,7 +67,7 @@ export default function SideBar() {
           </div>
           <div
             className={`border-l-2 border-black ml-2 pl-10 mt-2 py-0 mb-0 ${
-              eventVisibility ? "hidden" : " "
+              eventExpand ? "hidden" : " "
             }`}
           >
             <div>CSE</div>
@@ -88,7 +88,7 @@ export default function SideBar() {
               <BsFileText className='p-0 m-0 text-xl mr-2' />
               <span>Club Posts</span>
             </div>
-            {infoVisibility ? (
+            {infoExpand ? (
               <MdKeyboardArrowRight className=' inline-block mt-0.5 text-xl' />
             ) : (
               <MdKeyboardArrowRight className=' inline-block mt-0.5 text-xl transform rotate-90' />
