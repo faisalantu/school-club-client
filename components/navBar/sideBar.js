@@ -7,6 +7,7 @@ import { HiHome } from "react-icons/hi";
 import { BsFillInfoSquareFill, BsFileText } from "react-icons/bs";
 import { MdKeyboardArrowRight, MdEventNote } from "react-icons/md";
 
+
 export default function SideBar() {
   const [infoExpand, setInfoExpand] = useState(true);
   const [clubPostExpand, setClubPostExpand] = useState(true);
