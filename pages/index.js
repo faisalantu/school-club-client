@@ -9,9 +9,7 @@ const Index = (props) => {
   return (
     <>
       <ContainerWrapper>
-        <div className=''>
         <Home/>
-        </div>
       </ContainerWrapper>
     </>
   );
