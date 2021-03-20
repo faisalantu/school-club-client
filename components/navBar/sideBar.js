@@ -28,13 +28,13 @@ export default function SideBar() {
         >
           <div className='flex'>
             <div className='flex items-center'>
-              <BsFillInfoSquareFill className='p-0 ml-0.5 text-md mr-2' />
+              <BsFillInfoSquareFill className='p-0 ml-0.5 lg:text-sm sm:text-md mr-2 ' />
               <span>Club information</span>
             </div>
             {infoExpand ? (
-              <MdKeyboardArrowRight className=' inline-block mt-0.5 text-xl' />
+              <MdKeyboardArrowRight className=' inline-block  sm:mt-0.5 lg:mt-1 text-xl' />
             ) : (
-              <MdKeyboardArrowRight className=' inline-block mt-0.5 text-xl transform rotate-90' />
+              <MdKeyboardArrowRight className=' inline-block  sm:mt-0.5 lg:mt-1 text-xl transform rotate-90' />
             )}
           </div>
           <div
@@ -61,9 +61,9 @@ export default function SideBar() {
               <span>Club Events</span>
             </div>
             {infoExpand ? (
-              <MdKeyboardArrowRight className=' inline-block mt-0.5 text-xl' />
+              <MdKeyboardArrowRight className=' inline-block  sm:mt-0.5 lg:mt-1 text-xl' />
             ) : (
-              <MdKeyboardArrowRight className=' inline-block mt-0.5 text-xl transform rotate-90' />
+              <MdKeyboardArrowRight className=' inline-block  sm:mt-0.5 lg:mt-1 text-xl transform rotate-90' />
             )}
           </div>
           <div
@@ -90,9 +90,9 @@ export default function SideBar() {
               <span>Club Posts</span>
             </div>
             {infoExpand ? (
-              <MdKeyboardArrowRight className=' inline-block mt-0.5 text-xl' />
+              <MdKeyboardArrowRight className=' inline-block  sm:mt-0.5 lg:mt-1 text-xl' />
             ) : (
-              <MdKeyboardArrowRight className=' inline-block mt-0.5 text-xl transform rotate-90' />
+              <MdKeyboardArrowRight className=' inline-block  sm:mt-0.5 lg:mt-1 text-xl transform rotate-90' />
             )}
           </div>
           <div

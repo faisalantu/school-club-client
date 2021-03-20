@@ -1,6 +1,6 @@
 export default function carasule() {
     return (
-        <div className=" m-2">
+        <div className="">
             <img className="w-full" src="carousel.svg"/>
         </div>
     )
