@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import ContainerWrapper from "../components/containerWrapper";
-import EventCard from '../components/eventCard'
+import PostCard from '../components/postPageComponent/postCard'
 import { wrapper } from "../store/store";
 
 const Index = (props) => {
@@ -8,10 +8,10 @@ const Index = (props) => {
     <>
       <ContainerWrapper>
         <div className=''>
-          <EventCard/>
-          <EventCard/>
-          <EventCard/>
-          <EventCard/>
+          <PostCard/>
+          <PostCard/>
+          <PostCard/>
+          <PostCard/>
         </div>
       </ContainerWrapper>
     </>
