@@ -3,7 +3,7 @@ import { ImLocation } from "react-icons/im";
 import { RiMoneyDollarCircleFill } from "react-icons/ri";
 import { GiTicket } from "react-icons/gi";
 import { BiTimeFive,BiMailSend,BiPhone } from "react-icons/bi";
-const Container = (props) => {
+const EventCard = (props) => {
   return (
     <>
       <div className='bg-white border-gray-600 p-5 rounded-md shadow-sm my-5'>
@@ -57,4 +57,4 @@ const Container = (props) => {
   );
 };
 
-export default Container;
+export default EventCard;
