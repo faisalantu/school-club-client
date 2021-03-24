@@ -1,7 +1,7 @@
 import SideBar from "./navBar/sideBar";
 import TopNavbar from "./navBar/topNavbar";
 
-const Container = (props) => {
+const ContainerWrapper = (props) => {
   return (
     <>
       <TopNavbar />
@@ -17,4 +17,4 @@ const Container = (props) => {
   );
 };
 
-export default Container;
+export default ContainerWrapper;
