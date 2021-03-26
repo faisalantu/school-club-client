@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import ContainerWrapper from "../components/containerWrapper";
-import PostCard from '../components/postPageComponent/postCard'
+import PostCard from '../components/postComponent/postCard'
 import { wrapper } from "../store/store";
 
 const Index = (props) => {

@@ -1,4 +1,4 @@
-import Comments from "./comments";
+import CommentInfoBtn from "./commentInfoBtn";
 import UserInfoAndDate from "./userInfoAndDate";
 import Tags from "./tags";
 import Reaction from "./reaction";
@@ -21,7 +21,7 @@ const Container = () => {
             <Tags />
             <div className='flex items-center '>
               <Reaction />
-              <Comments />
+              <CommentInfoBtn />
             </div>
           </div>
         </div>
