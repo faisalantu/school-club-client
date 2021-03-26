@@ -8,6 +8,50 @@ export default function UpdateAccuntInfo(props) {
         fileInput.current.click();
     }
     const [show, setShow] = useState(true);
+    const [clubs, setClubs] = useState(
+        {
+            "CSE":true, "EEE":false ,"English":false ,"Programming":true
+        });
+    const [info, setInfo] = useState({
+        fName:"Faisal",
+        lName:"Antu",
+        email:"hello@faisalantu.com",
+        phone:'017XXXXXXXXX',
+        location:"location",
+        studentID:'163 XXX XXX',
+        clubs:{
+            "CSE":true, "EEE":false ,"English":false ,"Programming":true
+        }
+    });
+    // const chackBoxValue = Object.entries(info.clubs).map(([key, value]) => {
+    //     return (<label>
+    //         <input className=" border-2 border-green-300 rounded-lg mx-2" defaultChecked={value} type="checkbox" id="first" />
+    //         {key}
+    //     </label>)
+    // });
+    function handelCheckboxClick(event)
+    {  
+        const { name } = event.target;
+        setClubs((prevClubs)=>{
+        return {
+        ...prevClubs, 
+        [name]: !clubs[name]
+        }});
+    }
+    function handelInputUpdate(event)
+    {  
+        const { name ,value} = event.target;
+        setInfo((prevInfo)=>{
+        return {
+        ...prevInfo, 
+        [name]: value
+        }});
+        console.log(value);
+    }
+    
+
+    // console.log(clubs); 
+     
     return (
         <form >
              <div className=" flex flex-row justify-start items-center mt-8 mb-10" >
@@ -20,35 +64,35 @@ export default function UpdateAccuntInfo(props) {
                     <Image src='/portrait-2.jpeg' layout='fill' objectFit="cover" ></Image>
                 </div>
                 <div className=' ml-10 '>
-                    <h1 className=' font-semibold text-4xl py-2'>Faisal Antu</h1>
-                    <span className='text-xl '>Dhaka Bangladesh</span>
+                    <h1 className=' font-semibold text-4xl py-2'>{info.fName}{" "}{info.lName}</h1>
+                    <span className='text-xl '>{info.location}</span>
                 </div>
             </div>
             <div className='grid grid-flow-row md:grid-cols-2 sm:grid-cols-1'>
 
                 <div className='flex flex-col mb-8 sm:pr-6 md:pr-10 lg:pr-40 pr-4'>
-                    <label className='mb-2 text-lg text-grey-darkest' htmlFor="First Name">First Name</label>
-                    <input className='rounded-lg border bg-gray-300 py-2 px-3 text-grey-darkest' type="text" aria-describedby="emailHelp" placeholder="First Name" />
+                    <label className='mb-2 text-lg text-grey-darkest' >First Name</label>
+                    <input className='rounded-lg border bg-gray-300 py-2 px-3 text-grey-darkest' type="text"  placeholder="First Name" name='fName' onChange={handelInputUpdate} value={info.fName}/>
                 </div>
                 <div className='flex flex-col mb-8 sm:pr-6 md:pr-10 lg:pr-40 pr-4' >
                     <label className='mb-2 text-lg text-grey-darkest' htmlFor="Last Name">Last Name</label>
-                    <input className='rounded-lg border bg-gray-300 py-2 px-3 text-grey-darkest' type="text" aria-describedby="emailHelp" placeholder="Last Name" />
+                    <input className='rounded-lg border bg-gray-300 py-2 px-3 text-grey-darkest' type="text"  placeholder="Last Name" name='lName' onChange={handelInputUpdate} value={info.lName} />
                 </div>
                 <div className='flex flex-col mb-8 sm:pr-6 md:pr-10 lg:pr-40 pr-4' >
                     <label className='mb-2 text-lg text-grey-darkest' htmlFor="InputEmail">Email address</label>
-                    <input className='rounded-lg border bg-gray-300 py-2 px-3 text-grey-darkest' type="email" aria-describedby="emailHelp" placeholder="Enter email" />
+                    <input className='rounded-lg border bg-gray-300 py-2 px-3 text-grey-darkest' type="email" placeholder="Enter email" name='email'  onChange={handelInputUpdate} value={info.email} />
                 </div>
                 <div className='flex flex-col mb-8 sm:pr-6 md:pr-10 lg:pr-40 pr-4' >
                     <label className='mb-2 text-lg text-grey-darkest' htmlFor="Phone Number">Phone Number</label>
-                    <input className='rounded-lg border bg-gray-300 py-2 px-3 text-grey-darkest' type="tel" aria-describedby="Phone Number" placeholder="Phone Number" />
+                    <input className='rounded-lg border bg-gray-300 py-2 px-3 text-grey-darkest' type="tel"  placeholder="Phone Number" name="phone" onChange={handelInputUpdate} value={info.phone} />
                 </div>
                 <div className='flex flex-col mb-8 sm:pr-6 md:pr-10 lg:pr-40 pr-4' >
                     <label className='mb-2 text-lg text-grey-darkest' htmlFor="">Location</label>
-                    <input className='rounded-lg border bg-gray-300 py-2 px-3 text-grey-darkest' type="text" aria-describedby="emailHelp" placeholder="location" />
+                    <input className='rounded-lg border bg-gray-300 py-2 px-3 text-grey-darkest' type="text"  placeholder="location" name="location" onChange={handelInputUpdate} value={info.location} />
                 </div>
                 <div className='flex flex-col mb-8 sm:pr-6 md:pr-10 lg:pr-40 pr-4' >
                     <label className='mb-2 text-lg text-grey-darkest' htmlFor="">Student ID</label>
-                    <input className='rounded-lg border bg-gray-300 py-2 px-3 text-grey-darkest' type="text" aria-describedby="emailHelp" placeholder="Student ID" />
+                    <input className='rounded-lg border bg-gray-300 py-2 px-3 text-grey-darkest' type="text"  placeholder="Student ID" name="studentID" onChange={handelInputUpdate} value={info.studentID} />
                 </div>
                 <div className='md:col-span-2 flex flex-col mb-8 sm:pr-6 md:pr-10 lg:pr-40 pr-4' >
                     <label className='mb-2 text-lg text-grey-darkest' htmlFor="">Interested Clubs</label>
@@ -60,22 +104,22 @@ export default function UpdateAccuntInfo(props) {
                             <div className="absolute left-0 right-0 top-0 bottom-0"></div>
                         </div>
                         <div className={` flex flex-col rounded-lg py-2  bg-gray-300  md:w-1/2 border-2 ${show ? 'hidden' : 'block '}`} >
-                            <label for="first">
-                                <input className=" border-2 border-green-300 rounded-lg mx-2" type="checkbox" id="first" />
-                                cse
-                            </label>
-                            <label for="second">
-                                <input className=" border-green-300 rounded-lg mx-2"  type="checkbox" id="second" />
-                                EEE
-                            </label>
-                            <label for="third">
-                                <input className=" border-green-300 rounded-lg mx-2"  type="checkbox" id="third" />
-                                English
-                            </label>
-                            <label for="fourth">
-                                <input className=" border-green-300 rounded-lg mx-2"  type="checkbox" id="fourth" />
-                                Programming
-                            </label>
+
+                            {
+                                Object.entries(clubs).map(([key, value ]) => {
+                                    return (<label key={key}>
+                                        <input className=" border-2 border-green-300 rounded-lg mx-2" 
+                                        defaultChecked={value}
+                                        type="checkbox"
+                                        name={key}
+                                        onChange={handelCheckboxClick}
+                                          />
+                                        {key}
+                                    </label>)
+                                }) 
+
+                            }
+
                         </div>
 
                     </div>

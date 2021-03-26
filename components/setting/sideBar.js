@@ -12,7 +12,6 @@ export default function SideBar() {
     //   const [infoExpand, setInfoExpand] = useState(true);
     //   const [clubPostExpand, setClubPostExpand] = useState(true);
     //   const [eventExpand, setEventExpand] = useState(true);
-
     return (
         <>
             <div className='pt-2.5 px-14 lg:text-xl'>
