@@ -59,18 +59,20 @@ export default function UpdateAccuntInfo(props) {
     function imageHandler(event)
     {
         const image =event.target.files[0];
+        console.log("img",image);
         const reader = new FileReader();
-        reader.onloadend = () =>{
-            if(reader.readyState === 2){
-                setInfo((prevInfo)=>{
-                    return {
-                        ...prevInfo, 
-                        img: reader.result
-                    }});
-                }
+        if(image){
+            reader.onloadend = () =>{
+                if(reader.readyState === 2){
+                    setInfo((prevInfo)=>{
+                        return {
+                            ...prevInfo, 
+                            img: reader.result
+                        }});
+                    }
+            }
+            reader.readAsDataURL(event.target.files[0])
         }
-        reader.readAsDataURL(event.target.files[0])
-        //console.log("img",image);
         
     }
     
