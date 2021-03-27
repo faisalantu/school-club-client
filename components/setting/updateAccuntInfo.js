@@ -56,6 +56,23 @@ export default function UpdateAccuntInfo(props) {
     {
         event.preventDefault();
     }
+    function imageHandler(event)
+    {
+        const image =event.target.files[0];
+        const reader = new FileReader();
+        reader.onloadend = () =>{
+            if(reader.readyState === 2){
+                setInfo((prevInfo)=>{
+                    return {
+                        ...prevInfo, 
+                        img: reader.result
+                    }});
+                }
+        }
+        reader.readAsDataURL(event.target.files[0])
+        //console.log("img",image);
+        
+    }
     
 
     // console.log(clubs); 
@@ -65,11 +82,12 @@ export default function UpdateAccuntInfo(props) {
              <div className=" flex flex-row justify-start items-center mt-8 mb-10" >
                 <div className='bg-white rounded-full w-44 h-44 relative overflow-hidden cursor-pointer'>
                     <div className=' bg-transparent text-indigo-50 hover:bg-green-300 flex justify-center items-center z-30 absolute bottom-0 left-0 right-0  px-3 h-full ' onClick={imageUploder}>
-                        <input hidden='hidden' type="file" id="file"  ref={fileInput} />
+                        <input hidden='hidden' type="file" id="file"  ref={fileInput} onChange={imageHandler} />
                         <VscAccount className='text-md p-0 m-0 mr-1' />
                         <span className=" font-semibold">Uplode Image</span>
                     </div>
                     <Image src={info.img} layout='fill' objectFit="cover" ></Image>
+                    {/* <img  src={info.img} layout='fill' objectFit="cover" /> */}
                 </div>
                 <div className=' ml-10 '>
                     <h1 className=' font-semibold text-4xl py-2'>{info.fName}{" "}{info.lName}</h1>
