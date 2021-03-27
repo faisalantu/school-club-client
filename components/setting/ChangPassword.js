@@ -1,6 +1,11 @@
+import { useState } from "react";
 export default function ChangPassword(props) {
+    function handleSubmit(event)
+    {
+        event.preventDefault();
+    }
     return (
-        <form >
+        <form onSubmit={handleSubmit}>
             <div className='grid grid-flow-row md:grid-cols-2 sm:grid-cols-1 mt-5'>
                 <div className='md:col-span-2 md:w-1/2 flex flex-col mb-8 sm:pr-6 md:pr-10 lg:pr-40 pr-4'>
                     <label className='mb-2 text-lg text-grey-darkest' htmlFor="Old Password">Old Password</label>

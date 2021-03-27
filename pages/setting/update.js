@@ -1,9 +1,22 @@
+import { info } from "autoprefixer";
 import { connect } from "react-redux";
 import ContainerWrapper from "../../components/containerWrapper";
 import UpdateAccuntInfo from "../../components/setting/updateAccuntInfo";
 import { wrapper } from "../../store/store";
 
 const setting = (props) => {
+  const info={
+    img:"/portrait-2.jpeg",
+    fName:"Faisal",
+    lName:"Antu",
+    email:"hello@faisalantu.com",
+    phone:'017XXXXXXXXX',
+    location:"Dhaka bangladesh",
+    studentID:'163 XXX XXX',
+    clubs:{
+        "CSE":true, "EEE":false ,"English":false ,"Programming":true
+    }
+  }
   return (
     // <>
     //   <TopNavbar />
@@ -18,7 +31,7 @@ const setting = (props) => {
     // </>
     <>
     <ContainerWrapper>
-      <UpdateAccuntInfo/>
+      <UpdateAccuntInfo accountInfo={info}/>
     </ContainerWrapper>
   </>
   );
