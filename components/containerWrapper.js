@@ -4,6 +4,7 @@ import TopNavbar from "./navBar/topNavbar";
 import { useRouter } from 'next/router'
 const ContainerWrapper = (props) => {
   const router = useRouter()
+  var validSettingRouteFormat = /\/setting/;
   // console.log(router.pathname)
   return (
     <>
@@ -11,7 +12,7 @@ const ContainerWrapper = (props) => {
       <div className=' container mx-auto'>
         <div className='flex'>
           {
-            (router.pathname === '/setting' || router.pathname === '/setting/update-password' || router.pathname === '/setting/update') 
+            (validSettingRouteFormat.test(router.pathname)) 
             ? <SettingSideBar className='flex-1 ' /> 
             : <SideBar className='flex-1 ' />
           }

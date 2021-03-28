@@ -22,7 +22,7 @@ export default function ChangPassword(props) {
 
 
                 <div className='  flex flex-row justify-end' >
-                    <button type="submit" className="border-2 rounded-lg bg-gray-200 border-green-200 px-10 py-2.5">Save Change</button>
+                    <button type="submit" className="border-2 rounded-lg bg-gray-200 border-yellow-400 cursor-pointer px-10 py-2.5">Save Change</button>
                 </div>
             </div>
         </form>);

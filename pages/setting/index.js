@@ -1,5 +1,4 @@
 import { connect } from "react-redux";
-import AccountInfo from "../../components/setting/accountInfo";
 import ContainerWrapper from "../../components/containerWrapper";
 import UpdateAccuntInfo from "../../components/setting/updateAccuntInfo";
 import { wrapper } from "../../store/store";
