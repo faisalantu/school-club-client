@@ -17,10 +17,10 @@ const setting = (props) => {
     //   </div>
     // </>
     <>
-    <ContainerWrapper>
-    <ChangPassword/>
-    </ContainerWrapper>
-  </>
+      <ContainerWrapper>
+        <ChangPassword />
+      </ContainerWrapper>
+    </>
   );
 };
 

@@ -121,7 +121,7 @@ export default function UpdateAccuntInfo(props) {
                     :<button  className="border-yellow-400 border-2 rounded py-0.5 px-2 cursor-pointer hover:bg-gray-200" onClick={handleSubmit} >Save Change</button>
                 }
             </div>
-            <div className='grid grid-flow-row md:grid-cols-2 sm:grid-cols-1'>
+            <div className='grid grid-flow-row grid-cols-2 gap-5 md:grid-cols-2 sm:grid-cols-1'>
                 <Inputbox label='First Name' type='text' placeholder='First Name' name='fName' value={info.fName} ChangeHandel={handleInputUpdate} editMode={editMode}/>
 
                 <Inputbox label='Last Name' type='text' placeholder='Last Name' name='lName' value={info.lName} ChangeHandel={handleInputUpdate} editMode={editMode}/>
