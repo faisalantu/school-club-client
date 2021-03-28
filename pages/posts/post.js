@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
-import Tags from "../../components/postComponent/tags";
-import UserInfoAndDate from "../../components/postComponent/userInfoAndDate";
+import Tags from "../../components/global/tags";
+import UserInfoAndDate from "../../components/global/userInfoAndDate";
 import Comments from "../../components/postComponent/comments";
 import Reaction from "../../components/postComponent/reaction";
 import CommentForm from "../../components/postComponent/commentForm";

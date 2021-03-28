@@ -1,17 +1,12 @@
 import { connect } from "react-redux";
+import PostCard from "../../components/global/postCard";
 import ContainerWrapper from "../../components/containerWrapper";
-import PostCard from '../../components/global/postCard'
 import { wrapper } from "../../store/store";
-
-const Index = (props) => {
+const setting = (props) => {
   return (
     <>
       <ContainerWrapper>
-        <div className=''>
-          <PostCard/>
-          <PostCard/>
-          <PostCard/>
-          <PostCard/>
+        <div className='w-11/12 mx-auto'>
         </div>
       </ContainerWrapper>
     </>
@@ -25,4 +20,4 @@ const mapDispatchToProps = (dispatch) => {
   return {};
 };
 
-export default connect(null, mapDispatchToProps)(Index);
+export default connect(null, mapDispatchToProps)(setting);

@@ -1,8 +1,8 @@
-import CommentInfoBtn from "./commentInfoBtn";
+import CommentInfoBtn from "../postComponent/commentInfoBtn";
 import UserInfoAndDate from "./userInfoAndDate";
 import Tags from "./tags";
-import Reaction from "./reaction";
-const Container = () => {
+import Reaction from "../postComponent/reaction";
+const Container = ({edit,name,role,imgUrl,date,title,tags}) => {
   return (
     <>
       <div className='bg-white border-gray-600 p-5 rounded-md shadow-sm my-5'>
@@ -25,6 +25,18 @@ const Container = () => {
             </div>
           </div>
         </div>
+        {edit ? (
+          <div className='flex items-center justify-end my-2'>
+            <button className=' border-2 border-yellow-500 px-3 py-0.5 rounded mx-2'>
+              Edit
+            </button>
+            <button className=' border-2 border-red-500 px-3 py-0.5 rounded mx-2'>
+              Delete
+            </button>
+          </div>
+        ) : (
+          ""
+        )}
       </div>
     </>
   );
