@@ -7,18 +7,18 @@ const Container = ({edit,name,role,imgUrl,date,title,tags}) => {
     <>
       <div className='bg-white border-gray-600 p-5 rounded-md shadow-sm my-5'>
         <UserInfoAndDate
-          name='Faisal Antu'
-          role='CSE Club President'
-          imgUrl='/portrait-1.jpg'
-          date='3 Feb 2021'
+          name = {name}
+          role={role}
+          imgUrl={imgUrl}
+          date={date}
         />
         <div className='flex mt-3 leading-relaxed'>
           <div style={{ height: "auto", width: "45px" }}></div>
           <div className='ml-4'>
             <h1 className=' text-xl font-medium'>
-              Git commit message convention that you can follow!
+              {title?title:'invalid title'}
             </h1>
-            <Tags />
+            <Tags tags={tags}/>
             <div className='flex items-center '>
               <Reaction />
               <CommentInfoBtn />

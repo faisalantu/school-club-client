@@ -1,13 +1,10 @@
-
-
-function tags() {
+function tags({tags}) {
   return (
     <>
       <div className='flex items-center'>
-        <span className='mr-3 text-gray-500'>#git</span>
-        <span className='mr-3 text-gray-500'>#github</span>
-        <span className='mr-3 text-gray-500'>#nodJs</span>
-        <span className='mr-3 text-gray-500'>#nextJs</span>
+        {tags.map((tag,i)=>{
+          return <span key={i} className='mr-3 text-gray-500'>#{tag}</span>
+        })}
       </div>
     </>
   );
