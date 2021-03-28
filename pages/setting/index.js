@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import AccountInfo from "../../components/setting/accountInfo";
 import ContainerWrapper from "../../components/containerWrapper";
+import UpdateAccuntInfo from "../../components/setting/updateAccuntInfo";
 import { wrapper } from "../../store/store";
 const setting = (props) => {
   // const router = useRouter()
@@ -36,7 +37,7 @@ const setting = (props) => {
 
     <>
       <ContainerWrapper>
-        <AccountInfo accountInfo={info} />
+        <UpdateAccuntInfo accountInfo={info} />
       </ContainerWrapper>
     </>
   );
