@@ -1,6 +1,5 @@
-import PhotoCard from "./photoCard";
 import ShowAllBtn from "./showAllBtn";
-import EventCard from "../eventCard";
+import EventCard from "../global/eventCard";
 import { MdKeyboardArrowRight } from "react-icons/md";
 const RecentEvents = (props) => {
   return (
@@ -11,9 +10,45 @@ const RecentEvents = (props) => {
         <ShowAllBtn />
       </div>
       <div className=''>
-        <EventCard />
-        <EventCard />
-        <EventCard />
+        <EventCard
+          name='Faisal Antu'
+          role='CSE Club President'
+          date='3 Feb 2021'
+          title='10 Trending projects on GitHub for web developer'
+          location='Dhaka,Bangladesh'
+          fee='100'
+          tickets='45'
+          time='4:00pm - 5:30pm'
+          email='hello@faisalantu.com'
+          phone='880 1776XXXXXX'
+          edit={false}
+        />
+        <EventCard
+          name='Faisal Antu'
+          role='CSE Club President'
+          date='3 Feb 2021'
+          title='10 Trending projects on GitHub for web developer'
+          location='Dhaka,Bangladesh'
+          fee='100'
+          tickets='45'
+          time='4:00pm - 5:30pm'
+          email='hello@faisalantu.com'
+          phone='880 1776XXXXXX'
+          edit={false}
+        />
+        <EventCard
+          name='Faisal Antu'
+          role='CSE Club President'
+          date='3 Feb 2021'
+          title='10 Trending projects on GitHub for web developer'
+          location='Dhaka,Bangladesh'
+          fee='100'
+          tickets='45'
+          time='4:00pm - 5:30pm'
+          email='hello@faisalantu.com'
+          phone='880 1776XXXXXX'
+          edit={false}
+        />
       </div>
     </div>
   );
