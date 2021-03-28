@@ -14,19 +14,19 @@ export default function SideBar() {
         <NonExtendedLink name='Home' icon={<HiHome/>} route='/'/>
         {/* Club events sidebar*/}
         <ExtendedLink name='Club Members' icon={<BsFillPersonFill/>} iconClass='sm:text-md'>
-          <SubSidebarLink name='Edit Members' icon={<MdEdit />} route='/admin' />
+          <SubSidebarLink name='Edit Member' icon={<MdEdit />} route='/admin' />
         </ExtendedLink>
 
         {/* Club events sidebar*/}
         <ExtendedLink name='Club Events' icon={<MdEventNote/>} iconClass='sm:text-md'>
-          <SubSidebarLink name='Add Events' icon={<IoAddCircle  />} route='/posts/post'/>
-          <SubSidebarLink name='Edit Events' icon={<MdEdit />} route='' />
+          <SubSidebarLink name='Add Event' icon={<IoAddCircle  />} route='/admin/add-event'/>
+          <SubSidebarLink name='Edit Event' icon={<MdEdit />} route='' />
         </ExtendedLink>
 
         {/* Club events sidebar*/}
         <ExtendedLink name='Club Posts' icon={<BsFileText/>} iconClass='sm:text-md'>
-          <SubSidebarLink name='Add Posts' icon={<IoAddCircle />} route='' />
-          <SubSidebarLink name='Edit Posts' icon={<MdEdit />} route=''/>
+          <SubSidebarLink name='Add Post' icon={<IoAddCircle />} route='' />
+          <SubSidebarLink name='Edit Post' icon={<MdEdit />} route=''/>
         </ExtendedLink>
       </div>
     </>
