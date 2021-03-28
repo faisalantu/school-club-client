@@ -4,7 +4,7 @@ import TopNavbar from "./navBar/topNavbar";
 import { useRouter } from 'next/router'
 const ContainerWrapper = (props) => {
   const router = useRouter()
-  var validSettingRouteFormat = /\/setting/;
+  const validSettingRouteFormat = /\/setting/;
   // console.log(router.pathname)
   return (
     <>
