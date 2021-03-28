@@ -1,8 +1,8 @@
 import Link from "next/link";
-function nonExtendedLink({ name, iconClass, icon }) {
+function nonExtendedLink({ name, iconClass, icon,route }) {
   return (
     <div className='mb-2'>
-      <Link href='#'>
+      <Link href={route?route:'#'}>
         <a className='hover:text-yellow-500 cursor-pointer inline-block'>
           <div className='flex items-center'>
             <div className='ml-0.5 mr-3 '>
