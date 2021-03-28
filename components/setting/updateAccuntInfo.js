@@ -56,6 +56,7 @@ export default function UpdateAccuntInfo(props) {
         [name]: !clubs[name]
         }});
     }
+    // input handle
     function handleInputUpdate(event)
     {  
         const { name ,value} = event.target;
