@@ -19,7 +19,7 @@ export default function SideBar() {
 
         <ExtendedLink name='Club Events' icon={<MdEventNote/>} iconClass='sm:text-md'>
           <SubSidebarLink name='Add Event' icon={<IoAddCircle  />} route='/admin/add-event'/>
-          <SubSidebarLink name='Edit Event' icon={<MdEdit />} route='' />
+          <SubSidebarLink name='Edit Event' icon={<MdEdit />} route='/admin/edit-event' />
         </ExtendedLink>
 
         <ExtendedLink name='Club Posts' icon={<BsFileText/>} iconClass='sm:text-md'>
