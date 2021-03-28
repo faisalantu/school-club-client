@@ -40,7 +40,7 @@ const setting = (props) => {
               name='vehicle1'
               value='Bike'
             ></input>
-            <label for='vehicle1'> Publish</label>
+            <label htmlFor='vehicle1'> Publish</label>
           </div>
           <div className='flex flex-row justify-center my-3'>
             <button

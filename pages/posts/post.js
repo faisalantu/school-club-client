@@ -18,7 +18,7 @@ const Post = (props) => {
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni
               facilis ea tempore.
             </h1>
-            <Tags />
+            <Tags tags={["git", "gitHub", "nodeJs", "nextJs"]}/>
             <div className='mt-3'>
               <UserInfoAndDate
                 name='Faisal Antu'
