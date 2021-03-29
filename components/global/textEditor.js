@@ -1,4 +1,5 @@
 import { Component } from 'react'
+import {BsTypeBold,BsTypeItalic,BsTypeUnderline,BsCode,BsLink45Deg} from 'react-icons/bs'
 import {
   Editor,
   EditorState,
@@ -36,6 +37,26 @@ export default class App extends Component {
     this.focus = () => this.editor.focus()
     this.onChange = (editorState) => this.setState({ editorState })
   }
+  // bold button
+  _onBoldClick() {
+    this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'BOLD'));
+  }
+  // Italic button
+  _onItalicClick() {
+    this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'ITALIC'));
+  }
+  // Underline button
+  _onUnderlineClick() {
+    this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'UNDERLINE'));
+  }
+  // Code button
+  _onCodeClick() {
+    this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'CODE'));
+  }
+  // Link button
+  _onLinkClick() {
+    this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, 'ITEM'));
+  }
 
   onClickEditor = () => {
     this.focus()
@@ -71,79 +92,9 @@ export default class App extends Component {
           w: r.width,
           h: r.height,
         },
-      },
-      () => this.showToolbar()
+      }
+      
     )
-  }
-
-  // 3- Show the toolbar
-  showToolbar = () => {
-    this.setState(
-      {
-        showToolbar: true,
-      },
-      () => this.measureToolbar()
-    )
-  }
-
-  // 4- The toolbar was hidden until now
-  measureToolbar = () => {
-    // 4-a Define the toolbar width and height, as it is now visible
-    this.setState(
-      {
-        toolbarMeasures: {
-          w: this.elemWidth,
-          h: this.elemHeight,
-        },
-      },
-      () => this.setToolbarXY()
-    )
-  }
-
-  // 5- Now that we have all measures, define toolbar coordinates
-  setToolbarXY = () => {
-    let coordinates = {}
-
-    const {
-      selectionMeasures,
-      selectionCoordinates,
-      toolbarMeasures,
-      windowWidth,
-    } = this.state
-
-    const hiddenTop = selectionCoordinates.y < toolbarMeasures.h
-    const hiddenRight =
-      windowWidth - selectionCoordinates.x < toolbarMeasures.w / 2
-    const hiddenLeft = selectionCoordinates.x < toolbarMeasures.w / 2
-
-    const normalX =
-      selectionCoordinates.x - toolbarMeasures.w / 2 + selectionMeasures.w / 2
-    const normalY = selectionCoordinates.y - toolbarMeasures.h
-
-    const invertedY = selectionCoordinates.y + selectionMeasures.h
-    const moveXToLeft = windowWidth - toolbarMeasures.w
-    const moveXToRight = 0
-
-    coordinates = {
-      x: normalX,
-      y: normalY,
-    }
-
-    if (hiddenTop) {
-      coordinates.y = invertedY
-    }
-
-    if (hiddenRight) {
-      coordinates.x = moveXToLeft
-    }
-
-    if (hiddenLeft) {
-      coordinates.x = moveXToRight
-    }
-
-    this.setState({
-      toolbarCoordinates: coordinates,
-    })
   }
 
   handleKeyCommand = (command) => {
@@ -156,12 +107,6 @@ export default class App extends Component {
     return false
   }
 
-  toggleToolbar = (inlineStyle) => {
-    this.onChange(
-      RichUtils.toggleInlineStyle(this.state.editorState, inlineStyle)
-    )
-  }
-
   render() {
     const { editorState } = this.state
     // Make sure we're not on the ssr
@@ -171,26 +116,14 @@ export default class App extends Component {
       window.addEventListener('resize', this.checkSelectedText)
     }
 
-    const toolbarStyle = {
-      display: this.state.showToolbar ? 'block' : 'none',
-      backgroundColor: '#a5a58d',
-      color: 'black',
-      position: 'absolute',
-      left: this.state.toolbarCoordinates.x,
-      top: this.state.toolbarCoordinates.y,
-      zIndex: 999,
-      padding: 10,
-    }
     return (
       <div>
-        <div
-          ref={(elem) => {
-            this.elemWidth = elem ? elem.clientWidth : 0
-            this.elemHeight = elem ? elem.clientHeight : 0
-          }}
-          style={toolbarStyle}
-        >
-          <ToolBar editorState={editorState} onToggle={this.toggleToolbar} />
+        <div className='mb-3 border-b-2 pb-2'>
+        <button className="p-2 hover:bg-gray-400 rounded mr-2" onClick={this._onBoldClick.bind(this)}><BsTypeBold/></button>
+        <button className="p-2 hover:bg-gray-400 rounded mr-2" onClick={this._onItalicClick.bind(this)}><BsTypeItalic/></button>
+        <button className="p-2 hover:bg-gray-400 rounded mr-2" onClick={this._onUnderlineClick.bind(this)}><BsTypeUnderline/></button>
+        <button className="p-2 hover:bg-gray-400 rounded mr-2" onClick={this._onCodeClick.bind(this)}><BsCode/></button>
+        <button className="p-2 hover:bg-gray-400 rounded mr-2" onClick={this._onLinkClick.bind(this)}><BsLink45Deg/></button>
         </div>
         <div onClick={this.onClickEditor} onBlur={this.checkSelectedText}>
           <Editor
@@ -241,105 +174,14 @@ const styleMap = {
   },
 }
 
-class ToolbarButton extends Component {
-  constructor() {
-    super()
-    this.onToggle = (e) => {
-      e.preventDefault()
-      this.props.onToggle(this.props.style)
-    }
-  }
-
-  render() {
-    const buttonStyle = {
-      padding: 10,
-    }
-    return (
-      <span onMouseDown={this.onToggle} style={buttonStyle}>
-        {this.props.label}
-      </span>
-    )
-  }
-}
-
-var toolbarItems = [
-  { label: 'Bold', style: 'BOLD' },
-  { label: 'Italic', style: 'ITALIC' },
-  { label: 'Underline', style: 'UNDERLINE' },
-  { label: 'Code', style: 'CODE' },
-  { label: 'Surprise', style: 'ANYCUSTOMSTYLE' },
-]
-
-const ToolBar = (props) => {
-  var currentStyle = props.editorState.getCurrentInlineStyle()
-  return (
-    <div>
-      {toolbarItems.map((toolbarItem) => (
-        <ToolbarButton
-          key={toolbarItem.label}
-          active={currentStyle.has(toolbarItem.style)}
-          label={toolbarItem.label}
-          onToggle={props.onToggle}
-          style={toolbarItem.style}
-        />
-      ))}
-    </div>
-  )
-}
-
 const initialData = {
   blocks: [
     {
       key: '16d0k',
-      text: 'You can edit this text.',
+      text: '',
       type: 'unstyled',
       depth: 0,
       inlineStyleRanges: [{ offset: 0, length: 23, style: 'BOLD' }],
-      entityRanges: [],
-      data: {},
-    },
-    {
-      key: '98peq',
-      text: '',
-      type: 'unstyled',
-      depth: 0,
-      inlineStyleRanges: [],
-      entityRanges: [],
-      data: {},
-    },
-    {
-      key: 'ecmnc',
-      text:
-        'Luke Skywalker has vanished. In his absence, the sinister FIRST ORDER has risen from the ashes of the Empire and will not rest until Skywalker, the last Jedi, has been destroyed.',
-      type: 'unstyled',
-      depth: 0,
-      inlineStyleRanges: [
-        { offset: 0, length: 14, style: 'BOLD' },
-        { offset: 133, length: 9, style: 'BOLD' },
-      ],
-      entityRanges: [],
-      data: {},
-    },
-    {
-      key: 'fe2gn',
-      text: '',
-      type: 'unstyled',
-      depth: 0,
-      inlineStyleRanges: [],
-      entityRanges: [],
-      data: {},
-    },
-    {
-      key: '4481k',
-      text:
-        'With the support of the REPUBLIC, General Leia Organa leads a brave RESISTANCE. She is desperate to find her brother Luke and gain his help in restoring peace and justice to the galaxy.',
-      type: 'unstyled',
-      depth: 0,
-      inlineStyleRanges: [
-        { offset: 34, length: 19, style: 'BOLD' },
-        { offset: 117, length: 4, style: 'BOLD' },
-        { offset: 68, length: 10, style: 'ANYCUSTOMSTYLE' },
-      ],
       entityRanges: [],
       data: {},
     },
