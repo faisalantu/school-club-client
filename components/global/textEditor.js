@@ -173,8 +173,8 @@ export default class App extends Component {
 
     const toolbarStyle = {
       display: this.state.showToolbar ? 'block' : 'none',
-      backgroundColor: 'black',
-      color: 'white',
+      backgroundColor: '#a5a58d',
+      color: 'black',
       position: 'absolute',
       left: this.state.toolbarCoordinates.x,
       top: this.state.toolbarCoordinates.y,
@@ -217,6 +217,7 @@ export default class App extends Component {
           <br />
           {this.state.showRawData &&
             JSON.stringify(convertToRaw(editorState.getCurrentContent()))}
+          
         </div>
       </div>
     )
@@ -232,7 +233,7 @@ const styleMap = {
     padding: 4,
   },
   BOLD: {
-    color: '#395296',
+    color: 'black',
     fontWeight: 'bold',
   },
   ANYCUSTOMSTYLE: {

@@ -1,8 +1,9 @@
 import { connect } from "react-redux";
 import InputBox from "../../components/global/inputbox";
-import DraftEditor from "./textEditor";
+import DraftEditor from "../../components/global/textEditor";
 import ContainerWrapper from "../../components/containerWrapper";
 import { wrapper } from "../../store/store";
+
 const setting = (props) => {
   return (
     <>
