@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 import InputBox from "../../components/global/inputbox";
+import DraftEditor from "./textEditor";
 import ContainerWrapper from "../../components/containerWrapper";
 import { wrapper } from "../../store/store";
 const setting = (props) => {
@@ -15,6 +16,10 @@ const setting = (props) => {
               placeholder='your title here'
               type='file'
             />
+          </div>
+          <h2 className='text-lg mb-3'>Write Something</h2>
+          <div className='border-2 border-gray-300 rounded p-4'>
+            <DraftEditor />
           </div>
           <div>
             <input

@@ -8,12 +8,12 @@
     "start": "next start"
   },
   "dependencies": {
-    "@ckeditor/ckeditor5-build-classic": "^27.0.0",
-    "@ckeditor/ckeditor5-react": "^3.0.2",
+    "draft-js": "^0.11.7",
     "next": "10.0.9",
     "next-redux-wrapper": "^6.0.2",
     "react": "17.0.1",
     "react-dom": "17.0.1",
+    "react-draft-wysiwyg": "^1.14.5",
     "react-icons": "^4.2.0",
     "react-redux": "^7.2.2",
     "redux": "^4.0.5",
