@@ -11,7 +11,7 @@ export default function SideBar() {
   return (
     <>
       <div className='pt-2.5 px-14 lg:text-xl select-none'>
-        <NonExtendedLink icon={<HiHome/>} name='Home' />
+        <NonExtendedLink icon={<HiHome/>} name='Home' route='/'/>
         {/* Club events sidebar*/}
         <ExtendedLink
           name='Club Members'

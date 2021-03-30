@@ -1,4 +1,4 @@
-import UserInfoAndDate from "./userInfoAndDate";
+import UserInfoAndDate from "../global/userInfoAndDate";
 import Reaction from "./reaction";
 import { useState } from "react";
 function commentArea() {

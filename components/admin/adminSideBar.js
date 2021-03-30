@@ -12,21 +12,19 @@ export default function SideBar() {
     <>
       <div className='pt-2.5 px-14 lg:text-xl select-none'>
         <NonExtendedLink name='Home' icon={<HiHome/>} route='/'/>
-        {/* Club events sidebar*/}
+        
         <ExtendedLink name='Club Members' icon={<BsFillPersonFill/>} iconClass='sm:text-md'>
-          <SubSidebarLink name='Edit Members' icon={<MdEdit />} route='/admin' />
+          <SubSidebarLink name='Edit Member' icon={<MdEdit />} route='/admin/edit-member' />
         </ExtendedLink>
 
-        {/* Club events sidebar*/}
         <ExtendedLink name='Club Events' icon={<MdEventNote/>} iconClass='sm:text-md'>
-          <SubSidebarLink name='Add Events' icon={<IoAddCircle  />} route='/posts/post'/>
-          <SubSidebarLink name='Edit Events' icon={<MdEdit />} route='' />
+          <SubSidebarLink name='Add Event' icon={<IoAddCircle  />} route='/admin/add-event'/>
+          <SubSidebarLink name='Edit Event' icon={<MdEdit />} route='/admin/edit-event' />
         </ExtendedLink>
 
-        {/* Club events sidebar*/}
         <ExtendedLink name='Club Posts' icon={<BsFileText/>} iconClass='sm:text-md'>
-          <SubSidebarLink name='Add Posts' icon={<IoAddCircle />} route='' />
-          <SubSidebarLink name='Edit Posts' icon={<MdEdit />} route=''/>
+          <SubSidebarLink name='Add Post' icon={<IoAddCircle />} route='/admin/add-post' />
+          <SubSidebarLink name='Edit Post' icon={<MdEdit />} route='/admin/edit-post'/>
         </ExtendedLink>
       </div>
     </>
