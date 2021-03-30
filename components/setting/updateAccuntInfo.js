@@ -12,7 +12,7 @@ export default function UpdateAccuntInfo(props) {
     }
     const [editMode, setEditMode] = useState(false);
     const [show, setShow] = useState(true);
-    const [clubs, setClubs] = useState(props.accountInfo.clubs);
+    // const [clubs, setClubs] = useState(props.accountInfo.clubs);
     const [info, setInfo] = useState(props.accountInfo);
     // const [clubs, setClubs] = useState(
     //     {
@@ -36,24 +36,32 @@ export default function UpdateAccuntInfo(props) {
     //         {key}
     //     </label>)
     // });
-    function handleCheckboxClick(event)
-    {  
-        const { name } = event.target;
-        console.log(event.target)
-        console.log(name)
-        setClubs((prevClubs)=>{
-        return {
-        ...prevClubs, 
-        [name]: !clubs[name]
-        }});
-    }
+    // function handleCheckboxClick(event)
+    // {  
+    //     const { name } = event.target;
+    //     console.log(event.target)
+    //     console.log(name)
+    //     setClubs((prevClubs)=>{
+    //     return {
+    //     ...prevClubs, 
+    //     [name]: !clubs[name]
+    //     }});
+    // }
+
+    // Checkbox handle
     function handleCheckbox(name)
     {  
         //console.log(name)
-        setClubs((prevClubs)=>{
-        return {
-        ...prevClubs, 
-        [name]: !clubs[name]
+        // setClubs((prevClubs)=>{
+        // return {
+        // ...prevClubs, 
+        // [name]: !clubs[name]
+        // }});
+
+        setInfo((prevInfo)=>{
+            return {
+            ...prevInfo, 
+            clubs: {...prevInfo.clubs ,[name]: !prevInfo.clubs[name]}
         }});
     }
     // input handle
@@ -122,17 +130,17 @@ export default function UpdateAccuntInfo(props) {
                 }
             </div>
             <div className='grid grid-flow-row grid-cols-2 gap-5 md:grid-cols-2 sm:grid-cols-1'>
-                <Inputbox label='First Name' type='text' placeholder='First Name' name='fName' value={info.fName} ChangeHandel={handleInputUpdate} editMode={editMode}/>
+                <Inputbox label='First Name' type='text' placeholder='First Name' name='fName' value={info.fName} ChangeHandel={handleInputUpdate} editMode={!editMode}/>
 
-                <Inputbox label='Last Name' type='text' placeholder='Last Name' name='lName' value={info.lName} ChangeHandel={handleInputUpdate} editMode={editMode}/>
+                <Inputbox label='Last Name' type='text' placeholder='Last Name' name='lName' value={info.lName} ChangeHandel={handleInputUpdate} editMode={!editMode}/>
                 
-                <Inputbox label='Email address' type='email' placeholder='Enter email' name='email' value={info.email} ChangeHandel={handleInputUpdate} editMode={editMode}/>
+                <Inputbox label='Email address' type='email' placeholder='Enter email' name='email' value={info.email} ChangeHandel={handleInputUpdate} editMode={!editMode}/>
                 
-                <Inputbox label='Phone Number' type='tel' placeholder='Phone Number' name='phone' value={info.phone} ChangeHandel={handleInputUpdate} editMode={editMode}/>
+                <Inputbox label='Phone Number' type='tel' placeholder='Phone Number' name='phone' value={info.phone} ChangeHandel={handleInputUpdate} editMode={!editMode}/>
                 
-                <Inputbox label='Location' type='text' placeholder='Location' name='location' value={info.location}ChangeHandel={handleInputUpdate} editMode={editMode}/>
+                <Inputbox label='Location' type='text' placeholder='Location' name='location' value={info.location}ChangeHandel={handleInputUpdate} editMode={!editMode}/>
                 
-                <Inputbox label='Student ID' type='text' placeholder='Student ID' name='studentID' value={info.studentID} ChangeHandel={handleInputUpdate} editMode={editMode}/>
+                <Inputbox label='Student ID' type='text' placeholder='Student ID' name='studentID' value={info.studentID} ChangeHandel={handleInputUpdate} editMode={!editMode}/>
                 <div className=' flex flex-col mb-8 sm:pr-6 md:pr-10 lg:pr-40 pr-4' >
                     <label className='mb-2 text-lg text-grey-darkest' htmlFor="">Interested Clubs</label>
                     <div >
@@ -160,7 +168,7 @@ export default function UpdateAccuntInfo(props) {
                             } */}
 
                             {
-                                Object.entries(clubs).map(([key, value ]) => {
+                                Object.entries(info.clubs).map(([key, value ]) => {
                                     return (
                                     <CheckBox key={key}  lavel={key} defaultCheckValue={value} click={handleCheckbox} editMode={editMode} /> 
                                     )
