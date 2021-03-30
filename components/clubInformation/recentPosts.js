@@ -1,5 +1,5 @@
 import ShowAllBtn from "./showAllBtn";
-import PostCard from "../postComponent/postCard";
+import PostCard from "../global/postCard";
 import { MdKeyboardArrowRight } from "react-icons/md";
 const RecentPosts = (props) => {
   return (
