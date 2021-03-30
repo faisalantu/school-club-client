@@ -10,17 +10,16 @@ const ClubMembers = (props) => {
         <ShowAllBtn />
       </div>
       <div className='flex flex-wrap gap-5'>
-        <PhotoCard />
-        <PhotoCard />
-        <PhotoCard />
-        <PhotoCard />
-        <PhotoCard />
-        <PhotoCard />
-        <PhotoCard />
-        <PhotoCard />
-        <PhotoCard />
-        <PhotoCard />
-        <PhotoCard />
+        <PhotoCard imgUrl='/portrait-2.jpeg' name='Faisal Antu' rank='Club President'/>
+        <PhotoCard imgUrl='/portrait-1.jpg' name='Faisal Antu' />
+        <PhotoCard imgUrl='/portrait-2.jpeg' name='Faisal Antu' rank='Club Member'/>
+        <PhotoCard imgUrl='/portrait-2.jpeg' name='Faisal Antu' />
+        <PhotoCard imgUrl='/portrait-1.jpg' name='Faisal Antu' rank='Club President'/>
+        <PhotoCard imgUrl='/portrait-2.jpeg' name='Faisal Antu' rank='Club President'/>
+        <PhotoCard imgUrl='/portrait-1.jpg' name='Faisal Antu' rank='Club Member'/>
+        <PhotoCard imgUrl='/portrait-2.jpeg' name='Faisal Antu' rank='Club President'/>
+        <PhotoCard  name='Faisal Antu' rank='Club President'/>
+        <PhotoCard  name='Faisal Antu' rank='Club Member'/>
       </div>
     </div>
   );

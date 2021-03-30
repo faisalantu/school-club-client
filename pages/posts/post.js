@@ -34,7 +34,16 @@ const Post = (props) => {
             <h1 className='pt-3 text-xl'>Comments</h1>
             <CommentForm />
           </div>
-          <Comments />
+          <Comments 
+            userName='Junayed Khan Noor'
+            userImgUrl='/portrait-2.jpeg'
+            date='3 Feb 2021'
+            comments="We should start with HTML and CSs first , learn the absolute basics,
+          follow good channels like brad traversy on youtube or Colt Steele's
+          Web developer bootcamp on Udemy. You can spend around 2 weeks on HTML,
+          CSS basics and then start with javascript. Do more practicals and
+          understand the necessary theories and concepts."
+            />
           <Comments />
           <Comments />
         </div>
