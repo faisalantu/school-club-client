@@ -3,8 +3,10 @@ import InputBox from "../../components/global/inputbox";
 import DraftEditor from "../../components/global/textEditor";
 import ContainerWrapper from "../../components/containerWrapper";
 import { wrapper } from "../../store/store";
-
+import TagInput from "../../components/global/tagInput";
 const setting = (props) => {
+  //tag data from tag component
+  const getTags = tags => console.log(tags)
   return (
     <>
       <ContainerWrapper>
@@ -22,6 +24,7 @@ const setting = (props) => {
           <div className='border-2 border-gray-300 rounded p-4'>
             <DraftEditor />
           </div>
+          <TagInput getTags={getTags}/>
           <div>
             <input
               type='checkbox'
