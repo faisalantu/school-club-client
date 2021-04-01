@@ -6,7 +6,6 @@ export default function dropdownCheckBoxs({ dropdownItems, checkboxClickHandler,
     const [show, setShow] = useState(false);
 
     return (<div className='flex flex-col mb-8' >
-        <label className='mb-2 text-lg text-grey-darkest' htmlFor="">Interested Clubs</label>
         <div >
             <div className=' relative  cursor-pointer flex flex-col ' onClick={() => { setShow(!show) }}>
                 <select className='rounded-lg border bg-gray-300 py-2 px-3 text-grey-darkest outline-none' >

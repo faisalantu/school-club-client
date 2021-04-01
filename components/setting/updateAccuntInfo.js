@@ -117,6 +117,7 @@ export default function UpdateAccuntInfo(props) {
                      <Inputbox label='Student ID' type='text' placeholder='Student ID' name='studentID' value={info.studentID} ChangeHandel={handleInputUpdate} editMode={!editMode} />
                 </div>
                 <div className='lg:w-5/6'>
+                   <label className='mb-2 text-lg text-grey-darkest' htmlFor="">Interested Clubs</label>
                    <DropdownCheckBoxs dropdownItems={info.clubs} editMode={editMode} checkboxClickHandler={handleCheckbox} />
                 </div>
             </div>

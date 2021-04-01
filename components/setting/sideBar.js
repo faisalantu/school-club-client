@@ -2,7 +2,7 @@ import NonExtendedLink from "../navBar/nonExtendedLink";
 
 //import icons
 import { HiHome } from "react-icons/hi";
-import { GrShieldSecurity } from "react-icons/gr";
+import { MdSecurity } from "react-icons/md";
 import { RiAccountCircleFill } from "react-icons/ri";
 
 export default function SideBar() {
@@ -16,7 +16,7 @@ export default function SideBar() {
           route='/setting'
         />
         <NonExtendedLink
-          icon={<GrShieldSecurity />}
+          icon={<MdSecurity />}
           name='Change password'
           route='/setting/update-password'
         />
