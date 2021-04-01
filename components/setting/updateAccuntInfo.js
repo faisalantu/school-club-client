@@ -2,7 +2,7 @@ import Image from "next/image";
 import { useRef, useState } from "react";
 import { VscAccount } from 'react-icons/vsc';
 import { MdKeyboardArrowRight } from 'react-icons/md';
-import DropdownCheckBoxs from './dropdownCheckBoxs';
+import DropdownCheckBoxs from '../global/dropdownCheckBoxs';
 import Inputbox from '../global/inputbox';
 export default function UpdateAccuntInfo(props) {
 

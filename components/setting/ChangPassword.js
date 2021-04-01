@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Inputbox from '../global/inputbox';
 export default function ChangPassword(props) {
     function handleSubmit(event)
