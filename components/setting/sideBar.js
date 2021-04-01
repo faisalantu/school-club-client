@@ -2,8 +2,8 @@ import NonExtendedLink from "../navBar/nonExtendedLink";
 
 //import icons
 import { HiHome } from "react-icons/hi";
-import { Si1Password } from "react-icons/si";
-import { RiAccountBoxLine } from "react-icons/ri";
+import { GrShieldSecurity } from "react-icons/gr";
+import { RiAccountCircleFill } from "react-icons/ri";
 
 export default function SideBar() {
   return (
@@ -11,12 +11,12 @@ export default function SideBar() {
       <div className='pt-2.5 px-14 lg:text-xl'>
         <NonExtendedLink icon={<HiHome />} name='Home' route='/' />
         <NonExtendedLink
-          icon={<RiAccountBoxLine />}
+          icon={<RiAccountCircleFill />}
           name='Account'
           route='/setting'
         />
         <NonExtendedLink
-          icon={<Si1Password />}
+          icon={<GrShieldSecurity />}
           name='Change password'
           route='/setting/update-password'
         />
