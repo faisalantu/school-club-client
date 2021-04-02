@@ -9,7 +9,7 @@ const Index = (props) => {
   return (
     <>
       <ContainerWrapper>
-        <div className='flex flex-col gap-10 flex-wrap mb-5'>
+        <div className='flex flex-col gap-10 flex-wrap mb-5 px-5'>
           <ClubMembers />
           <RecentEvents />
           <RecentPosts />

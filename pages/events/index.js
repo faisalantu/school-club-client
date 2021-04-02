@@ -7,7 +7,7 @@ const Index = (props) => {
   return (
     <>
       <ContainerWrapper>
-        <div className=''>
+        <div className='px-5'>
           <EventCard
             name='Faisal Antu'
             role='CSE Club President'

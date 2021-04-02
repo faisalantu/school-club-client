@@ -10,7 +10,7 @@ const setting = (props) => {
   return (
     <>
       <ContainerWrapper>
-        <div className='w-11/12 mx-auto'>
+        <div className='px-5'>
           <h1 className='font-bold text-3xl mb-3'>Add Post</h1>
           <div>
             <InputBox label='Post Title' placeholder='your title here' />
