@@ -6,7 +6,7 @@ const setting = (props) => {
   return (
     <>
       <ContainerWrapper>
-        <div className=' w-10/12 mx-auto'>
+        <div className=' px-5'>
           <h1 className='font-bold text-3xl mb-3'>Add Event</h1>
           <InputBox label='Event Title' placeholder='title' />
           <InputBox

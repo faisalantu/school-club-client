@@ -14,7 +14,7 @@ export default function SideBar() {
         <NonExtendedLink icon={<HiHome/>} name='Home' route='/'/>
         {/* Club events sidebar*/}
         <ExtendedLink
-          name='Club Members'
+          name='Club Information'
           icon={<BsFillPersonFill />}
           iconClass='sm:text-md'
         >

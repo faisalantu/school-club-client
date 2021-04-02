@@ -10,9 +10,9 @@ const RecentPosts = (props) => {
         <ShowAllBtn />
       </div>
       <div className=''>
-        <PostCard />
-        <PostCard />
-        <PostCard />
+      <PostCard imgUrl='/portrait-1.jpg' name='Faisal Antu' date='3-apr-2021' title='Enhance your code reading experience on GitHub' />
+      <PostCard imgUrl='/portrait-1.jpg' name='Faisal Antu' date='3-apr-2021' title='Enhance your code reading experience on GitHub' />
+      <PostCard imgUrl='/portrait-1.jpg' name='Faisal Antu' date='3-apr-2021' title='Enhance your code reading experience on GitHub' />
       </div>
     </div>
   );

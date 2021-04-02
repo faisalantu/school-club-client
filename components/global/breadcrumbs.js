@@ -36,7 +36,7 @@ const Breadcrumbs = () => {
   }
 
   return (
-    <nav aria-label='breadcrumbs'>
+    <nav className='px-5 mb-4' aria-label='breadcrumbs'>
       <ol className='flex gap-2 text-sm font-mono text-gray-500'>
         <li>
           <a href='/'>HOME</a>

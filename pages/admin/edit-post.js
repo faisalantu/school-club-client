@@ -6,7 +6,7 @@ const setting = (props) => {
   return (
     <>
       <ContainerWrapper>
-        <div className='w-11/12 mx-auto'>
+        <div className='px-5'>
           <PostCard
             name='Faisal Antu'
             role='CSE Club President'

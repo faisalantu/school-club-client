@@ -33,7 +33,7 @@ const SelectMember = () => {
   return (
     <div>
       <ContainerWrapper>
-        <div>
+        <div className='px-5'>
           <div className=' flex flex-row justify-start items-center mt-2'>
             <div className='bg-white rounded-full w-44 h-44 relative overflow-hidden'>
               <Image
@@ -48,7 +48,9 @@ const SelectMember = () => {
             </div>
           </div>
           <div className='w-4/12 mt-5'>
-          <label className='mb-2 text-lg text-grey-darkest' htmlFor="">Select Role</label>
+            <label className='mb-2 text-lg text-grey-darkest' htmlFor=''>
+              Select Role
+            </label>
             <DropdownCheckBoxs
               dropdownItems={info.clubs}
               editMode={editMode}

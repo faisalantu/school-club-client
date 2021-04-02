@@ -12,7 +12,7 @@ const Post = (props) => {
   return (
     <>
       <ContainerWrapper>
-        <div className='p-2 mx-5'>
+        <div className='py-2 mx-5'>
           <div className=' border-b-2 pb-4'>
             <h1 className=' text-3xl font-medium'>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni

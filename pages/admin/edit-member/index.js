@@ -8,7 +8,7 @@ const editMember = (props) => {
   return (
     <>
       <ContainerWrapper>
-        <div className='w-11/12 mx-auto'>
+        <div className='px-5 mx-auto'>
           <div className='flex items-center'>
             <div className='flex-1 mr-2'>
               <InputBox label='Search User' placeholder=' input user name' />
