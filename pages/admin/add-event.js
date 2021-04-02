@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import ContainerWrapper from "../../components/containerWrapper";
-import InputBox from "../../components/setting/inputbox";
+import InputBox from "../../components/global/inputbox";
 import { wrapper } from "../../store/store";
 const setting = (props) => {
   return (
