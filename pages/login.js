@@ -1,5 +1,4 @@
 import { connect } from "react-redux";
-import ContainerWrapper from "../components/containerWrapper";
 import { wrapper } from "../store/store";
 
 const Login = (props) => {
