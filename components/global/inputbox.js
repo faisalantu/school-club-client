@@ -11,7 +11,7 @@ export default function InputBox({
     <div className='flex flex-col mb-8'>
       <label className='mb-2 text-lg text-grey-darkest'>{label && label}</label>
       <input
-        className='rounded-lg border bg-gray-300 py-2 px-3 text-grey-darkest outline-none'
+        className='rounded-lg border border-gray-400 bg-transparent py-2 px-3 text-grey-darkest outline-none'
         type={type && type}
         placeholder={placeholder && placeholder}
         name={name && name}
