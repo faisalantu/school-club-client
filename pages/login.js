@@ -1,10 +1,10 @@
 import { connect } from "react-redux";
 import { wrapper } from "../store/store";
-
+import LoginComponent from "../components/auth/login";
 const Login = (props) => {
   return (
     <>
-
+      <LoginComponent />
     </>
   );
 };

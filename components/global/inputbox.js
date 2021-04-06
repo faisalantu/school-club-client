@@ -8,7 +8,7 @@ export default function InputBox({
   label,
 }) {
   return (
-    <div className='flex flex-col mb-8'>
+    <div className='flex flex-col mb-4'>
       <label className='mb-2 text-lg text-grey-darkest'>{label && label}</label>
       <input
         className='rounded-lg border border-gray-400 bg-transparent py-2 px-3 text-grey-darkest outline-none'
