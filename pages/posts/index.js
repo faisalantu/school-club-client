@@ -8,11 +8,11 @@ const Index = (props) => {
     <>
       <ContainerWrapper>
         <div className='px-5'>
-          <PostCard imgUrl='/portrait-1.jpg' name='Faisal Antu' date='3-apr-2021' title='Enhance your code reading experience on GitHub' />
-          <PostCard imgUrl='/portrait-1.jpg' name='Faisal Antu' date='3-apr-2021' title='Enhance your code reading experience on GitHub' />
-          <PostCard imgUrl='/portrait-1.jpg' name='Faisal Antu' date='3-apr-2021' title='Enhance your code reading experience on GitHub' />
-          <PostCard imgUrl='/portrait-1.jpg' name='Faisal Antu' date='3-apr-2021' title='Enhance your code reading experience on GitHub' />
-          <PostCard imgUrl='/portrait-1.jpg' name='Faisal Antu' date='3-apr-2021' title='Enhance your code reading experience on GitHub' />
+          <PostCard tags={['nodeJs', 'NextJs']} imgUrl='/portrait-1.jpg' name='Faisal Antu' date='3-apr-2021' title='Enhance your code reading experience on GitHub' />
+          <PostCard tags={['nodeJs', 'NextJs']} imgUrl='/portrait-1.jpg' name='Faisal Antu' date='3-apr-2021' title='Enhance your code reading experience on GitHub' />
+          <PostCard tags={['nodeJs', 'NextJs']} imgUrl='/portrait-1.jpg' name='Faisal Antu' date='3-apr-2021' title='Enhance your code reading experience on GitHub' />
+          <PostCard tags={['nodeJs', 'NextJs']} imgUrl='/portrait-1.jpg' name='Faisal Antu' date='3-apr-2021' title='Enhance your code reading experience on GitHub' />
+          <PostCard tags={['nodeJs', 'NextJs']} imgUrl='/portrait-1.jpg' name='Faisal Antu' date='3-apr-2021' title='Enhance your code reading experience on GitHub' />
         </div>
       </ContainerWrapper>
     </>

@@ -18,10 +18,10 @@ export default function SideBar() {
           icon={<BsFillPersonFill />}
           iconClass='sm:text-md'
         >
-          <SubSidebarLink name='CSE' route='/admin' />
-          <SubSidebarLink name='EEE' route='/admin' />
-          <SubSidebarLink name='Textile' route='/admin' />
-          <SubSidebarLink name='English' route='/admin' />
+          <SubSidebarLink name='CSE' route='/club' />
+          <SubSidebarLink name='EEE' route='/club' />
+          <SubSidebarLink name='Textile' route='/club' />
+          <SubSidebarLink name='English' route='/club' />
         </ExtendedLink>
 
         {/* Club events sidebar*/}
@@ -30,10 +30,10 @@ export default function SideBar() {
           icon={<MdEventNote />}
           iconClass='sm:text-md'
         >
-          <SubSidebarLink name='CSE' route='/admin' />
-          <SubSidebarLink name='EEE' route='/admin' />
-          <SubSidebarLink name='Textile' route='/admin' />
-          <SubSidebarLink name='English' route='/admin' />
+          <SubSidebarLink name='CSE' route='/events' />
+          <SubSidebarLink name='EEE' route='/events' />
+          <SubSidebarLink name='Textile' route='/events' />
+          <SubSidebarLink name='English' route='/events' />
         </ExtendedLink>
 
         {/* Club events sidebar*/}
@@ -42,10 +42,10 @@ export default function SideBar() {
           icon={<BsFileText />}
           iconClass='sm:text-md'
         >
-          <SubSidebarLink name='CSE' route='/admin' />
-          <SubSidebarLink name='EEE' route='/admin' />
-          <SubSidebarLink name='Textile' route='/admin' />
-          <SubSidebarLink name='English' route='/admin' />
+          <SubSidebarLink name='CSE' route='/posts' />
+          <SubSidebarLink name='EEE' route='/posts' />
+          <SubSidebarLink name='Textile' route='/posts' />
+          <SubSidebarLink name='English' route='/posts' />
         </ExtendedLink>
       </div>
     </>

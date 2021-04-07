@@ -1,14 +1,10 @@
 import { connect } from "react-redux";
-import Home from "../components/home";
-import ContainerWrapper from "../components/containerWrapper";
 import { wrapper } from "../store/store";
-
-const Index = (props) => {
+import LoginComponent from "../components/auth/login";
+const Login = (props) => {
   return (
     <>
-      <ContainerWrapper>
-        <Home/>
-      </ContainerWrapper>
+      <LoginComponent />
     </>
   );
 };
@@ -20,4 +16,4 @@ const mapDispatchToProps = (dispatch) => {
   return {};
 };
 
-export default connect(null, mapDispatchToProps)(Index);
+export default connect(null, mapDispatchToProps)(Login);
