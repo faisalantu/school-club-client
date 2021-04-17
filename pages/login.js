@@ -1,5 +1,3 @@
-import { connect } from "react-redux";
-import { wrapper } from "../store/store";
 import LoginComponent from "../components/auth/login";
 const Login = (props) => {
   return (
@@ -9,11 +7,5 @@ const Login = (props) => {
   );
 };
 
-// redux setup
-export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {});
+export default login
 
-const mapDispatchToProps = (dispatch) => {
-  return {};
-};
-
-export default connect(null, mapDispatchToProps)(Login);
