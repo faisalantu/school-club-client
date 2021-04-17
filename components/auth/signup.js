@@ -1,9 +1,10 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import axios from "axios";
-function signup() {
+import { connect } from 'react-redux';
+import * as actions from '../../store/auth/action';
+function signup(props) {
   const [isLogin, setIsLogin] = useState(true);
-  const [token, setToken] = useState('');
   const [password, setPassword] = useState({
     password1: "",
     password2: "",
@@ -17,12 +18,12 @@ function signup() {
     studentid: "",
   });
   //setting up JWT to localStorage
-  useEffect(() => {
-    if (token && localStorage) {
-      console.log(token);
-      localStorage.setItem("token", token);
-    }
-  }, [token]);
+  // useEffect(() => {
+  //   if (token && localStorage) {
+  //     console.log(token);
+  //     localStorage.setItem("token", token);
+  //   }
+  // }, [token]);
 
   const handleOnChange = (event) => {
     const { name, value } = event.target;
@@ -34,29 +35,42 @@ function signup() {
   };
 
   function submitHandler(e) {
-    e.preventDefault();
-
+    
     if (password.password1 === password.password2) {
       setInputValues({ ...inputValues, password: password.password1 });
+      props.signup({...inputValues, password:password.password1});
     } else {
+      console.log("pass word dose not match")
       setInputValues({ ...inputValues, password: "" });
     }
+    // if (password.password1 === password.password2) {
+    //   console.log("if ",password.password1)
+    //   setInputValues({ ...inputValues, password: password.password1 });
+    // } else {
+    //   console.log("else")
+    //   setInputValues({ ...inputValues, password: "" });
+    // }
 
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
+    // console.log('[pas 1 and 2]',password.password1 ," ", password.password2)
+    // console.log('[inputValues ]=>', inputValues)
+    // console.log('[inputValues password]=>', inputValues.password)
+    // props.signup({...inputValues, password:password.password1});
+    e.preventDefault();
+    // const config = {
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    // };
 
-    axios
-      .post("http://localhost:5000/api/users", inputValues, config)
-      .then((response) => {
-        console.log(response);
-        setToken(response.data.token);
-      })
-      .catch((err) => {
-        console.log(err.response.data);
-      });
+    // axios
+    //   .post("http://localhost:5000/api/users", inputValues, config)
+    //   .then((response) => {
+    //     console.log(response);
+    //     setToken(response.data.token);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err.response.data);
+    //   });
 
     if (isLogin) {
       //some logic
@@ -153,5 +167,16 @@ function signup() {
     </div>
   );
 }
+const mapStateToProps = state => {
+  return {
+      token: state.auth.token,
+  }
+};
 
-export default signup;
+const mapDispatchToProps = dispatch => {
+  return {
+    signup: (inputValues) => dispatch(actions.signup(inputValues)),
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(signup);

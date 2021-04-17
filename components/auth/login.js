@@ -1,7 +1,10 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import axios from "axios";
-function signup() {
+import { connect } from 'react-redux';
+import * as actions from '../../store/auth/action';
+
+function login(props) {
   const [inputValues, setInputValues] = useState({
     email: "",
     password: "",
@@ -9,36 +12,42 @@ function signup() {
   const [token, setToken] = useState("");
 
   //setting up JWT to localStorage
-  useEffect(() => {
-    if (token && localStorage) {
-      console.log(token);
-      localStorage.setItem("token", token);
-    }
-  }, [token]);
+  // useEffect(() => {
+  //   if (token && localStorage) {
+  //     console.log(token);
+  //     localStorage.setItem("token", token);
+  //   }
+  // }, [token]);
 
   const handleInputValue = (event) => {
     const { name, value } = event.target;
     setInputValues({ ...inputValues, [name]: value });
   };
 
-  async function handleSubmit(e) {
+  // async function handleSubmit(e) {
+    
+  //   e.preventDefault();
+  //   try {
+  //     const config = {
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //     };
+  //     const response = await axios.post(
+  //       "http://localhost:5000/api/auth",
+  //       inputValues,
+  //       config
+  //     );
+  //     console.log(response);
+  //     setToken(response.data.token);
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // }
+  function handleSubmit(e) {
+    const {email , password} = inputValues;
+    props.login(email , password)
     e.preventDefault();
-    try {
-      const config = {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      };
-      const response = await axios.post(
-        "http://localhost:5000/api/auth",
-        inputValues,
-        config
-      );
-      console.log(response);
-      setToken(response.data.token);
-    } catch (err) {
-      console.log(err);
-    }
   }
 
   return (
@@ -78,7 +87,7 @@ function signup() {
                 type='submit'
                 className='py-2 px-4  bg-purple-600 hover:bg-purple-700 focus:ring-purple-500 focus:ring-offset-purple-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg '
               >
-                Register
+                login
               </button>
             </div>
           </div>
@@ -87,5 +96,16 @@ function signup() {
     </div>
   );
 }
+const mapStateToProps = state => {
+  return {
+      token: state.auth.token,
+  }
+};
 
-export default signup;
+const mapDispatchToProps = dispatch => {
+  return {
+      login: (email, password) => dispatch(actions.login(email, password)),
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(login);
