@@ -3,7 +3,7 @@ import 'tailwindcss/tailwind.css'
 
 import { Provider } from 'react-redux'
 import { useStore } from '../store/store'
-import IsAuthinticated from '../components/isAuthinticated';
+import IsAuthinticated from '../components/IsAuthinticated';
 
 const WrappedApp = ({ Component, pageProps }) => {
   const store = useStore(pageProps.initialReduxState)
