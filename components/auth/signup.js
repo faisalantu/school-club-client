@@ -1,9 +1,65 @@
 import Link from "next/link";
+import { useState, useEffect } from "react";
+import axios from "axios";
 function signup() {
+  const [isLogin, setIsLogin] = useState(true);
+  const [password, setPassword] = useState({
+    password1: "",
+    password2: "",
+  });
+  const [inputValues, setInputValues] = useState({
+    username: "",
+    firstname: "",
+    lastname: "",
+    email: "",
+    password: "",
+    studentid: "",
+  });
+
+
+  const handleOnChange = (event) => {
+    const { name, value } = event.target;
+    setInputValues({ ...inputValues, [name]: value });
+  };
+  const passwordHandleOnChange = (event) => {
+    const { name, value } = event.target;
+    setPassword({ ...password, [name]: value });
+  };
+
+  function submitHandler(e) {
+    e.preventDefault();
+
+    if (password.password1 === password.password2) {
+      setInputValues({ ...inputValues, password: password.password1 });
+    } else {
+      setInputValues({ ...inputValues, password: "" });
+    }
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    axios
+      .post("http://localhost:5000/api/users", inputValues, config)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((err) => {
+        console.log(err.response.data);
+      });
+
+    if (isLogin) {
+      //some logic
+    } else {
+      //some logic
+    }
+  }
   return (
     <div className='flex items-center justify-center min-h-screen'>
       <div className=' max-w-lg sm:w-8/12 md:w-7/12 lg:w-5/12  text-center py-5 bg-white rounded-lg p-5'>
-        <form className=' mx-2 sm:mx-5 md:mx-10'>
+        <form onSubmit={submitHandler} className=' mx-2 sm:mx-5 md:mx-10'>
           <h1 className='text-xl font-light text-gray-800 sm:text-2xl'>
             Create a new account
           </h1>
@@ -19,6 +75,8 @@ function signup() {
               type='text'
               placeholder='username'
               required
+              name='username'
+              onChange={handleOnChange}
             />
 
             <div className=' grid grid-cols-2 gap-4 mt-4'>
@@ -27,11 +85,15 @@ function signup() {
                 type='text'
                 placeholder='first name'
                 required
+                name='firstname'
+                onChange={handleOnChange}
               />
               <input
                 className='w-full rounded-lg border border-gray-400 bg-transparent py-2 px-3 text-grey-darkest outline-none'
                 type='text'
                 placeholder='last name'
+                name='lastname'
+                onChange={handleOnChange}
               />
             </div>
 
@@ -40,6 +102,8 @@ function signup() {
               type='text'
               placeholder='email'
               required
+              name='email'
+              onChange={handleOnChange}
             />
             <input
               className='mt-4 w-full rounded-lg border border-gray-400 bg-transparent py-2 px-3 text-grey-darkest outline-none'
@@ -47,6 +111,8 @@ function signup() {
               placeholder='password'
               required
               minLength='6'
+              name='password1'
+              onChange={passwordHandleOnChange}
             />
             <input
               className='mt-4 w-full rounded-lg border border-gray-400 bg-transparent py-2 px-3 text-grey-darkest outline-none'
@@ -54,12 +120,16 @@ function signup() {
               placeholder='password'
               required
               minLength='6'
+              name='password2'
+              onChange={passwordHandleOnChange}
             />
             <input
               className='mt-4 w-full rounded-lg border border-gray-400 bg-transparent py-2 px-3 text-grey-darkest outline-none'
               type='number'
               placeholder='student id'
               required
+              name='studentid'
+              onChange={handleOnChange}
             />
             <div className='flex w-full mt-4 mb-5'>
               <button
