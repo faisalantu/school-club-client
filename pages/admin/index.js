@@ -1,22 +1,11 @@
-import { connect } from "react-redux";
 import ContainerWrapper from "../../components/containerWrapper";
-import UpdateAccuntInfo from "../../components/setting/updateAccuntInfo";
-import { wrapper } from "../../store/store";
-const setting = (props) => {
+
+const AdminIndex = (props) => {
   return (
     <>
-      <ContainerWrapper>
-        
-      </ContainerWrapper>
+      <ContainerWrapper></ContainerWrapper>
     </>
   );
 };
 
-// redux setup
-export const getStaticProps = wrapper.getStaticProps(async ({ store }) => { });
-
-const mapDispatchToProps = (dispatch) => {
-  return {};
-};
-
-export default connect(null, mapDispatchToProps)(setting);
+export default AdminIndex;

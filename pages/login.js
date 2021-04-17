@@ -7,5 +7,5 @@ const Login = (props) => {
   );
 };
 
-export default login
+export default Login
 

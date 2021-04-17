@@ -1,8 +1,7 @@
-import { connect } from "react-redux";
 import EventCard from "../../components/global/eventCard";
 import ContainerWrapper from "../../components/containerWrapper";
-import { wrapper } from "../../store/store";
-const setting = (props) => {
+
+const EditEvents = (props) => {
   return (
     <>
       <ContainerWrapper>
@@ -52,11 +51,4 @@ const setting = (props) => {
   );
 };
 
-// redux setup
-export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {});
-
-const mapDispatchToProps = (dispatch) => {
-  return {};
-};
-
-export default connect(null, mapDispatchToProps)(setting);
+export default EditEvents;

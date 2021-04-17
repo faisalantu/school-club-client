@@ -7,5 +7,5 @@ const Signup = (props) => {
   );
 };
 
-export default signup
+export default Signup
 
