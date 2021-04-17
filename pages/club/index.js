@@ -1,9 +1,7 @@
-import { connect } from "react-redux";
 import ContainerWrapper from "../../components/containerWrapper";
 import ClubMembers from "../../components/clubInformation/clubMembers";
 import RecentEvents from "../../components/clubInformation/recentEvents";
 import RecentPosts from "../../components/clubInformation/recentPosts";
-import { wrapper } from "../../store/store";
 
 const Index = (props) => {
   return (
@@ -19,11 +17,4 @@ const Index = (props) => {
   );
 };
 
-// redux setup
-export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {});
-
-const mapDispatchToProps = (dispatch) => {
-  return {};
-};
-
-export default connect(null, mapDispatchToProps)(Index);
+export default Index;

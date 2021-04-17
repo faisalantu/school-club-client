@@ -1,10 +1,9 @@
-import { connect } from "react-redux";
 import Link from "next/link";
 import ContainerWrapper from "../../../components/containerWrapper";
-import { wrapper } from "../../../store/store";
+
 import InputBox from "../../../components/global/inputbox";
 import PhotoCard from "../../../components/global/photoCard";
-const editMember = (props) => {
+const EditMember = (props) => {
   return (
     <>
       <ContainerWrapper>
@@ -25,7 +24,6 @@ const editMember = (props) => {
               <a>
                 <PhotoCard name='Faisal Antu' imgUrl='/portrait-2.jpeg' />
               </a>
-              
             </Link>
           </div>
         </div>
@@ -34,11 +32,4 @@ const editMember = (props) => {
   );
 };
 
-// redux setup
-export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {});
-
-const mapDispatchToProps = (dispatch) => {
-  return {};
-};
-
-export default connect(null, mapDispatchToProps)(editMember);
+export default EditMember;

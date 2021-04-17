@@ -1,8 +1,7 @@
-import { connect } from "react-redux";
 import PostCard from "../../components/global/postCard";
 import ContainerWrapper from "../../components/containerWrapper";
-import { wrapper } from "../../store/store";
-const setting = (props) => {
+
+const EditPost = (props) => {
   return (
     <>
       <ContainerWrapper>
@@ -40,11 +39,4 @@ const setting = (props) => {
   );
 };
 
-// redux setup
-export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {});
-
-const mapDispatchToProps = (dispatch) => {
-  return {};
-};
-
-export default connect(null, mapDispatchToProps)(setting);
+export default EditPost;

@@ -1,10 +1,7 @@
-import { connect } from "react-redux";
 import ContainerWrapper from "../../components/containerWrapper";
 import UpdateAccuntInfo from "../../components/setting/updateAccuntInfo";
-import { wrapper } from "../../store/store";
+
 const setting = (props) => {
-  // const router = useRouter()
-  // console.log(router.pathname)
   const info = {
     img: "/portrait-2.jpeg",
     fName: "Faisal",
@@ -31,11 +28,4 @@ const setting = (props) => {
   );
 };
 
-// redux setup
-export const getStaticProps = wrapper.getStaticProps(async ({ store }) => {});
-
-const mapDispatchToProps = (dispatch) => {
-  return {};
-};
-
-export default connect(null, mapDispatchToProps)(setting);
+export default setting;

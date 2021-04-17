@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import useOnClickOutside from "use-onclickoutside";
+import { connect } from 'react-redux';
+import * as actions from '../../store/auth/action';
 //importing Icons 👇
 import { BiSearch, BiLock } from "react-icons/bi";
 import { MdNotifications, MdAccountCircle, MdEvent } from "react-icons/md";
@@ -8,7 +10,7 @@ import { FiSettings } from "react-icons/fi";
 import { HiOutlineLogout } from "react-icons/hi";
 import { RiLockPasswordLine,RiAdminFill } from "react-icons/ri";
 import { BsTriangleFill } from "react-icons/bs";
-function topNavbar({ close }) {
+function topNavbar(props ) {
   const notification = useRef(null);
   const account = useRef(null);
   useOnClickOutside(notification, function () {
@@ -120,6 +122,8 @@ function topNavbar({ close }) {
                 </a>
               </Link>
               <a
+
+                onClick={props.logout}
                 className='flex justify-start px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline'
                 href='#'
               >
@@ -133,5 +137,17 @@ function topNavbar({ close }) {
     </div>
   );
 }
+const mapStateToProps = state => {
+  return {
+      token: state.auth.token,
+  }
+};
 
-export default topNavbar;
+const mapDispatchToProps = dispatch => {
+  return {
+    logout: () => dispatch(actions.logout()),
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(topNavbar);
+
