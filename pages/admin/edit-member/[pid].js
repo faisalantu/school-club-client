@@ -1,10 +1,9 @@
 import { useState } from "react";
-import { useRouter } from "next/router";
 import ContainerWrapper from "../../../components/containerWrapper";
 import DropdownCheckBoxs from "../../../components/global/dropdownCheckBoxs";
 import Image from "next/image";
+
 const SelectMember = () => {
-  const router = useRouter();
   const [info, setInfo] = useState({
     img: "/portrait-2.jpeg",
     fName: "Faisal",
