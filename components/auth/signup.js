@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 function signup() {
   const [isLogin, setIsLogin] = useState(true);
+  const [token, setToken] = useState('');
   const [password, setPassword] = useState({
     password1: "",
     password2: "",
@@ -15,7 +16,13 @@ function signup() {
     password: "",
     studentid: "",
   });
-
+  //setting up JWT to localStorage
+  useEffect(() => {
+    if (token && localStorage) {
+      console.log(token);
+      localStorage.setItem("token", token);
+    }
+  }, [token]);
 
   const handleOnChange = (event) => {
     const { name, value } = event.target;
@@ -45,6 +52,7 @@ function signup() {
       .post("http://localhost:5000/api/users", inputValues, config)
       .then((response) => {
         console.log(response);
+        setToken(response.data.token);
       })
       .catch((err) => {
         console.log(err.response.data);
