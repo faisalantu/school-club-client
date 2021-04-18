@@ -1,8 +1,8 @@
 import Image from "next/image";
 import { ImLocation } from "react-icons/im";
 import { RiMoneyDollarCircleFill } from "react-icons/ri";
-import { GiTicket } from "react-icons/gi";
-import { BiTimeFive, BiMailSend, BiPhone } from "react-icons/bi";
+import { GiTicket,GiHand } from "react-icons/gi";
+import { BiTimeFive, BiMailSend, BiPhone, BiPlus } from "react-icons/bi";
 const EventCard = ({
   name,
   role,
@@ -64,18 +64,27 @@ const EventCard = ({
             </div>
           </div>
         </div>
-        {edit ? (
-          <div className='flex items-center justify-end my-2'>
-            <button className=' border-2 border-yellow-500 px-3 py-0.5 rounded mx-2'>
-              Edit
-            </button>
-            <button className=' border-2 border-red-500 px-3 py-0.5 rounded mx-2'>
-              Delete
-            </button>
-          </div>
-        ) : (
-          ""
-        )}
+
+        <div className='flex items-center justify-end my-2'>
+          {edit ? (
+            <>
+              <button className=' border bg-yellow-200 hover:bg-yellow-300 px-3 py-0.5 rounded mx-2'>
+                Edit
+              </button>
+              <button className=' border bg-red-300 hover:bg-red-400 px-3 py-0.5 rounded mx-2'>
+                Delete
+              </button>
+            </>
+          ) : (
+            ""
+          )}
+          <button className=' border bg-gray-200 hover:bg-gray-300 px-2 py-0.5 rounded mx-2 flex items-center'>
+            <GiHand /> <span className='ml-1'>Volunteer</span>
+          </button>
+          <button className=' border bg-gray-200 hover:bg-gray-300 px-2 py-0.5 rounded mx-2 flex items-center'>
+            <BiPlus /> <span className='ml-1'>Join</span>
+          </button>
+        </div>
       </div>
     </>
   );
