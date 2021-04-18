@@ -11,7 +11,7 @@ function commentForm() {
       >
         <textarea
           name='roleExplanation'
-          className='w-full rounded-md p-3 mt-2 border-2 focus:outline-none border-gray-300 focus:border-gray-500'
+          className='w-full rounded-md p-3 mt-2 border focus:outline-none border-gray-300 focus:border-gray-500'
           rows='3'
         ></textarea>
         <div className={`${submitBtnLogic ? "" : "hidden"}`}>
