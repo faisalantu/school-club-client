@@ -12,17 +12,8 @@ export default function SideBar() {
     <>
       <div className='pt-2.5 px-14 lg:text-xl select-none'>
         <NonExtendedLink icon={<HiHome/>} name='Home' route='/'/>
-        {/* Club events sidebar*/}
-        <ExtendedLink
-          name='Club Information'
-          icon={<BsFillPersonFill />}
-          iconClass='sm:text-md'
-        >
-          <SubSidebarLink name='CSE' route='/club' />
-          <SubSidebarLink name='EEE' route='/club' />
-          <SubSidebarLink name='Textile' route='/club' />
-          <SubSidebarLink name='English' route='/club' />
-        </ExtendedLink>
+        {/* Club Information sidebar*/}
+        <NonExtendedLink icon={<BsFillPersonFill/>} name='Club Information' route='/clubinfo'/>
 
         {/* Club events sidebar*/}
         <ExtendedLink
@@ -36,7 +27,7 @@ export default function SideBar() {
           <SubSidebarLink name='English' route='/events' />
         </ExtendedLink>
 
-        {/* Club events sidebar*/}
+        {/* Club Posts sidebar*/}
         <ExtendedLink
           name='Club Posts'
           icon={<BsFileText />}
