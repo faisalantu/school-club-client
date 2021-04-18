@@ -1,7 +1,9 @@
 import Image from "next/image";
+import Link from "next/link";
+
 import { ImLocation } from "react-icons/im";
 import { RiMoneyDollarCircleFill } from "react-icons/ri";
-import { GiTicket,GiHand } from "react-icons/gi";
+import { GiTicket, GiHand } from "react-icons/gi";
 import { BiTimeFive, BiMailSend, BiPhone, BiPlus } from "react-icons/bi";
 const EventCard = ({
   name,
@@ -39,7 +41,12 @@ const EventCard = ({
         <div className='flex mt-3 leading-relaxed'>
           <div style={{ height: "auto", width: "45px" }}></div>
           <div>
-            <h1 className='ml-4 text-xl font-medium'>{title && title}</h1>
+            <Link href='/events/cse/id=12'>
+              <a>
+                <h1 className='ml-4 text-xl font-medium'>{title && title}</h1>{" "}
+              </a>
+            </Link>
+
             <div className='flex items-center ml-4'>
               <ImLocation className=' text-sm' />
               <h3 className='ml-1'>{location && location}</h3>
@@ -84,6 +91,11 @@ const EventCard = ({
           <button className=' border bg-gray-200 hover:bg-gray-300 px-2 py-0.5 rounded mx-2 flex items-center'>
             <BiPlus /> <span className='ml-1'>Join</span>
           </button>
+          <Link href='/events/cse/123'>
+            <a className=' border bg-gray-200 hover:bg-gray-300 px-2 py-0.5 rounded mx-2 flex items-center'>
+              <span className='ml-1'>Read more</span>
+            </a>
+          </Link>
         </div>
       </div>
     </>
