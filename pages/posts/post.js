@@ -5,8 +5,8 @@ import Reaction from "../../components/postComponent/reaction";
 import CommentForm from "../../components/postComponent/commentForm";
 import PostBody from "../../components/postComponent/postBody";
 import ContainerWrapper from "../../components/containerWrapper";
-
-const Post = (props) => {
+import Image from "next/image";
+const Post = ({ imgUrl }) => {
   return (
     <>
       <ContainerWrapper>
@@ -24,6 +24,17 @@ const Post = (props) => {
                 imgUrl='/portrait-2.jpeg'
                 date='3 Feb 2021'
               />
+            </div>
+            <div className=' w-full '>
+              <Image
+                src={imgUrl ? imgUrl : "/event-banner.webp"}
+                layout='responsive'
+                objectFit='contain'
+                height={10}
+                width={16}
+                loading='lazy'
+                quality={50}
+              ></Image>
             </div>
             <PostBody />
             <Reaction reactions='12' className='mt-4' />
