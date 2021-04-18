@@ -15,7 +15,7 @@ function commentForm() {
           rows='3'
         ></textarea>
         <div className={`${submitBtnLogic ? "" : "hidden"}`}>
-          <button className='hover:bg-gray-200 focus:outline-none px-3 py-1 rounded border-2 border-gray-400 focus:border-yellow-500'>
+          <button className='hover:bg-gray-200 focus:outline-none px-3 py-1 rounded border border-gray-400 focus:border-yellow-500'>
             Submit
           </button>
         </div>
