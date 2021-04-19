@@ -1,19 +1,19 @@
-import react, { useState } from "react";
+import { useState } from "react";
 import { BiX } from "react-icons/bi";
-function skillInput(props) {
-  const [tags, setTags] = useState(["nodeJS", "NextJS"]);
+function skillInput({getTags}) {
+  const [tags, setTags] = useState([]);
 
   const addTags = (e) => {
     if (e.key === "Enter" && e.target.value !== '') {
       setTags([...tags, e.target.value]);
-      props.getTags([...tags, e.target.value]);
+      getTags([...tags, e.target.value]);
       e.target.value = ''
     }
   };
 
   const removeTag = (iToRemove)=>{
     setTags(tags.filter((_,i)=>i !== iToRemove))
-    props.getTags(tags);
+    getTags(tags);
   }
 
   return (
@@ -23,10 +23,10 @@ function skillInput(props) {
           return (
             <div
               key={index}
-              className='px-2 py-1 flex items-center rounded-md bg-gray-400 mr-2 my-1'
+              className='px-2 py-1 flex items-center rounded-md bg-gray-300 mr-2 my-1'
             >
               <span>{tag}</span>
-              <div onClick={()=>removeTag(index)} className='bg-gray-200 rounded-full ml-1'>
+              <div onClick={()=>removeTag(index)} className='bg-gray-100 rounded-full ml-1 cursor-pointer'>
                 <BiX />
               </div>
             </div>
