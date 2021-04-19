@@ -1,7 +1,13 @@
 function postBody() {
   return (
-    <div>
-      <p className='mt-4 text-lg font-serif'>
+    <div className=''>
+      <p className='mt-4 text-lg'>
+        To control the word breaks in an element only at a specific breakpoint,
+        add a prefix to any existing word break utility. For example,
+        adding the class md:break-all to an element would apply the break-all
+        utility at medium screen sizes and above.
+      </p>
+      <p className='mt-4 text-lg'>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet porro
         distinctio, nulla dolorem inventore hic nam neque dolor, enim debitis
         quidem. Magnam fugiat voluptatibus soluta velit minus modi eum
@@ -14,7 +20,13 @@ function postBody() {
         porro perferendis ullam doloribus sapiente amet rem! Cumque assumenda
         ducimus sunt eos nobis quaerat.
       </p>
-      <p className='mt-4 text-lg font-serif'>
+      <p className='mt-4 text-lg'>
+        To control the word breaks in an element only at a specific breakpoint,
+        add a prefix to any existing word break utility. For example,
+        adding the class md:break-all to an element would apply the break-all
+        utility at medium screen sizes and above.
+      </p>
+      <p className='mt-4 text-lg'>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet porro
         distinctio, nulla dolorem inventore hic nam neque dolor, enim debitis
         quidem. Magnam fugiat voluptatibus soluta velit minus modi eum

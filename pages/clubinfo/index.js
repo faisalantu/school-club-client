@@ -6,7 +6,7 @@ const Index = (props) => {
     <>
       <ContainerWrapper>
         <div className='flex flex-col gap-10 flex-wrap mb-5 px-5'>
-          <AllClubs route="events/cse"/>
+          <AllClubs/>
         </div>
       </ContainerWrapper>
     </>

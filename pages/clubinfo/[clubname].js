@@ -3,7 +3,7 @@ import ClubMembers from "../../components/clubInformation/clubMembers";
 import RecentEvents from "../../components/clubInformation/recentEvents";
 import RecentPosts from "../../components/clubInformation/recentPosts";
 
-const Index = (props) => {
+const ClubName = (props) => {
   return (
     <>
       <ContainerWrapper>
@@ -17,4 +17,4 @@ const Index = (props) => {
   );
 };
 
-export default Index;
+export default ClubName;

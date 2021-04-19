@@ -6,7 +6,7 @@ function commentArea({userName ,userImgUrl,date ,comments}) {
   const [submitBtnLogic, setSubmitBtnLogic] = useState(false) 
   return (
     <>
-      <div className='p-3 border-gray-300 border-2 rounded-md mt-4'>
+      <div className='p-3 border-gray-300 border rounded-md mt-4'>
         <div className='mt-3'>
           <UserInfoAndDate
             name={userName}

@@ -1,8 +1,10 @@
 import Image from "next/image";
+import Link from "next/link";
+
 import { ImLocation } from "react-icons/im";
 import { RiMoneyDollarCircleFill } from "react-icons/ri";
-import { GiTicket } from "react-icons/gi";
-import { BiTimeFive, BiMailSend, BiPhone } from "react-icons/bi";
+import { GiTicket, GiHand } from "react-icons/gi";
+import { BiTimeFive, BiMailSend, BiPhone, BiPlus } from "react-icons/bi";
 const EventCard = ({
   name,
   role,
@@ -39,7 +41,12 @@ const EventCard = ({
         <div className='flex mt-3 leading-relaxed'>
           <div style={{ height: "auto", width: "45px" }}></div>
           <div>
-            <h1 className='ml-4 text-xl font-medium'>{title && title}</h1>
+            <Link href='/events/cse/id=12'>
+              <a>
+                <h1 className='ml-4 text-xl font-medium'>{title && title}</h1>{" "}
+              </a>
+            </Link>
+
             <div className='flex items-center ml-4'>
               <ImLocation className=' text-sm' />
               <h3 className='ml-1'>{location && location}</h3>
@@ -64,18 +71,32 @@ const EventCard = ({
             </div>
           </div>
         </div>
-        {edit ? (
-          <div className='flex items-center justify-end my-2'>
-            <button className=' border-2 border-yellow-500 px-3 py-0.5 rounded mx-2'>
-              Edit
-            </button>
-            <button className=' border-2 border-red-500 px-3 py-0.5 rounded mx-2'>
-              Delete
-            </button>
-          </div>
-        ) : (
-          ""
-        )}
+
+        <div className='flex items-center justify-end my-2'>
+          {edit ? (
+            <>
+              <button className=' border bg-yellow-200 hover:bg-yellow-300 px-3 py-0.5 rounded mx-2'>
+                Edit
+              </button>
+              <button className=' border bg-red-300 hover:bg-red-400 px-3 py-0.5 rounded mx-2'>
+                Delete
+              </button>
+            </>
+          ) : (
+            ""
+          )}
+          <button className=' border bg-gray-200 hover:bg-gray-300 px-2 py-0.5 rounded mx-2 flex items-center'>
+            <GiHand /> <span className='ml-1'>Volunteer</span>
+          </button>
+          <button className=' border bg-gray-200 hover:bg-gray-300 px-2 py-0.5 rounded mx-2 flex items-center'>
+            <BiPlus /> <span className='ml-1'>Join</span>
+          </button>
+          <Link href='/events/cse/123'>
+            <a className=' border bg-gray-200 hover:bg-gray-300 px-2 py-0.5 rounded mx-2 flex items-center'>
+              <span className='ml-1'>Read more</span>
+            </a>
+          </Link>
+        </div>
       </div>
     </>
   );
