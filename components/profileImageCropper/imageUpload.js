@@ -5,6 +5,7 @@ import { AiFillCamera } from "react-icons/ai";
 import { MdDone, MdEdit } from "react-icons/md";
 import getCroppedImg from "../utils/cropImage";
 import { dataURLtoFile } from "../utils/dataURLtoFile";
+import Image from "next/image";
 
 function ImageUpload() {
   const inputRef = useRef();
@@ -98,7 +99,17 @@ function ImageUpload() {
         <div className='my-5'>
           <div className='h-56 w-56 mx-auto bg-gray-300 rounded-full relative'>
             <div className='h-56 w-56 rounded-full overflow-hidden'>
-              <img src={croppedImageDataURL} alt='image' />
+              {croppedImageDataURL ? (
+                <img src={croppedImageDataURL} alt='image' />
+              ) : (
+                <Image
+                  className='rounded-full'
+                  src={"/user.png"}
+                  alt='Picture of the author'
+                  layout='fill'
+                  objectFit='cover'
+                />
+              )}
             </div>
 
             <div
