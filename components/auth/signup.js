@@ -1,8 +1,9 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import axios from "axios";
-import { connect } from 'react-redux';
-import * as actions from '../../store/auth/action';
+import { connect } from "react-redux";
+import ProfileImageCropper from "../profileImageCropper/imageUpload";
+import * as actions from "../../store/auth/action";
+
 function signup(props) {
   const [isLogin, setIsLogin] = useState(true);
   const [password, setPassword] = useState({
@@ -35,12 +36,11 @@ function signup(props) {
   };
 
   function submitHandler(e) {
-    
     if (password.password1 === password.password2) {
       setInputValues({ ...inputValues, password: password.password1 });
-      props.signup({...inputValues, password:password.password1});
+      props.signup({ ...inputValues, password: password.password1 });
     } else {
-      console.log("pass word dose not match")
+      console.log("pass word dose not match");
       setInputValues({ ...inputValues, password: "" });
     }
     // if (password.password1 === password.password2) {
@@ -92,6 +92,7 @@ function signup(props) {
             </Link>
           </p>
           <div className='mt-8'>
+            <ProfileImageCropper />
             <input
               className='w-full rounded-lg border border-gray-400 bg-transparent py-2 px-3 text-grey-darkest outline-none'
               type='text'
@@ -167,16 +168,16 @@ function signup(props) {
     </div>
   );
 }
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-      token: state.auth.token,
-  }
+    token: state.auth.token,
+  };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     signup: (inputValues) => dispatch(actions.signup(inputValues)),
-  }
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(signup);
