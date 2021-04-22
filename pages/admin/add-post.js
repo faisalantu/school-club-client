@@ -13,8 +13,17 @@ const AddPost = (props) => {
         <div className='px-5'>
           <h1 className='font-bold text-3xl mb-3'>Add Post</h1>
           <div>
-            <InputBox label='Post Title' placeholder='your title here' />
-            <ImageInputBox/>
+            <div className='flex flex-col mb-8'>
+              <label className='mb-2 text-lg text-grey-darkest'>
+                Add Title
+              </label>
+              <input
+                className='rounded border-2 border-gray-300 bg-transparent py-2 px-3 text-grey-darkest outline-none'
+                placeholder='your title here'
+                type='text'
+              />
+            </div>
+            <ImageInputBox />
           </div>
           <h2 className='text-lg mb-3'>Write Something</h2>
           <div className='border-2 border-gray-300 rounded p-4'>
