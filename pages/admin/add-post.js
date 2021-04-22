@@ -23,14 +23,24 @@ const AddPost = (props) => {
                 type='text'
               />
             </div>
-            <ImageInputBox />
+            <div>
+              <label className='mb-2 text-lg text-grey-darkest'>
+                Select Image
+              </label>
+              <ImageInputBox />
+            </div>
           </div>
-          <h2 className='text-lg mb-3'>Write Something</h2>
-          <div className='border-2 border-gray-300 rounded p-4'>
-            <DraftEditor />
+          <div className='mt-5'>
+            <label className='text-lg'>Write Something</label>
+            <div className='border-2 border-gray-300 rounded p-4'>
+              <DraftEditor />
+            </div>
           </div>
-          <TagInput getTags={getTags} />
-          <div>
+          <div className='mt-5'>
+            <label className='text-lg'>Input some tags</label>
+            <TagInput getTags={getTags} />
+          </div>
+          <div className=' mt-5'>
             <input
               type='checkbox'
               id='vehicle1'
