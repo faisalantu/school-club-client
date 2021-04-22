@@ -10,7 +10,11 @@ import { FiSettings } from "react-icons/fi";
 import { HiOutlineLogout } from "react-icons/hi";
 import { RiLockPasswordLine,RiAdminFill } from "react-icons/ri";
 import { BsTriangleFill } from "react-icons/bs";
+import { AiOutlineMenuUnfold } from "react-icons/ai";
+import { AiOutlineMenuFold } from "react-icons/ai";
+import { RiMenuFoldLine, RiMenuUnfoldLine } from "react-icons/ri";
 function topNavbar(props ) {
+  const {SidebarHandler ,isSidebarShown} = props
   const notification = useRef(null);
   const account = useRef(null);
   useOnClickOutside(notification, function () {
@@ -24,9 +28,22 @@ function topNavbar(props ) {
   const [notificationToggle, setNotificationToggle] = useState(false);
 
   return (
-    <div className='w-full h-12 bg-gray-900 flex justify-between items-center mb-5'>
-      <div className='pl-4'>
-        <h1 className='text-gray-100 font-semibold text-lg'>LOGO</h1>
+    <div className=' w-full h-12 bg-gray-900 flex justify-between items-center '>
+      <div className={`  md:hidden flex items-center ml-4` }>
+        <div onClick={()=>{
+
+              SidebarHandler()
+            }
+          
+          }>
+        <RiMenuUnfoldLine className={` ${isSidebarShown?' hidden ':'' } text-gray-100 text-2xl  mx-1`} />
+        <RiMenuFoldLine className={`${!isSidebarShown?' hidden ':'' }text-gray-100 text-2xl  mx-1`} />
+        </div>
+
+        <h1 className='text-gray-100 font-semibold text-lg ml-2'>LOGO</h1>
+      </div>
+      <div className='pl-4  '>
+        <h1 className='text-gray-100 font-semibold text-lg hidden md:block'>LOGO</h1>
       </div>
       <div className='flex text-2xl pr-4'>
         <BiSearch className='text-gray-100 text-md flex-auto mx-1' />
