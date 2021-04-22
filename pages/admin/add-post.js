@@ -3,6 +3,7 @@ import DraftEditor from "../../components/global/textEditor";
 import ContainerWrapper from "../../components/containerWrapper";
 
 import TagInput from "../../components/global/tagInput";
+import ImageInputBox from "../../components/global/imageInputBox";
 const AddPost = (props) => {
   //tag data from tag component
   const getTags = (tags) => console.log(tags);
@@ -13,11 +14,7 @@ const AddPost = (props) => {
           <h1 className='font-bold text-3xl mb-3'>Add Post</h1>
           <div>
             <InputBox label='Post Title' placeholder='your title here' />
-            <InputBox
-              label='Import Photo'
-              placeholder='your title here'
-              type='file'
-            />
+            <ImageInputBox/>
           </div>
           <h2 className='text-lg mb-3'>Write Something</h2>
           <div className='border-2 border-gray-300 rounded p-4'>
