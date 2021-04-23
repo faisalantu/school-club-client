@@ -28,7 +28,7 @@ function topNavbar(props ) {
   const [notificationToggle, setNotificationToggle] = useState(false);
 
   return (
-    <div className=' w-full h-12 bg-gray-900 flex justify-between items-center '>
+    <div className=' w-full h-12 bg-gray-900 flex justify-between items-center whitespace-nowrap'>
       <div className={`  md:hidden flex items-center ml-4` }>
         <div onClick={()=>{
 
@@ -64,30 +64,22 @@ function topNavbar(props ) {
           <div
             className={` ${
               notificationToggle ? "" : "hidden"
-            } absolute right-0 w-full mt-2 origin-top-right rounded-md shadow-lg md:w-48 z-30`}
+            } absolute right-0  mt-2 origin-top-right rounded-md shadow-lg  z-30`}
           >
             <div className='px-2 py-2 bg-white rounded-md shadow dark-mode:bg-gray-700'>
               <a
-                className='flex justify-start px-4 py-2 mt-2  font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline'
+                className='flex justify-start px-4 py-2 mt-2 font-semibold bg-transparent rounded-lg hover:bg-gray-200'
                 href='#'
               >
                 <MdEvent className='p-0 mr-1.5 text-base' />
                 <span className='text-sm'>New Event</span>
               </a>
               <a
-                className='flex justify-start px-4  py-2 mt-2  font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline'
+                className='flex justify-start px-4 py-2 mt-2 font-semibold bg-transparent rounded-lg hover:bg-gray-200'
                 href='#'
               >
                 <RiLockPasswordLine className='p-0  mr-1.5 text-base' />
                 <span className='text-sm'>Password Changed</span>
-              </a>
-              <a
-                className='flex justify-end align-bottom  mt-2 text-xs text-blue-500 font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 '
-                href='#'
-              >
-                <span className='px-2 py-1 rounded-lg hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline'>
-                  See More
-                </span>
               </a>
             </div>
           </div>
@@ -108,12 +100,12 @@ function topNavbar(props ) {
           <div
             className={` ${
               accountToggle ? "" : "hidden"
-            } absolute right-0 w-full mt-2 origin-top-right rounded-md shadow-lg md:w-48 z-30`}
+            } absolute right-0 mt-2 origin-top-right rounded-md shadow-lg z-30`}
           >
             <div className='px-2 py-2 bg-white rounded-md shadow dark-mode:bg-gray-700'>
               <Link href='/admin'>
                 <a
-                  className='flex justify-start px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline'
+                  className='flex justify-start px-4 py-2 mt-2 font-semibold bg-transparent rounded-lg hover:bg-gray-200'
                   href='#'
                 >
                   <RiAdminFill className='p-0 mr-1.5 text-base' />
@@ -122,7 +114,7 @@ function topNavbar(props ) {
               </Link>
               <Link href='/setting'>
                 <a
-                  className='flex justify-start px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline'
+                  className='flex justify-start px-4 py-2 mt-2 font-semibold bg-transparent rounded-lg hover:bg-gray-200'
                   href='#'
                 >
                   <FiSettings className='p-0 mr-1.5 text-base' />
@@ -131,7 +123,7 @@ function topNavbar(props ) {
               </Link>
               <Link href='/setting/update-password'>
                 <a
-                  className='flex justify-start px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline'
+                  className='flex justify-start px-4 py-2 mt-2 font-semibold bg-transparent rounded-lg hover:bg-gray-200'
                   href='#'
                 >
                   <BiLock className='p-0 mr-1.5 text-base' />
@@ -141,7 +133,7 @@ function topNavbar(props ) {
               <a
 
                 onClick={props.logout}
-                className='flex justify-start px-4 py-2 mt-2 text-sm font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline'
+                className='flex justify-start px-4 py-2 mt-2 font-semibold bg-transparent rounded-lg hover:bg-gray-200'
                 href='#'
               >
                 <HiOutlineLogout className='p-0 mr-1.5 text-base' />
