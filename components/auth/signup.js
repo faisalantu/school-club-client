@@ -1,10 +1,10 @@
 import Link from "next/link";
-import { useState, useEffect } from "react";
-import axios from "axios";
-import { connect } from 'react-redux';
-import * as actions from '../../store/auth/action';
-function signup(props) {
-  const [isLogin, setIsLogin] = useState(true);
+import { useState } from "react";
+import ProfileImageCropper from "../profileImageCropper/imageUpload";
+import { connect } from "react-redux";
+import { signupAction } from "../../store/auth/action";
+
+function Signup( { signupAction }) {
   const [password, setPassword] = useState({
     password1: "",
     password2: "",
@@ -17,13 +17,6 @@ function signup(props) {
     password: "",
     studentid: "",
   });
-  //setting up JWT to localStorage
-  // useEffect(() => {
-  //   if (token && localStorage) {
-  //     console.log(token);
-  //     localStorage.setItem("token", token);
-  //   }
-  // }, [token]);
 
   const handleOnChange = (event) => {
     const { name, value } = event.target;
@@ -35,47 +28,13 @@ function signup(props) {
   };
 
   function submitHandler(e) {
-    
+    e.preventDefault();
     if (password.password1 === password.password2) {
       setInputValues({ ...inputValues, password: password.password1 });
-      props.signup({...inputValues, password:password.password1});
+      signupAction({ ...inputValues, password: password.password1 });
     } else {
-      console.log("pass word dose not match")
+      console.log("password dose not match");
       setInputValues({ ...inputValues, password: "" });
-    }
-    // if (password.password1 === password.password2) {
-    //   console.log("if ",password.password1)
-    //   setInputValues({ ...inputValues, password: password.password1 });
-    // } else {
-    //   console.log("else")
-    //   setInputValues({ ...inputValues, password: "" });
-    // }
-
-    // console.log('[pas 1 and 2]',password.password1 ," ", password.password2)
-    // console.log('[inputValues ]=>', inputValues)
-    // console.log('[inputValues password]=>', inputValues.password)
-    // props.signup({...inputValues, password:password.password1});
-    e.preventDefault();
-    // const config = {
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    // };
-
-    // axios
-    //   .post("http://localhost:5000/api/users", inputValues, config)
-    //   .then((response) => {
-    //     console.log(response);
-    //     setToken(response.data.token);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err.response.data);
-    //   });
-
-    if (isLogin) {
-      //some logic
-    } else {
-      //some logic
     }
   }
   return (
@@ -92,6 +51,7 @@ function signup(props) {
             </Link>
           </p>
           <div className='mt-8'>
+            <ProfileImageCropper />
             <input
               className='w-full rounded-lg border border-gray-400 bg-transparent py-2 px-3 text-grey-darkest outline-none'
               type='text'
@@ -167,16 +127,6 @@ function signup(props) {
     </div>
   );
 }
-const mapStateToProps = state => {
-  return {
-      token: state.auth.token,
-  }
-};
 
-const mapDispatchToProps = dispatch => {
-  return {
-    signup: (inputValues) => dispatch(actions.signup(inputValues)),
-  }
-};
 
-export default connect(mapStateToProps, mapDispatchToProps)(signup);
+export default connect(null, { signupAction })(Signup);

@@ -1,10 +1,10 @@
-import Tags from "../../components/global/tags";
-import UserInfoAndDate from "../../components/global/userInfoAndDate";
-import Comments from "../../components/postComponent/comments";
-import Reaction from "../../components/postComponent/reaction";
-import CommentForm from "../../components/postComponent/commentForm";
-import PostBody from "../../components/postComponent/postBody";
-import ContainerWrapper from "../../components/containerWrapper";
+import Tags from "../../../components/global/tags";
+import UserInfoAndDate from "../../../components/global/userInfoAndDate";
+import Comments from "../../../components/postComponent/comments";
+import Reaction from "../../../components/postComponent/reaction";
+import CommentForm from "../../../components/postComponent/commentForm";
+import PostBody from "../../../components/postComponent/postBody";
+import ContainerWrapper from "../../../components/containerWrapper";
 import Image from "next/image";
 const Post = ({ imgUrl }) => {
   return (

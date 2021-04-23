@@ -1,46 +1,12 @@
 import ContainerWrapper from "../../components/containerWrapper";
-import PostCard from "../../components/global/postCard";
+import AllClubs from '../../components/global/allClubs'
 
 const Index = (props) => {
   return (
     <>
       <ContainerWrapper>
-        <div className='px-5'>
-          <PostCard
-            tags={["nodeJs", "NextJs"]}
-            imgUrl='/portrait-1.jpg'
-            name='Faisal Antu'
-            date='3-apr-2021'
-            title='Enhance your code reading experience on GitHub'
-          />
-          <PostCard
-            tags={["nodeJs", "NextJs"]}
-            imgUrl='/portrait-1.jpg'
-            name='Faisal Antu'
-            date='3-apr-2021'
-            title='Enhance your code reading experience on GitHub'
-          />
-          <PostCard
-            tags={["nodeJs", "NextJs"]}
-            imgUrl='/portrait-1.jpg'
-            name='Faisal Antu'
-            date='3-apr-2021'
-            title='Enhance your code reading experience on GitHub'
-          />
-          <PostCard
-            tags={["nodeJs", "NextJs"]}
-            imgUrl='/portrait-1.jpg'
-            name='Faisal Antu'
-            date='3-apr-2021'
-            title='Enhance your code reading experience on GitHub'
-          />
-          <PostCard
-            tags={["nodeJs", "NextJs"]}
-            imgUrl='/portrait-1.jpg'
-            name='Faisal Antu'
-            date='3-apr-2021'
-            title='Enhance your code reading experience on GitHub'
-          />
+        <div className='flex flex-col gap-10 flex-wrap mb-5 px-5'>
+          <AllClubs route="posts/cse"/>
         </div>
       </ContainerWrapper>
     </>

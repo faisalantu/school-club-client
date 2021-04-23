@@ -17,7 +17,7 @@ function skillInput({getTags}) {
   }
 
   return (
-    <div className='mt-4 border-2 rounded border-gray-300 flex items-center flex-wrap'>
+    <div className=' mt-1 border-2 rounded border-gray-300 flex items-center flex-wrap'>
       <div className='flex flex-wrap px-2'>
         {tags.map((tag, index) => {
           return (
