@@ -1,22 +1,28 @@
 import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import useOnClickOutside from "use-onclickoutside";
-import { connect } from 'react-redux';
-import * as actions from '../../store/auth/action';
+import { connect } from "react-redux";
+import * as actions from "../../store/auth/action";
+import TopNavAddBtn from "./topNavAddBtn";
+
 //importing Icons 👇
 import { BiSearch, BiLock } from "react-icons/bi";
 import { MdNotifications, MdAccountCircle, MdEvent } from "react-icons/md";
 import { FiSettings } from "react-icons/fi";
 import { HiOutlineLogout } from "react-icons/hi";
-import { RiLockPasswordLine,RiAdminFill } from "react-icons/ri";
+import { RiLockPasswordLine, RiAdminFill } from "react-icons/ri";
 import { BsTriangleFill } from "react-icons/bs";
 import { AiOutlineMenuUnfold } from "react-icons/ai";
 import { AiOutlineMenuFold } from "react-icons/ai";
 import { RiMenuFoldLine, RiMenuUnfoldLine } from "react-icons/ri";
-function topNavbar(props ) {
-  const {SidebarHandler ,isSidebarShown} = props
+function topNavbar(props) {
+  const { SidebarHandler, isSidebarShown } = props;
   const notification = useRef(null);
   const account = useRef(null);
+  const addBtn = useRef(null);
+  const [accountToggle, setAccountToggle] = useState(false);
+  const [notificationToggle, setNotificationToggle] = useState(false);
+
   useOnClickOutside(notification, function () {
     setNotificationToggle(false);
   });
@@ -24,30 +30,40 @@ function topNavbar(props ) {
     setAccountToggle(false);
   });
 
-  const [accountToggle, setAccountToggle] = useState(false);
-  const [notificationToggle, setNotificationToggle] = useState(false);
-
   return (
     <div className=' w-full h-12 bg-gray-900 flex justify-between items-center whitespace-nowrap'>
-      <div className={`  md:hidden flex items-center ml-4` }>
-        <div onClick={()=>{
-
-              SidebarHandler()
-            }
-          
-          }>
-        <RiMenuUnfoldLine className={` ${isSidebarShown?' hidden ':'' } text-gray-100 text-2xl  mx-1`} />
-        <RiMenuFoldLine className={`${!isSidebarShown?' hidden ':'' }text-gray-100 text-2xl  mx-1`} />
+      <div className={`  md:hidden flex items-center ml-4`}>
+        <div
+          onClick={() => {
+            SidebarHandler();
+          }}
+        >
+          <RiMenuUnfoldLine
+            className={` ${
+              isSidebarShown ? " hidden " : ""
+            } text-gray-100 text-2xl  mx-1`}
+          />
+          <RiMenuFoldLine
+            className={`${
+              !isSidebarShown ? " hidden " : ""
+            }text-gray-100 text-2xl  mx-1`}
+          />
         </div>
 
         <h1 className='text-gray-100 font-semibold text-lg ml-2'>LOGO</h1>
       </div>
       <div className='pl-4  '>
-        <h1 className='text-gray-100 font-semibold text-lg hidden md:block'>LOGO</h1>
+        <h1 className='text-gray-100 font-semibold text-lg hidden md:block'>
+          LOGO
+        </h1>
       </div>
-      <div className='flex text-2xl pr-4'>
+      <div className='flex gap-2 text-2xl pr-4'>
         <BiSearch className='text-gray-100 text-md flex-auto mx-1' />
 
+        {/* Add sector */}
+        <TopNavAddBtn />
+        
+        {/* notification sector */}
         <div
           ref={notification}
           onClick={function () {
@@ -84,6 +100,8 @@ function topNavbar(props ) {
             </div>
           </div>
         </div>
+
+        {/* Account sector */}
         <div
           ref={account}
           onClick={function () {
@@ -131,7 +149,6 @@ function topNavbar(props ) {
                 </a>
               </Link>
               <a
-
                 onClick={props.logout}
                 className='flex justify-start px-4 py-2 mt-2 font-semibold bg-transparent rounded-lg hover:bg-gray-200'
                 href='#'
@@ -146,17 +163,16 @@ function topNavbar(props ) {
     </div>
   );
 }
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-      token: state.auth.token,
-  }
+    token: state.auth.token,
+  };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     logout: () => dispatch(actions.logout()),
-  }
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(topNavbar);
-
