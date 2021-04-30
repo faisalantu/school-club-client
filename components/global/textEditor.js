@@ -26,6 +26,11 @@ export default class App extends Component {
     this.onChange = (editorState) => this.setState({ editorState });
   }
 
+  componentDidUpdate() {
+    //console.log(convertToRaw(this.state.editorState.getCurrentContent()));
+    this.props.changeHandle(this.state.editorState);
+  }
+
   checkActiveButton(buttonType) {
     const currentStyle = this.state.editorState.getCurrentInlineStyle();
     const isActive = currentStyle.has(buttonType);
@@ -59,7 +64,9 @@ export default class App extends Component {
   // CodeBlock button
   _onCodeBlockClick(e) {
     e.preventDefault();
-    this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, "CODEBLOCK"));
+    this.onChange(
+      RichUtils.toggleInlineStyle(this.state.editorState, "CODEBLOCK")
+    );
   }
   // HIGHLIGHT1 button
   _onLinkClick(e) {
@@ -176,7 +183,11 @@ export default class App extends Component {
             <BiHighlight style={{ color: "#f8a488" }} />
           </button>
         </div>
-        <div className="border h-32 cursor-text" onClick={this.focus}>
+        <div
+          className='border cursor-text'
+          onClick={this.focus}
+          style={{ minHeight: "8rem" }}
+        >
           <Editor
             customStyleMap={styleMap}
             editorState={editorState}
