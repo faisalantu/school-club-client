@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import { FaHandPointDown } from "react-icons/fa";
-export default function imageInputBox() {
+
+export default function imageInputBox({ onImageChange }) {
   const inputRef = useRef();
   const [image, setImage] = useState(null);
   const triggerFileSelect = () => {
@@ -13,6 +14,9 @@ export default function imageInputBox() {
       reader.readAsDataURL(e.target.files[0]);
       reader.addEventListener("load", () => {
         setImage(reader.result);
+        if (onImageChange) {
+          onImageChange(reader.result);
+        }
       });
     }
   };
@@ -27,7 +31,7 @@ export default function imageInputBox() {
       />
       {image ? (
         <span>
-          click <FaHandPointDown className='inline-block' /> indide the box to
+          click <FaHandPointDown className='inline-block' /> inside the box to
           change image
         </span>
       ) : null}
