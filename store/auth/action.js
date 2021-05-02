@@ -1,16 +1,11 @@
 import { LOGIN, LOGOUT } from "../actionsType";
-import axios from "axios";
+import axios from "../../axios";
 
 export const signupAction = (inputValues) => {
   console.log(inputValues);
-  return (dispatch) => {
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
+  return (dispatch) => {    
     axios
-      .post("http://localhost:5000/api/users", inputValues, config)
+      .post("/users", inputValues)
       .then((response) => {
         console.log("Success:", response.data);
         localStorage.setItem("token", response.data.token);
@@ -47,14 +42,8 @@ export const loginAction = (email, password) => {
     // .catch((error) => {
     //     console.error('the Error:', error);
     // });
-
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
     axios
-      .post("http://localhost:5000/api/auth", authData, config)
+      .post("/auth", authData)
       .then((response) => {
         console.log(response);
         localStorage.setItem("token", response.data.token);

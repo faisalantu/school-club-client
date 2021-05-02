@@ -1,11 +1,34 @@
 import { useState } from "react";
 import CheckBox from './checkBox';
 
-export default function dropdownCheckBoxs({ dropdownItems, checkboxClickHandler, editMode }) {
+export default function dropdownCheckBoxs({label='', type, dropdownItems={}, editMode=false, changeState }) {
 
     const [show, setShow] = useState(false);
+    function handleCheckbox(name) {
+        if(changeState){
+        changeState((prevState) => {
+            if (type === 'radiobutton') {
+                const keys = Object.keys(prevState)
+                const Items = { ...prevState }
+                for (const key of keys) {
+                    Items[key] = false
+                }
+                return {
+                    ...Items,
+                    [name]: !Items[name]
+                }
+            }
+            return {
+                ...prevState,
+                [name]: !prevState[name]
+            }
+
+        });
+        }
+    }
 
     return (<div className='flex flex-col mb-8' >
+    <label className='mb-2 text-lg text-grey-darkest' htmlFor="label">{label}</label>
         <div >
             <div className=' relative  cursor-pointer flex flex-col ' onClick={() => { setShow(!show) }}>
                 <select className='rounded-lg border bg-gray-300 py-2 px-3 text-grey-darkest outline-none' >
@@ -13,11 +36,11 @@ export default function dropdownCheckBoxs({ dropdownItems, checkboxClickHandler,
                 </select>
                 <div className="absolute left-0 right-0 top-0 bottom-0"></div>
             </div>
-            <div className={` flex flex-col rounded-lg py-2  bg-gray-300  border-2 ${show ?'block ' :'hidden'  }`} >
+            <div className={` flex flex-col rounded-lg py-2  bg-gray-300  border-2 ${show ? 'block ' : 'hidden'}`} >
                 {
                     Object.entries(dropdownItems).map(([key, value]) => {
                         return (
-                            <CheckBox key={key} lavel={key} defaultCheckValue={value} click={checkboxClickHandler} editMode={editMode} />
+                            <CheckBox key={key} lavel={key} defaultCheckValue={value} click={handleCheckbox} editMode={editMode} />
                         )
                     })
 

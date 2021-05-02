@@ -11,6 +11,9 @@ export default function UpdateAccuntInfo(props) {
         fileInput.current.click();
     }
     const [editMode, setEditMode] = useState(false);
+    const [clubs, setclubs] = useState({
+        "CSE": true, "EEE": false, "English": false, "Programming": true
+    });
     const [info, setInfo] = useState(props.accountInfo);
     // const [info, setInfo] = useState({
     //     img:"/portrait-2.jpeg",
@@ -24,16 +27,15 @@ export default function UpdateAccuntInfo(props) {
     //         "CSE":true, "EEE":false ,"English":false ,"Programming":true
     //     }
     // });
-
     // Checkbox handle
-    function handleCheckbox(name) {
-        setInfo((prevInfo) => {
-            return {
-                ...prevInfo,
-                clubs: { ...prevInfo.clubs, [name]: !prevInfo.clubs[name] }
-            }
-        });
-    }
+    // function handleCheckbox(name) {
+    //     setInfo((prevInfo) => {
+    //         return {
+    //             ...prevInfo,
+    //             clubs: { ...prevInfo.clubs, [name]: !prevInfo.clubs[name] }
+    //         }
+    //     });
+    // }
     // input handle
     function handleInputUpdate(event) {
         const { name, value } = event.target;
@@ -46,9 +48,9 @@ export default function UpdateAccuntInfo(props) {
         //console.log(value);
     }
     function handleSubmit(event) {
-        
+
         // form submition logic...
-        
+
         setEditMode(false);
         event.preventDefault();
     }
@@ -81,7 +83,7 @@ export default function UpdateAccuntInfo(props) {
                         <span className=" font-semibold">Uplode Image</span>
                     </div>}
                     <Image src={info.img} layout='fill' objectFit="cover" ></Image>
-                    
+
                 </div>
                 <div className=' ml-10 '>
                     <h1 className=' font-semibold text-4xl py-2'>{info.fName}{" "}{info.lName}</h1>
@@ -112,13 +114,14 @@ export default function UpdateAccuntInfo(props) {
                 </div>
                 <div className='lg:w-5/6'>
                     <Inputbox label='Location' type='text' placeholder='Location' name='location' value={info.location} ChangeHandel={handleInputUpdate} editMode={!editMode} />
-                </div>   
-                <div className='lg:w-5/6'>
-                     <Inputbox label='Student ID' type='text' placeholder='Student ID' name='studentID' value={info.studentID} ChangeHandel={handleInputUpdate} editMode={!editMode} />
                 </div>
                 <div className='lg:w-5/6'>
-                   <label className='mb-2 text-lg text-grey-darkest' htmlFor="">Interested Clubs</label>
-                   <DropdownCheckBoxs dropdownItems={info.clubs} editMode={editMode} checkboxClickHandler={handleCheckbox} />
+                    <Inputbox label='Student ID' type='text' placeholder='Student ID' name='studentID' value={info.studentID} ChangeHandel={handleInputUpdate} editMode={!editMode} />
+                </div>
+                <div className='lg:w-5/6'>
+                    
+                    <DropdownCheckBoxs label='Interested Clubs' dropdownItems={clubs} editMode={editMode} changeState={setclubs} />
+                   
                 </div>
             </div>
         </form>
