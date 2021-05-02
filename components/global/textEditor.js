@@ -28,7 +28,9 @@ export default class App extends Component {
 
   componentDidUpdate() {
     //console.log(convertToRaw(this.state.editorState.getCurrentContent()));
-    this.props.changeHandle(this.state.editorState);
+    if (this.props.changeHandle) {
+      this.props.changeHandle(this.state.editorState);
+    }
   }
 
   checkActiveButton(buttonType) {
