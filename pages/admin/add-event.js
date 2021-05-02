@@ -1,4 +1,4 @@
-import { useState, useEffect, forwardRef } from "react";
+import { useState, useEffect } from "react";
 import ContainerWrapper from "../../components/containerWrapper";
 import InputBox from "../../components/global/inputbox";
 import DatePicker from "react-datepicker";
@@ -7,9 +7,9 @@ import TextEditor from "../../components/global/textEditor";
 import "react-datepicker/dist/react-datepicker.css";
 import { convertToRaw } from "draft-js";
 import { connect } from "react-redux";
-import {postEvent} from '../../store/events/action'
+import { postEvent } from "../../store/events/action";
 
-const AddEvent = ({postEvent}) => {
+const AddEvent = ({ postEvent }) => {
   const [title, setTitle] = useState("");
   const [location, setLocation] = useState("");
   const [fee, setFee] = useState("");
@@ -42,7 +42,8 @@ const AddEvent = ({postEvent}) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    postEvent({title,
+    postEvent({
+      title,
       location,
       fee,
       tickets,
@@ -52,14 +53,19 @@ const AddEvent = ({postEvent}) => {
       email,
       contactNumber,
       imageObj,
-      eventBody: convertToRaw(eventBody?.getCurrentContent()),
-      isPublic})
+      eventBody: eventBody ? convertToRaw(eventBody?.getCurrentContent()) : "",
+      isPublic,
+    });
   };
 
   return (
     <>
       <ContainerWrapper>
-        <form onSubmit={handleSubmit}>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+          }}
+        >
           <div className=' px-5'>
             <h1 className='font-bold text-3xl mb-3'>Add Event</h1>
 
@@ -106,7 +112,7 @@ const AddEvent = ({postEvent}) => {
                 <div className='flex'>
                   <InputBox type='time' ChangeHandel={setStartTime} />
                   <span className='px-3 mt-3'>-</span>
-                  <InputBox type='time' ChangeHandel={setEndTime}/>
+                  <InputBox type='time' ChangeHandel={setEndTime} />
                 </div>
               </div>
 
@@ -161,6 +167,7 @@ const AddEvent = ({postEvent}) => {
             </div>
             <div className='flex flex-row justify-center my-3'>
               <button
+                onClick={handleSubmit}
                 type='submit'
                 className='border-2 rounded-lg bg-gray-200 border-yellow-400 cursor-pointer px-5 py-2'
               >
@@ -174,5 +181,4 @@ const AddEvent = ({postEvent}) => {
   );
 };
 
-
-export default connect(null, {postEvent})(AddEvent);
+export default connect(null, { postEvent })(AddEvent);
