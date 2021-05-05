@@ -3,15 +3,17 @@ import InputBox from "./inputbox";
 import TextEditor from "./textEditor";
 import TagInput from "./tagInput";
 import ImageInputBox from "./imageInputBox";
+import ToggleButton from "./toggleButton";
 import { convertToRaw } from "draft-js";
 import { connect } from "react-redux";
 import { addPosts } from "../../store/posts/action";
 
-const AddPost = ({ addPosts }) => {
+const AddPost = ({ addPosts , postCategory, anonymousMode }) => {
   const [title, setTitle] = useState("");
   const [imageObj, setImageObj] = useState(null);
   const [eventBody, setEventBody] = useState(null);
   const [isPublic, setIsPublic] = useState(true);
+  const [anonymous, setAnonymous] = useState(false);
   const [tags, setTags] = useState([]);
   //tag data from tag component
   const getTags = (cbtags) => {
@@ -26,13 +28,21 @@ const AddPost = ({ addPosts }) => {
       eventBody: eventBody ? convertToRaw(eventBody.getCurrentContent()) : "",
       tags,
       isPublic,
+      anonymous: anonymousMode ? anonymous : false,
+      category: postCategory,
     });
   };
   return (
     <>
-      <form onSubmit={e=>{e.preventDefault()}}>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+        }}
+      >
         <div className='px-5'>
-          <h1 className='font-bold text-3xl mb-3'>Add Discussion</h1>
+          <h1 className='font-bold text-3xl mb-3'>
+            Add {postCategory && postCategory} post
+          </h1>
           <div>
             {/* 🎫 Title input  */}
             <InputBox
@@ -60,14 +70,29 @@ const AddPost = ({ addPosts }) => {
             <label className='text-lg'>Input some tags</label>
             <TagInput getTags={getTags} />
           </div>
-          <div className=' mt-5'>
-            <input
-              type='checkbox'
-              id='vehicle1'
-              name='vehicle1'
-              value='Bike'
-            ></input>
-            <label htmlFor='vehicle1'> Publish</label>
+          <div className=' mt-5 select-none'>
+            <ToggleButton
+              value={isPublic}
+              setValue={setIsPublic}
+              forId='hide'
+            />
+            <span className=' text-gray-500'>Publish this post</span>
+
+            {anonymousMode ? (
+              <div className='mt-3'>
+                <ToggleButton
+                  value={anonymous}
+                  setValue={setAnonymous}
+                  forId='anyonomus'
+                />
+                <span className=' text-gray-500'>
+                  post anonymously{" "}
+                  <span className=' text-yellow-500'>
+                    ( noone can see your information except teachers )
+                  </span>
+                </span>
+              </div>
+            ) : null}
           </div>
         </div>
 
@@ -77,7 +102,7 @@ const AddPost = ({ addPosts }) => {
             type='submit'
             className='border-2 rounded-lg bg-gray-200 border-yellow-400 cursor-pointer px-5 py-2'
           >
-            Save Change
+            Save Changes
           </button>
         </div>
       </form>
