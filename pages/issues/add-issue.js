@@ -4,7 +4,7 @@ export default function addIssue() {
   return (
     <>
       <ContainerWrapper>
-        <AddPost />
+        <AddPost postCategory='issue' anonymousMode={true} />
       </ContainerWrapper>
     </>
   );
