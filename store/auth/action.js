@@ -5,7 +5,7 @@ export const signupAction = (inputValues) => {
   //console.log(inputValues);
   return (dispatch) => {    
     axios
-      .post("/users",)
+      .post("/users",inputValues)
       .then((response) => {
         console.log("Success:", response.data);
         localStorage.setItem("token", response.data.token);
