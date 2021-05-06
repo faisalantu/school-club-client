@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Cropper from "react-easy-crop";
 import SlideBar from "../global/slideBar";
 import { AiFillCamera } from "react-icons/ai";
@@ -7,7 +7,7 @@ import getCroppedImg from "../utils/cropImage";
 import { dataURLtoFile } from "../utils/dataURLtoFile";
 import Image from "next/image";
 
-function ImageUpload({onImageChange}) {
+function ImageUpload({onImageChange }) {
   const inputRef = useRef();
   const [image, setImage] = useState(null);
   const [croppedImageDataURL, setCroppedImageDataURL] = useState(null);
@@ -58,6 +58,13 @@ function ImageUpload({onImageChange}) {
       });
     }
   };
+
+  useEffect(()=>{
+    if (onImageChange) {
+      onImageChange(image);
+    }
+    console.log('image update')
+  },[image])
 
   return (
     <div>

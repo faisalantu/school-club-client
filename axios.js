@@ -15,7 +15,7 @@ instance.interceptors.request.use(request => {
     // Edit request config
     const token = localStorage.getItem("token");
     if (token) {
-        request.defaults.headers.common['x-auth-token'] = token;
+        request.headers.common['x-auth-token'] = token;
     }
     console.log("[request send-]",request);
     return request;

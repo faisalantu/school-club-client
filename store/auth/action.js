@@ -1,15 +1,16 @@
-import { LOGIN, LOGOUT } from "../actionsType";
+import { LOGIN, LOGOUT ,SAVE_USER} from "../actionsType";
 import axios from "../../axios";
 
 export const signupAction = (inputValues) => {
-  console.log(inputValues);
+  //console.log(inputValues);
   return (dispatch) => {    
     axios
-      .post("/users", inputValues)
+      .post("/users",)
       .then((response) => {
         console.log("Success:", response.data);
         localStorage.setItem("token", response.data.token);
         dispatch(saveToken(response.data.token));
+        dispatch(getUser());
         window.location.href = "/";
       })
       .catch((error) => {
@@ -48,6 +49,7 @@ export const loginAction = (email, password) => {
         console.log(response);
         localStorage.setItem("token", response.data.token);
         dispatch(saveToken(response.data.token));
+        dispatch(getUser());
       })
       .catch((err) => {
         console.log( err.response.data.msg);
@@ -70,9 +72,33 @@ export const authCheckState = () => {
   return (dispatch) => {
     const token = localStorage.getItem("token");
     if (!token) {
+      
       dispatch(logout());
     } else {
+      dispatch(getUser());
       dispatch(saveToken(token));
     }
+  };
+};
+
+export const getUser = () => {
+  return (dispatch) => {    
+    axios
+      .get("/users",)
+      .then((response) => {
+        console.log("[getUser  -redux] Success:", response.data);
+
+        dispatch(saveUser(response.data));
+      })
+      .catch((error) => {
+        console.error("Oo no Error![getUser  -redux]:", error);
+        console.error("Error![getUser  -redux]:", error.response.data);
+      });
+  };
+};
+export const saveUser = (userData) => {
+  return {
+    type: SAVE_USER,
+    user: userData,
   };
 };
