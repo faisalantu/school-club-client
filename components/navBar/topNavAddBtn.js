@@ -34,7 +34,7 @@ export default function topNavAddBtn() {
         } absolute right-0 mt-2 origin-top-right rounded-md shadow-lg z-30`}
       >
         <div className='px-2 py-2 bg-white rounded-md shadow dark-mode:bg-gray-700'>
-          <Link href='/discussions/add-discussion'>
+          <Link href='/discussion/add-discussion'>
             <a
               className='flex justify-start px-4 py-2 mt-2 font-semibold bg-transparent rounded-lg hover:bg-gray-200'
               href='#'
@@ -43,7 +43,7 @@ export default function topNavAddBtn() {
               <span className='text-sm'>Add Discussion</span>
             </a>
           </Link>
-          <Link href='/issues/add-issue'>
+          <Link href='/issue/add-issue'>
             <a
               className='flex justify-start px-4 py-2 mt-2 font-semibold bg-transparent rounded-lg hover:bg-gray-200'
               href='#'

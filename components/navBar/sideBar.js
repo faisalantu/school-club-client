@@ -41,12 +41,12 @@ export default function SideBar() {
         <NonExtendedLink
           icon={<RiChatSmile3Line />}
           name='Club Discussions'
-          route='/discussions'
+          route='/discussion'
         />
         <NonExtendedLink
           icon={<MdReportProblem />}
           name='Issue Forum'
-          route='/issues'
+          route='/issue'
         />
       </div>
     </>
