@@ -1,18 +1,11 @@
-import { LOGIN, LOGOUT } from "../actionsType";
-import axios from "axios";
-import config from '../../config'
+import axios from "../../axios";
+import { logout } from "../auth/action";
 
 export const addPosts = (inputValues) => {
   console.log(inputValues);
-
   return (dispatch) => {
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
     axios
-      .post(`http://localhost:5000/api/posts`, inputValues, config)
+      .post(`/posts`, inputValues)
       .then((response) => {
         console.log("Success:", response.data);
       })
@@ -22,4 +15,3 @@ export const addPosts = (inputValues) => {
       });
   };
 };
-

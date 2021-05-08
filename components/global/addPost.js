@@ -1,20 +1,46 @@
 import { useState, useEffect } from "react";
+import axios from "../../axios";
 import InputBox from "./inputbox";
 import TextEditor from "./textEditor";
 import TagInput from "./tagInput";
 import ImageInputBox from "./imageInputBox";
+import DropdownCheckBoxs from "./dropdownCheckBoxs";
 import ToggleButton from "./toggleButton";
 import { convertToRaw } from "draft-js";
 import { connect } from "react-redux";
 import { addPosts } from "../../store/posts/action";
 
-const AddPost = ({ addPosts , postCategory, anonymousMode }) => {
+const AddPost = ({ addPosts, postCategory, anonymousMode }) => {
   const [title, setTitle] = useState("");
   const [imageObj, setImageObj] = useState(null);
   const [eventBody, setEventBody] = useState(null);
   const [isPublic, setIsPublic] = useState(true);
   const [anonymous, setAnonymous] = useState(false);
   const [tags, setTags] = useState([]);
+  const [clubs, setClubs] = useState({});
+  const [clubsObj, setClubsObj] = useState([]);
+  //fetch all clubs
+  useEffect(() => {
+    axios
+      .get("/clublist")
+      .then(function (response) {
+        setClubsObj(response.data);
+        response.data.forEach((club) => {
+          setClubs((prev) => {
+            return {
+              ...prev,
+              [club.name]: false,
+            };
+          });
+        });
+      })
+      .catch(function (error) {
+        //do someting with the error
+      });
+  }, []);
+
+
+
   //tag data from tag component
   const getTags = (cbtags) => {
     setTags(cbtags);
@@ -22,6 +48,20 @@ const AddPost = ({ addPosts , postCategory, anonymousMode }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    //getting club name
+    const clubName=[]
+    Object.entries(clubs).forEach(([key, value]) => {
+      if (value === true) {
+        clubName.push(key)
+      }
+    });
+    //getting selected club mongodbID
+    let clubId ;
+    clubsObj.map((club) => {
+      if (clubName.includes(club.name)) {
+        clubId = club._id ;
+      }
+    });
     addPosts({
       title,
       imageObj,
@@ -30,6 +70,7 @@ const AddPost = ({ addPosts , postCategory, anonymousMode }) => {
       isPublic,
       anonymous: anonymousMode ? anonymous : false,
       category: postCategory,
+      clubId:clubId
     });
   };
   return (
@@ -70,6 +111,18 @@ const AddPost = ({ addPosts , postCategory, anonymousMode }) => {
             <label className='text-lg'>Input some tags</label>
             <TagInput getTags={getTags} />
           </div>
+
+          {/* dropdownCheckBoxs */}
+          {clubs ? (
+            <DropdownCheckBoxs
+              dropdownItems={clubs}
+              changeState={setClubs}
+              type='radiobutton'
+              label='post on'
+              editMode={true}
+            />
+          ) : null}
+
           <div className=' mt-5 select-none'>
             <ToggleButton
               value={isPublic}

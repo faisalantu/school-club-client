@@ -7,7 +7,7 @@ export const signupAction = (inputValues) => {
     axios
       .post("/users",inputValues)
       .then((response) => {
-        console.log("Success:", response.data);
+        //console.log("Success:", response.data);
         localStorage.setItem("token", response.data.token);
         dispatch(saveToken(response.data.token));
         dispatch(getUser());
@@ -46,7 +46,7 @@ export const loginAction = (email, password) => {
     axios
       .post("/auth", authData)
       .then((response) => {
-        console.log(response);
+        //console.log(response);
         localStorage.setItem("token", response.data.token);
         dispatch(saveToken(response.data.token));
         dispatch(getUser());
@@ -86,7 +86,7 @@ export const getUser = () => {
     axios
       .get("/users",)
       .then((response) => {
-        console.log("[getUser  -redux] Success:", response.data);
+        //console.log("[getUser  -redux] Success:", response.data);
 
         dispatch(saveUser(response.data));
       })
