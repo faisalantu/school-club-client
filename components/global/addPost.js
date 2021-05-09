@@ -39,8 +39,6 @@ const AddPost = ({ addPosts, postCategory, anonymousMode }) => {
       });
   }, []);
 
-
-
   //tag data from tag component
   const getTags = (cbtags) => {
     setTags(cbtags);
@@ -49,28 +47,30 @@ const AddPost = ({ addPosts, postCategory, anonymousMode }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     //getting club name
-    const clubName=[]
+    const clubName = [];
     Object.entries(clubs).forEach(([key, value]) => {
       if (value === true) {
-        clubName.push(key)
+        clubName.push(key);
       }
     });
     //getting selected club mongodbID
-    let clubId ;
+    let clubId;
     clubsObj.map((club) => {
       if (clubName.includes(club.name)) {
-        clubId = club._id ;
+        clubId = club._id;
       }
     });
     addPosts({
       title,
       imageObj,
-      eventBody: eventBody ? convertToRaw(eventBody.getCurrentContent()) : "",
+      eventBody: eventBody
+        ? JSON.stringify(convertToRaw(eventBody.getCurrentContent()))
+        : "",
       tags,
       isPublic,
       anonymous: anonymousMode ? anonymous : false,
       category: postCategory,
-      clubId:clubId
+      clubId: clubId,
     });
   };
   return (
