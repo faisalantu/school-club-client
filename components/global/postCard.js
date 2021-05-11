@@ -3,7 +3,7 @@ import CommentInfoBtn from "../postComponent/commentInfoBtn";
 import UserInfoAndDate from "./userInfoAndDate";
 import Tags from "./tags";
 import Reaction from "../postComponent/reaction";
-const Container = ({ edit, name, role, imgUrl, date, title, tags }) => {
+const Container = ({ edit, name, role, imgUrl, date, title, tags,slug }) => {
   return (
     <>
       <div className='bg-white border-gray-600 p-5 rounded-md shadow-sm my-5'>
@@ -34,7 +34,7 @@ const Container = ({ edit, name, role, imgUrl, date, title, tags }) => {
                   ""
                 )}
 
-                <Link href='/posts/cse/123'>
+                <Link href={`/posts/${slug}`}>
                   <a className=' border bg-gray-200 hover:bg-gray-300 px-2 py-0.5 rounded flex items-center'>
                     <span className='ml-1'>Read more</span>
                   </a>
