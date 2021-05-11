@@ -10,7 +10,7 @@ import { BiSearch, BiLock } from "react-icons/bi";
 import { MdNotifications, MdAccountCircle, MdEvent } from "react-icons/md";
 import { FiSettings } from "react-icons/fi";
 import { HiOutlineLogout } from "react-icons/hi";
-import { RiLockPasswordLine, RiAdminFill } from "react-icons/ri";
+import { RiLockPasswordLine, RiAdminFill,RiDashboardLine } from "react-icons/ri";
 import { BsTriangleFill } from "react-icons/bs";
 import { AiOutlineMenuUnfold } from "react-icons/ai";
 import { AiOutlineMenuFold } from "react-icons/ai";
@@ -128,6 +128,15 @@ function topNavbar(props) {
                 >
                   <RiAdminFill className='p-0 mr-1.5 text-base' />
                   <span className='text-sm'>Admin</span>
+                </a>
+              </Link>
+              <Link href='/dashboard'>
+                <a
+                  className='flex justify-start px-4 py-2 mt-2 font-semibold bg-transparent rounded-lg hover:bg-gray-200'
+                  href='#'
+                >
+                  <RiDashboardLine className='p-0 mr-1.5 text-base' />
+                  <span className='text-sm'>Dashboard</span>
                 </a>
               </Link>
               <Link href='/setting'>

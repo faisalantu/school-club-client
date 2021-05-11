@@ -1,50 +1,50 @@
 import ContainerWrapper from "../../../components/containerWrapper";
 import PostCard from "../../../components/global/postCard";
+import { API_URL } from "../../../config";
+import axios from "axios";
 
-const Index = (props) => {
+const Index = ({ posts }) => {
   return (
     <>
       <ContainerWrapper>
         <div className='px-5'>
-          <PostCard
-            tags={["nodeJs", "NextJs"]}
-            imgUrl='/portrait-1.jpg'
-            name='Faisal Antu'
-            date='3-apr-2021'
-            title='Enhance your code reading experience on GitHub'
-          />
-          <PostCard
-            tags={["nodeJs", "NextJs"]}
-            imgUrl='/portrait-1.jpg'
-            name='Faisal Antu'
-            date='3-apr-2021'
-            title='Enhance your code reading experience on GitHub'
-          />
-          <PostCard
-            tags={["nodeJs", "NextJs"]}
-            imgUrl='/portrait-1.jpg'
-            name='Faisal Antu'
-            date='3-apr-2021'
-            title='Enhance your code reading experience on GitHub'
-          />
-          <PostCard
-            tags={["nodeJs", "NextJs"]}
-            imgUrl='/portrait-1.jpg'
-            name='Faisal Antu'
-            date='3-apr-2021'
-            title='Enhance your code reading experience on GitHub'
-          />
-          <PostCard
-            tags={["nodeJs", "NextJs"]}
-            imgUrl='/portrait-1.jpg'
-            name='Faisal Antu'
-            date='3-apr-2021'
-            title='Enhance your code reading experience on GitHub'
-          />
+          {posts.map((post) => {
+            return (
+              <div key={post._id}>
+                <PostCard
+                  tags={post.tags}
+                  imgUrl={post.userlist[0].imageObj.url}
+                  name={
+                    post.userlist[0].firstname + " " + post.userlist[0].lastname
+                  }
+                  date={post.date}
+                  title={post.title}
+                  slug={post.slug}
+                />
+              </div>
+            );
+          })}
         </div>
       </ContainerWrapper>
     </>
   );
 };
+
+export async function getServerSideProps({ params: { clubname } }) {
+  console.log(clubname);
+  try {
+    const res = await axios.get(
+      `${API_URL}/posts?category=issue&club=${clubname}`
+    );
+    return {
+      props: { posts: res.data },
+    };
+  } catch (error) {
+    console.log(error);
+    return {
+      props: {},
+    };
+  }
+}
 
 export default Index;
