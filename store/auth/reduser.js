@@ -20,7 +20,7 @@ const saveUser = (state, action) => {
     };
 };
 const authLogout = (state, action) => {
-  return {...state, token: null ,user: null, isAuth:0} ;
+  return {...state, token: null ,user: null, isAuth:0 ,loadingData:false, } ;
 };
 const SetLoadingData = (state, action) => {
   return {...state, 
