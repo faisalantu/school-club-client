@@ -1,5 +1,6 @@
-import { LOGIN, LOGOUT ,SAVE_USER} from "../actionsType";
+import { LOGIN, LOGOUT ,SAVE_USER ,SET_LOADING} from "../actionsType";
 import axios from "../../axios";
+// import { showLoading, hideLoading } from 'react-redux-loading-bar'
 
 export const signupAction = (inputValues) => {
   //console.log(inputValues);
@@ -70,6 +71,8 @@ export const logout = () => {
 };
 export const authCheckState = () => {
   return (dispatch) => {
+    SetLoadingData(true)
+    
     const token = localStorage.getItem("token");
     if (!token) {
       
@@ -89,12 +92,20 @@ export const getUser = () => {
         //console.log("[getUser  -redux] Success:", response.data);
 
         dispatch(saveUser(response.data));
+        dispatch(SetLoadingData(false));
       })
       .catch((error) => {
+        dispatch(SetLoadingData(false));
         console.error("Oo no Error![getUser  -redux]:", error);
-        console.error("Error![getUser  -redux]:", error.response.data);
+        // console.error("Error![getUser  -redux]:", error.response.data);
       });
   };
+};
+export const SetLoadingData = (loading) => {
+  return {
+    type: SET_LOADING, 
+    loadingData: loading,
+    };
 };
 export const saveUser = (userData) => {
   return {
