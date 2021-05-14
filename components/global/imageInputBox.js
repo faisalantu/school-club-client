@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { FaHandPointDown } from "react-icons/fa";
 
-export default function imageInputBox({ onImageChange }) {
+export default function imageInputBox({ onImageChange, url }) {
   const inputRef = useRef();
   const [image, setImage] = useState(null);
   const triggerFileSelect = () => {
@@ -40,11 +40,15 @@ export default function imageInputBox({ onImageChange }) {
         onClick={triggerFileSelect}
       >
         {!image ? (
-          <div className='h-24 flex items-center justify-center'>
-            <span className=' text-gray-600 text-lg select-none'>
-              please click to choose an image
-            </span>
-          </div>
+          url ? (
+            <img className='h-96 mx-auto' src={url} alt='image' />
+          ) : (
+            <div className='h-24 flex items-center justify-center'>
+              <span className=' text-gray-600 text-lg select-none'>
+                please click to choose an image
+              </span>
+            </div>
+          )
         ) : (
           <img className='h-96 mx-auto' src={image} alt='image' />
         )}

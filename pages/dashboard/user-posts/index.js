@@ -9,7 +9,6 @@ const Index = () => {
       try {
         let res = await axios.get("/posts/user");
         setPosts(res.data);
-        console.log(res.data);
       } catch (error) {
         console.log(error);
       }
@@ -34,6 +33,7 @@ const Index = () => {
                       date={post.date}
                       title={post.title}
                       slug={post.slug}
+                      postId={post._id}
                       edit={true}
                     />
                   </div>
