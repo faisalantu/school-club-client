@@ -3,29 +3,38 @@ import { connect } from 'react-redux'
 import { useEffect } from 'react';
 import LoginComponent from "../components/auth/login";
 const Login = (props) => {
+  console.log("login runed","client",(typeof window))
   const router = useRouter();
-  useEffect(() => {
+  // useEffect(() => {
     
-    if (props.isAuthenticated) {
-        router.replace('/');
-    }
+  //   if (props.isAuthenticated) {
+  //       router.replace('/');
+  //   }
 
-  }, [props.isAuthenticated]);
-  if(props.isAuthenticated)
-  {
-    return <p className="text-center text-8xl">Loading...</p>;
-  }else{
-     return (
+  // }, [props.isAuthenticated]);
+  // if(props.isAuthenticated)
+  // {
+  //   return <p className="text-center text-8xl">Loading...</p>;
+  // }else{
+  //    return (
+  //   <>
+      
+  //     <LoginComponent />
+  //   </>
+  //   );
+  // }
+ return (
     <>
-      <LoginComponent />
+      {/* {props.isAuthenticated 
+       ?<p className="text-center text-8xl">Loading...</p>
+       :<LoginComponent />} */}
+       <LoginComponent />
     </>
     );
-  }
- 
 };
 const mapStateToProps = state => {
   return {
-    isAuthenticated: state.auth.token !== null,
+    isAuthenticated: state.auth.isAuth,
   };
 };
 

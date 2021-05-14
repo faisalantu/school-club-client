@@ -4,13 +4,13 @@ import useOnClickOutside from "use-onclickoutside";
 import { connect } from "react-redux";
 import * as actions from "../../store/auth/action";
 import TopNavAddBtn from "./topNavAddBtn";
-
+import Image from 'next/image'
 //importing Icons 👇
 import { BiSearch, BiLock } from "react-icons/bi";
 import { MdNotifications, MdAccountCircle, MdEvent } from "react-icons/md";
 import { FiSettings } from "react-icons/fi";
 import { HiOutlineLogout } from "react-icons/hi";
-import { RiLockPasswordLine, RiAdminFill,RiDashboardLine } from "react-icons/ri";
+import { RiLockPasswordLine, RiAdminFill, RiDashboardLine } from "react-icons/ri";
 import { BsTriangleFill } from "react-icons/bs";
 import { AiOutlineMenuUnfold } from "react-icons/ai";
 import { AiOutlineMenuFold } from "react-icons/ai";
@@ -29,7 +29,7 @@ function topNavbar(props) {
   useOnClickOutside(account, function () {
     setAccountToggle(false);
   });
-
+  console.log("user...",props.user0)
   return (
     <div className=' w-full h-12 bg-gray-900 flex justify-between items-center whitespace-nowrap'>
       <div className={`  md:hidden flex items-center ml-4`}>
@@ -39,14 +39,12 @@ function topNavbar(props) {
           }}
         >
           <RiMenuUnfoldLine
-            className={` ${
-              isSidebarShown ? " hidden " : ""
-            } text-gray-100 text-2xl  mx-1`}
+            className={` ${isSidebarShown ? " hidden " : ""
+              } text-gray-100 text-2xl  mx-1`}
           />
           <RiMenuFoldLine
-            className={`${
-              !isSidebarShown ? " hidden " : ""
-            }text-gray-100 text-2xl  mx-1`}
+            className={`${!isSidebarShown ? " hidden " : ""
+              }text-gray-100 text-2xl  mx-1`}
           />
         </div>
 
@@ -62,7 +60,7 @@ function topNavbar(props) {
 
         {/* Add sector */}
         <TopNavAddBtn />
-        
+
         {/* notification sector */}
         <div
           ref={notification}
@@ -73,14 +71,12 @@ function topNavbar(props) {
         >
           <MdNotifications className='text-gray-100 text-md flex-auto mx-1' />
           <BsTriangleFill
-            className={`${
-              notificationToggle ? "" : "hidden"
-            } absolute right-1 text-white `}
+            className={`${notificationToggle ? "" : "hidden"
+              } absolute right-1 text-white `}
           />
           <div
-            className={` ${
-              notificationToggle ? "" : "hidden"
-            } absolute right-0  mt-2 origin-top-right rounded-md shadow-lg  z-30`}
+            className={` ${notificationToggle ? "" : "hidden"
+              } absolute right-0  mt-2 origin-top-right rounded-md shadow-lg  z-30`}
           >
             <div className='px-2 py-2 bg-white rounded-md shadow dark-mode:bg-gray-700'>
               <a
@@ -109,16 +105,17 @@ function topNavbar(props) {
           }}
           className='relative cursor-pointer'
         >
-          <MdAccountCircle className='text-gray-100 text-md flex-auto mx-1' />
+          {(props.user.hasOwnProperty('imageObj'))
+            ?  <Image className="mx-1 rounded-full flex-auto" src={props.user.imageObj.url} alt="user" width={26} height={26} />
+            : <MdAccountCircle className='text-gray-100 text-md flex-auto mx-1' />
+          }
           <BsTriangleFill
-            className={`${
-              accountToggle ? "" : "hidden"
-            } absolute right-1 text-white `}
+            className={`${accountToggle ? "" : "hidden"
+              } absolute right-1 text-white `}
           />
           <div
-            className={` ${
-              accountToggle ? "" : "hidden"
-            } absolute right-0 mt-2 origin-top-right rounded-md shadow-lg z-30`}
+            className={` ${accountToggle ? "" : "hidden"
+              } absolute right-0 mt-2 origin-top-right rounded-md shadow-lg z-30`}
           >
             <div className='px-2 py-2 bg-white rounded-md shadow dark-mode:bg-gray-700'>
               <Link href='/admin'>
@@ -175,6 +172,7 @@ function topNavbar(props) {
 const mapStateToProps = (state) => {
   return {
     token: state.auth.token,
+    user: state.auth.user,
   };
 };
 
