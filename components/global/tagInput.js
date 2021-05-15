@@ -13,7 +13,7 @@ function skillInput({ getTags, initialTags }) {
 
   const removeTag = (iToRemove) => {
     setTags(tags.filter((_, i) => i !== iToRemove));
-    getTags(tags);
+    getTags(tags.filter((_, i) => i !== iToRemove));
   };
 
   return (

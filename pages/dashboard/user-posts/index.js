@@ -2,6 +2,7 @@ import ContainerWrapper from "../../../components/containerWrapper";
 import axios from "../../../axios";
 import { useEffect, useState } from "react";
 import PostCard from "../../../components/global/postCard";
+
 const Index = () => {
   const [posts, setPosts] = useState();
   useEffect(() => {

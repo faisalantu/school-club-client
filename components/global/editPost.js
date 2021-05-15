@@ -5,15 +5,19 @@ import TextEditor from "./textEditor";
 import TagInput from "./tagInput";
 import ImageInputBox from "./imageInputBox";
 import ToggleButton from "./toggleButton";
-import { convertToRaw } from "draft-js";
+import {
+  EditorState,
+  convertToRaw,
+  convertFromRaw,
+} from "draft-js";
 import { connect } from "react-redux";
-import { addPosts } from "../../store/posts/action";
+import { editPost } from "../../store/posts/action";
 
-const AddPost = ({ addPosts, pid }) => {
+const AddPost = ({ editPost, pid }) => {
   const [dataFetching, setDataFetching] = useState(true);
   const [fetchedData, setFetchedData] = useState({});
   const [title, setTitle] = useState("");
-  const [imageObj, setImageObj] = useState(null);
+  const [imageObj, setImageObj] = useState();
   const [eventBody, setEventBody] = useState(null);
   const [isPublic, setIsPublic] = useState(true);
   const [anonymous, setAnonymous] = useState(false);
@@ -25,13 +29,17 @@ const AddPost = ({ addPosts, pid }) => {
       setDataFetching(true);
       try {
         const res = await axios.get(`/posts/one?postId=${pid}`);
+        console.log(res.data);
         setFetchedData(res.data[0]);
         setTitle(res.data[0].title);
-        setEventBody(JSON.parse(res.data[0].eventBody));
+        setEventBody(
+          EditorState.createWithContent(
+            convertFromRaw(JSON.parse(res.data[0].eventBody))
+          )
+        );
         setTags(res.data[0].tags);
-        setIsPublic(res.data[0].isPublic)
+        setIsPublic(res.data[0].isPublic);
         setAnonymous(res.data[0].anonymous);
-        //console.log(eventBody)
       } catch (err) {
         console.log(err);
       }
@@ -46,9 +54,8 @@ const AddPost = ({ addPosts, pid }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    //getting club name
 
-    addPosts({
+    editPost({
       title,
       imageObj,
       eventBody: eventBody
@@ -56,7 +63,8 @@ const AddPost = ({ addPosts, pid }) => {
         : "",
       tags,
       isPublic,
-    });
+      anonymous: anonymous,
+    },pid);
   };
   return (
     <>
@@ -113,7 +121,7 @@ const AddPost = ({ addPosts, pid }) => {
               />
               <span className=' text-gray-500'>Publish this post</span>
 
-              {fetchedData.anonymous ? (
+              {fetchedData.category == "issue" ? (
                 <div className='mt-3'>
                   <ToggleButton
                     value={anonymous}
@@ -146,4 +154,4 @@ const AddPost = ({ addPosts, pid }) => {
   );
 };
 
-export default connect(null, { addPosts })(AddPost);
+export default connect(null, { editPost })(AddPost);

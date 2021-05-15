@@ -3,6 +3,11 @@ import CommentInfoBtn from "../postComponent/commentInfoBtn";
 import UserInfoAndDate from "./userInfoAndDate";
 import Tags from "./tags";
 import Reaction from "../postComponent/reaction";
+import axios from "../../axios";
+import Router from 'next/router'
+import { confirmAlert } from "react-confirm-alert"; // Import
+import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
+
 const Container = ({
   edit,
   name,
@@ -14,6 +19,25 @@ const Container = ({
   slug,
   postId,
 }) => {
+  const deletePost = () => {
+    confirmAlert({
+      title: "Confirm to Delete post",
+      message: "Are you sure to do this.",
+      buttons: [
+        {
+          label: "Yes",
+          onClick: async () => {
+            const res = await axios.delete(`/posts/one?postId=${postId}`);
+            console.log(res);
+            Router.reload(window.location.pathname);
+          },
+        },
+        {
+          label: "No",
+        },
+      ],
+    });
+  };
   return (
     <>
       <div className='bg-white border-gray-600 p-5 rounded-md shadow-sm my-5'>
@@ -38,7 +62,10 @@ const Container = ({
                         <span className='ml-1'>Edit</span>
                       </a>
                     </Link>
-                    <button className=' border bg-red-300 hover:bg-red-400 px-3 py-0.5 rounded'>
+                    <button
+                      onClick={deletePost}
+                      className=' border bg-red-300 hover:bg-red-400 px-3 py-0.5 rounded'
+                    >
                       Delete
                     </button>
                   </>

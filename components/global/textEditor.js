@@ -18,7 +18,7 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      editorState: EditorState.createWithContent(convertFromRaw(this.checkFetchData())),
+      editorState: this.checkFetchData(),
       showRawData: false,
     };
 
@@ -30,9 +30,8 @@ export default class App extends Component {
   checkFetchData() {
     if (this.props.initialFetchedData) {
       return this.props.initialFetchedData;
-      console.log(this.props.initialFetchedData);
     } else {
-      return initialData;
+      return EditorState.createWithContent(convertFromRaw(initialData));
     }
   }
 
