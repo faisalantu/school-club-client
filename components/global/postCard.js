@@ -3,7 +3,41 @@ import CommentInfoBtn from "../postComponent/commentInfoBtn";
 import UserInfoAndDate from "./userInfoAndDate";
 import Tags from "./tags";
 import Reaction from "../postComponent/reaction";
-const Container = ({ edit, name, role, imgUrl, date, title, tags,slug }) => {
+import axios from "../../axios";
+import Router from 'next/router'
+import { confirmAlert } from "react-confirm-alert"; // Import
+import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
+
+const Container = ({
+  edit,
+  name,
+  role,
+  imgUrl,
+  date,
+  title,
+  tags,
+  slug,
+  postId,
+}) => {
+  const deletePost = () => {
+    confirmAlert({
+      title: "Confirm to Delete post",
+      message: "Are you sure to do this.",
+      buttons: [
+        {
+          label: "Yes",
+          onClick: async () => {
+            const res = await axios.delete(`/posts/one?postId=${postId}`);
+            console.log(res);
+            Router.reload(window.location.pathname);
+          },
+        },
+        {
+          label: "No",
+        },
+      ],
+    });
+  };
   return (
     <>
       <div className='bg-white border-gray-600 p-5 rounded-md shadow-sm my-5'>
@@ -23,10 +57,15 @@ const Container = ({ edit, name, role, imgUrl, date, title, tags,slug }) => {
               <div className='flex gap-3 items-center my-2'>
                 {edit ? (
                   <>
-                    <button className=' border bg-yellow-200 hover:bg-yellow-300 px-3 py-0.5 rounded'>
-                      Edit
-                    </button>
-                    <button className=' border bg-red-300 hover:bg-red-400 px-3 py-0.5 rounded'>
+                    <Link href={`/posts/edit/${postId}`}>
+                      <a className=' border bg-yellow-200 hover:bg-yellow-300 px-2 py-0.5 rounded flex items-center'>
+                        <span className='ml-1'>Edit</span>
+                      </a>
+                    </Link>
+                    <button
+                      onClick={deletePost}
+                      className=' border bg-red-300 hover:bg-red-400 px-3 py-0.5 rounded'
+                    >
                       Delete
                     </button>
                   </>
@@ -34,7 +73,7 @@ const Container = ({ edit, name, role, imgUrl, date, title, tags,slug }) => {
                   ""
                 )}
 
-                <Link href={`/posts/${slug}`}>
+                <Link href={`/posts/view/${slug}`}>
                   <a className=' border bg-gray-200 hover:bg-gray-300 px-2 py-0.5 rounded flex items-center'>
                     <span className='ml-1'>Read more</span>
                   </a>

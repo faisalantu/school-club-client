@@ -18,12 +18,21 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      editorState: EditorState.createWithContent(convertFromRaw(initialData)),
+      editorState: this.checkFetchData(),
       showRawData: false,
     };
 
     this.focus = () => this.editor.focus();
     this.onChange = (editorState) => this.setState({ editorState });
+  }
+
+  //passing editor state through props and checking if its exist
+  checkFetchData() {
+    if (this.props.initialFetchedData) {
+      return this.props.initialFetchedData;
+    } else {
+      return EditorState.createWithContent(convertFromRaw(initialData));
+    }
   }
 
   componentDidUpdate() {

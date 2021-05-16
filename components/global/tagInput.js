@@ -1,20 +1,20 @@
 import { useState } from "react";
 import { BiX } from "react-icons/bi";
-function skillInput({getTags}) {
-  const [tags, setTags] = useState([]);
+function skillInput({ getTags, initialTags }) {
+  const [tags, setTags] = useState(initialTags ? initialTags : []);
 
   const addTags = (e) => {
-    if (e.key === "Enter" && e.target.value !== '') {
+    if (e.key === "Enter" && e.target.value !== "") {
       setTags([...tags, e.target.value]);
       getTags([...tags, e.target.value]);
-      e.target.value = ''
+      e.target.value = "";
     }
   };
 
-  const removeTag = (iToRemove)=>{
-    setTags(tags.filter((_,i)=>i !== iToRemove))
-    getTags(tags);
-  }
+  const removeTag = (iToRemove) => {
+    setTags(tags.filter((_, i) => i !== iToRemove));
+    getTags(tags.filter((_, i) => i !== iToRemove));
+  };
 
   return (
     <div className=' mt-1 border-2 rounded border-gray-300 flex items-center flex-wrap'>
@@ -26,7 +26,10 @@ function skillInput({getTags}) {
               className='px-2 py-1 flex items-center rounded-md bg-gray-300 mr-2 my-1'
             >
               <span>{tag}</span>
-              <div onClick={()=>removeTag(index)} className='bg-gray-100 rounded-full ml-1 cursor-pointer'>
+              <div
+                onClick={() => removeTag(index)}
+                className='bg-gray-100 rounded-full ml-1 cursor-pointer'
+              >
                 <BiX />
               </div>
             </div>
@@ -34,7 +37,7 @@ function skillInput({getTags}) {
         })}
       </div>
       <input
-        onKeyUp={e => (e.key === "Enter" ? addTags(e) : null)}
+        onKeyUp={(e) => (e.key === "Enter" ? addTags(e) : null)}
         className='py-3 outline-none bg-transparent'
         type='text'
         placeholder={" press enter to add tag"}

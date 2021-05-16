@@ -2,6 +2,7 @@ import ContainerWrapper from "../../../components/containerWrapper";
 import axios from "../../../axios";
 import { useEffect, useState } from "react";
 import PostCard from "../../../components/global/postCard";
+
 const Index = () => {
   const [posts, setPosts] = useState();
   useEffect(() => {
@@ -9,7 +10,6 @@ const Index = () => {
       try {
         let res = await axios.get("/posts/user");
         setPosts(res.data);
-        console.log(res.data);
       } catch (error) {
         console.log(error);
       }
@@ -34,6 +34,7 @@ const Index = () => {
                       date={post.date}
                       title={post.title}
                       slug={post.slug}
+                      postId={post._id}
                       edit={true}
                     />
                   </div>
