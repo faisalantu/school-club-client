@@ -111,12 +111,19 @@ const SelectMember = () => {
         RolesId.push(role._id) 
       }
     })
+    let clubId
+    clubsObj.forEach((club)=>{
+      if( selectedClubName === club.name){
+        clubId=club._id
+      }
+    })
     const url="setroles/"
     const data={
       userId:userObj._id,
       precedent,
       selectedClubName,
       RolesId,
+      clubId
     }
     axios.put(url,data)
     .then(res => {
