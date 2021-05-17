@@ -26,6 +26,7 @@ export default function SideBar() {
           <SubSidebarLink name='Add Post' icon={<IoAddCircle />} route='/admin/add-post' />
           <SubSidebarLink name='Edit Post' icon={<MdEdit />} route='/admin/edit-post'/>
         </ExtendedLink>
+        <NonExtendedLink name='Roles' icon={<MdEdit />} route='/admin/add-roles'/>
       </div>
     </>
   );

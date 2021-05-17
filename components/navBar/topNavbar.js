@@ -29,7 +29,6 @@ function topNavbar(props) {
   useOnClickOutside(account, function () {
     setAccountToggle(false);
   });
-  console.log("user...",props.user0)
   return (
     <div className=' w-full h-12 bg-gray-900 flex justify-between items-center whitespace-nowrap'>
       <div className={`  md:hidden flex items-center ml-4`}>
@@ -106,8 +105,8 @@ function topNavbar(props) {
           className='relative cursor-pointer'
         >
           {(props.user.hasOwnProperty('imageObj'))
-            ?  <Image className="mx-1 rounded-full flex-auto" src={props.user.imageObj.url} alt="user" width={26} height={26} />
-            : <MdAccountCircle className='text-gray-100 text-md flex-auto mx-1' />
+            ? <Image className=" rounded-full overflow-hidden flex-auto mx-1" src={props.user.imageObj.url} alt="user" width={25} height={25} />
+            : <MdAccountCircle className='text-gray-100 text-md  mx-1' />
           }
           <BsTriangleFill
             className={`${accountToggle ? "" : "hidden"

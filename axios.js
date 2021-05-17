@@ -17,7 +17,7 @@ instance.interceptors.request.use(
     if (token) {
       request.headers.common["x-auth-token"] = token;
     }
-    //    console.log("[request send-]",request);
+    console.log("[request send-]",request);
     return request;
   },
   (error) => {
@@ -28,7 +28,7 @@ instance.interceptors.request.use(
 
 instance.interceptors.response.use(
   (response) => {
-    //console.log("[response recived-]", response);
+  console.log("[response recived-]", response);
     // Edit request config
     return response;
   },
