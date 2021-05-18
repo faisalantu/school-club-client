@@ -18,7 +18,7 @@ const AddRoles = (props) => {
         axios.get('/role')
             .then(function (response) {
                 // handle success
-                console.log("pullRolesData-=>", response.data);
+                //console.log("pullRolesData-=>", response.data);
                 setRoles(response.data)
             })
             .catch(function (error) {
@@ -34,13 +34,13 @@ const AddRoles = (props) => {
         SetRoleid(id);
         setDetail(detail);
         SetRoleName(name);
-        console.log("editRole------", id, name, detail)
+        //console.log("editRole------", id, name, detail)
     }
     const deleteRole = (id ) => {
         axios.delete('/role/'+id)
             .then(function (response) {
                 // handle success
-                console.log("deleteRole=>", response);
+               // console.log("deleteRole=>", response);
                 setRolesUpdate(!rolesUpdate)
             })
             .catch(function (error) {
@@ -65,17 +65,17 @@ const AddRoles = (props) => {
             axios.post('/role', data)
                 .then(function (response) {
 
-                    console.log("handleSubmit=>", response);
+                    //console.log("handleSubmit=>", response);
                     setRolesUpdate(!rolesUpdate)
                 })
                 .catch(function (error) {
-                    console.log("handleSubmit=>", error);
+                   console.log("handleSubmit=>", error);
                 });
         } else {
             axios.put('/role/' + roleid, data )
                 .then(function (response) {
 
-                    console.log("handleSubmit-put=>", response);
+                    //console.log("handleSubmit-put=>", response);
                     setRolesUpdate(!rolesUpdate)
                 })
                 .catch(function (error) {
@@ -83,7 +83,8 @@ const AddRoles = (props) => {
                 });
             SetRoleid(null)
         }
-
+        setDetail('')
+        SetRoleName('')
     }
 
     var items = roles.map((role) => {

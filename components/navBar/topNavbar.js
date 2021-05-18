@@ -117,7 +117,8 @@ function topNavbar(props) {
               } absolute right-0 mt-2 origin-top-right rounded-md shadow-lg z-30`}
           >
             <div className='px-2 py-2 bg-white rounded-md shadow dark-mode:bg-gray-700'>
-              <Link href='/admin'>
+            {(props.user.isAdmin || props.user.isPrecedent)
+            ? <Link href='/admin'>
                 <a
                   className='flex justify-start px-4 py-2 mt-2 font-semibold bg-transparent rounded-lg hover:bg-gray-200'
                   href='#'
@@ -125,7 +126,10 @@ function topNavbar(props) {
                   <RiAdminFill className='p-0 mr-1.5 text-base' />
                   <span className='text-sm'>Admin</span>
                 </a>
-              </Link>
+              </Link> 
+            : null
+          }
+
               <Link href='/dashboard'>
                 <a
                   className='flex justify-start px-4 py-2 mt-2 font-semibold bg-transparent rounded-lg hover:bg-gray-200'
