@@ -29,7 +29,6 @@ function topNavbar(props) {
   useOnClickOutside(account, function () {
     setAccountToggle(false);
   });
-  console.log("user...",props.user0)
   return (
     <div className=' w-full h-12 bg-gray-900 flex justify-between items-center whitespace-nowrap'>
       <div className={`  md:hidden flex items-center ml-4`}>
@@ -106,8 +105,8 @@ function topNavbar(props) {
           className='relative cursor-pointer'
         >
           {(props.user.hasOwnProperty('imageObj'))
-            ?  <Image className="mx-1 rounded-full flex-auto" src={props.user.imageObj.url} alt="user" width={26} height={26} />
-            : <MdAccountCircle className='text-gray-100 text-md flex-auto mx-1' />
+            ? <Image className=" rounded-full overflow-hidden flex-auto mx-1" src={props.user.imageObj.url} alt="user" width={25} height={25} />
+            : <MdAccountCircle className='text-gray-100 text-md  mx-1' />
           }
           <BsTriangleFill
             className={`${accountToggle ? "" : "hidden"
@@ -118,7 +117,8 @@ function topNavbar(props) {
               } absolute right-0 mt-2 origin-top-right rounded-md shadow-lg z-30`}
           >
             <div className='px-2 py-2 bg-white rounded-md shadow dark-mode:bg-gray-700'>
-              <Link href='/admin'>
+            {(props.user.isAdmin || props.user.isPrecedent)
+            ? <Link href='/admin'>
                 <a
                   className='flex justify-start px-4 py-2 mt-2 font-semibold bg-transparent rounded-lg hover:bg-gray-200'
                   href='#'
@@ -126,7 +126,10 @@ function topNavbar(props) {
                   <RiAdminFill className='p-0 mr-1.5 text-base' />
                   <span className='text-sm'>Admin</span>
                 </a>
-              </Link>
+              </Link> 
+            : null
+          }
+
               <Link href='/dashboard'>
                 <a
                   className='flex justify-start px-4 py-2 mt-2 font-semibold bg-transparent rounded-lg hover:bg-gray-200'
