@@ -36,6 +36,7 @@ const Index = () => {
                       slug={post.slug}
                       postId={post._id}
                       edit={true}
+                      deleteMode={true}
                     />
                   </div>
                 );

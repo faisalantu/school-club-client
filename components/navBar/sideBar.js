@@ -33,8 +33,8 @@ export default function SideBar() {
         {/* Club Posts sidebar*/}
         <NonExtendedLink
           icon={<BsFileText />}
-          name='Posts'
-          route='/posts'
+          name='Club Posts'
+          route='/club-posts'
         />
 
         
