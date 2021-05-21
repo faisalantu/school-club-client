@@ -1,4 +1,6 @@
 import InputBox from "../global/inputbox"
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 import TextEditor from "../global/textEditor"
 import { convertToRaw } from "draft-js";
 import { MdDelete, MdEdit } from 'react-icons/md';
@@ -36,6 +38,24 @@ const AddRoles = (props) => {
         SetRoleName(name);
         //console.log("editRole------", id, name, detail)
     }
+    const options = {
+        title: 'confirm, That You want to delete ',
+        message: '',
+        buttons: [
+          {
+            label: 'confirm', 
+            onClick: () => deleteRole(id)
+          },
+          // {
+          //   label: 'No',
+          //   onClick: () => onClose()
+          // }
+        ],
+      }
+      const deleteConfirm = (id) => {
+        
+      confirmAlert(options,id)
+    } 
     const deleteRole = (id ) => {
         axios.delete('/role/'+id)
             .then(function (response) {
@@ -49,8 +69,26 @@ const AddRoles = (props) => {
             })
 
     }
-    const handleSubmit = (e) => {
+    const options1 = {
+        title: 'update Roles category',
+        message: '',
+        buttons: [
+          {
+            label: 'continue', 
+            onClick: () => handleSubmit()
+          },
+          // {
+          //   label: 'No',
+          //   onClick: () => onClose()
+          // }
+        ],
+      }
+      const submitForm = (e) => {
         e.preventDefault();
+      confirmAlert(options1)
+    } 
+    const handleSubmit = (e) => {
+        // e.preventDefault();
 
         // const data = {
         //     detail: details ? JSON.stringify(convertToRaw(details.getCurrentContent())) : "",
@@ -107,7 +145,7 @@ const AddRoles = (props) => {
                     <textarea className="box-border w-full p-4" onChange={handelDetail} name="detail" id="detain" value={details} rows="10" />
                 </div>
                 <button
-                    onClick={handleSubmit}
+                    onClick={submitForm}
                     type='submit'
                     className='border-2 rounded-lg bg-gray-200 border-yellow-400 cursor-pointer px-5 py-2'
                 >

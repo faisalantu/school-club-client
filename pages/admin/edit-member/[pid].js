@@ -1,4 +1,6 @@
 import { useEffect, useState, useRef } from "react";
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css'; 
 import axios from "../../../axios"
 import ContainerWrapper from "../../../components/containerWrapper";
 import DropdownCheckBoxs from "../../../components/global/dropdownCheckBoxs";
@@ -90,6 +92,14 @@ const SelectMember = () => {
         })
       }
       setPrecedent(userObj.isPrecedent)
+      if(userObj.isPrecedent){
+        setClubs((prevStat) => {
+          return {
+            ...prevStat,
+            [userObj.presidentOf.name]: true,
+          }
+        })
+      }
     } else {
       isMount.current = true;
     }
@@ -97,6 +107,22 @@ const SelectMember = () => {
 
   const [editMode, setEditMode] = useState(true);
 
+  const options = {
+    title: 'update Roles',
+    message: '',
+    buttons: [
+      {
+        label: 'continue', 
+        onClick: () => submitHandler()
+      },
+      // {
+      //   label: 'No',
+      //   onClick: () => onClose()
+      // }
+    ],
+  }
+  const submit = () => {
+  confirmAlert(options)} 
   const submitHandler=()=>{
     const RolesName=[]
       Object.entries(roles).forEach(([key, value]) => {
@@ -179,7 +205,7 @@ const SelectMember = () => {
 
           <div className='flex flex-row justify-center my-3'>
             <button
-              onClick={submitHandler}
+              onClick={submit}
               type='submit'
               className='border-2 rounded-lg bg-gray-200 border-yellow-400 cursor-pointer px-5 py-2'
             >
