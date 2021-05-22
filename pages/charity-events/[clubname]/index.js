@@ -40,7 +40,7 @@ export async function getServerSideProps({ params: { clubname } }) {
   console.log(clubname);
   try {
     const res = await axios.get(
-      `${API_URL}/events?category=club&club=${clubname}`
+      `${API_URL}/events?category=charity&club=${clubname}`
     );
     return {
       props: { posts: res.data },

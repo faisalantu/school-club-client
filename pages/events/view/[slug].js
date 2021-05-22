@@ -20,9 +20,9 @@ const Post = ({ post }) => {
               <div className='mt-3'>
                 <UserInfoAndDate
                   tags={post.tags}
-                  imgUrl={post.userlist[0].imageObj.url}
+                  imgUrl={post.userlist.imageObj.url}
                   name={
-                    post.userlist[0].firstname + " " + post.userlist[0].lastname
+                    post.userlist.firstname + " " + post.userlist.lastname
                   }
                   date={post.date}
                   title={post.title}
@@ -67,7 +67,7 @@ const Post = ({ post }) => {
 
 export async function getServerSideProps({ params: { slug } }) {
   try {
-    const response = await axios.get(`${API_URL}/posts/one?slug=${slug}`);
+    const response = await axios.get(`${API_URL}/events/one?slug=${slug}`);
     if (response.data.length < 1) {
       return {
         redirect: {

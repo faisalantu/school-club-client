@@ -17,6 +17,8 @@ const EventCard = ({
   email,
   phone,
   edit,
+  slug,
+  imgUrl,
 }) => {
   return (
     <>
@@ -24,14 +26,14 @@ const EventCard = ({
         <div className='flex items-center'>
           <Image
             className='rounded-full'
-            src='/portrait-1.jpg'
+            src={imgUrl}
             alt='Picture of the author'
             width={45}
             height={45}
           />
           <div className=' leading-none'>
             <h1 className='ml-4 text-lg font-medium'>
-              {name && name} <span>| {role && role}</span>
+              {name && name} <span>{role ? " | " + role : null}</span>
             </h1>
             <span className=' text-xs font-normal p-0 ml-4'>
               {date && date}
@@ -91,8 +93,8 @@ const EventCard = ({
           <button className=' border bg-gray-200 hover:bg-gray-300 px-2 py-0.5 rounded mx-2 flex items-center'>
             <BiPlus /> <span className='ml-1'>Join</span>
           </button>
-          <Link href='/events/cse/123'>
-            <a className=' border bg-gray-200 hover:bg-gray-300 px-2 py-0.5 rounded mx-2 flex items-center'>
+          <Link href={`/events/view/${slug}`}>
+            <a className=' border bg-gray-200 hover:bg-gray-300 px-2 py-0.5 rounded flex items-center'>
               <span className='ml-1'>Read more</span>
             </a>
           </Link>
