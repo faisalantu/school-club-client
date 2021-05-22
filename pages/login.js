@@ -1,12 +1,12 @@
-import { useRouter } from 'next/router';
-import { connect } from 'react-redux'
-import { useEffect } from 'react';
+import { useRouter } from "next/router";
+import { connect } from "react-redux";
+import { useEffect } from "react";
 import LoginComponent from "../components/auth/login";
 const Login = (props) => {
-  console.log("login runed","client",(typeof window))
+  //console.log("login runed","client",(typeof window))
   const router = useRouter();
   // useEffect(() => {
-    
+
   //   if (props.isAuthenticated) {
   //       router.replace('/');
   //   }
@@ -18,29 +18,24 @@ const Login = (props) => {
   // }else{
   //    return (
   //   <>
-      
+
   //     <LoginComponent />
   //   </>
   //   );
   // }
- return (
+  return (
     <>
       {/* {props.isAuthenticated 
        ?<p className="text-center text-8xl">Loading...</p>
        :<LoginComponent />} */}
-       <LoginComponent />
+      <LoginComponent />
     </>
-    );
+  );
 };
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     isAuthenticated: state.auth.isAuth,
   };
 };
 
-export default 
-  connect(
-    mapStateToProps,
-    null
-  )(Login);
-
+export default connect(mapStateToProps, null)(Login);
