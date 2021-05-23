@@ -1,10 +1,16 @@
-import Image from "next/image";
 import Link from "next/link";
-
+import UserInfoAndDate from "./userInfoAndDate";
+import dayjs from "dayjs";
 import { ImLocation } from "react-icons/im";
 import { RiMoneyDollarCircleFill } from "react-icons/ri";
 import { GiTicket, GiHand } from "react-icons/gi";
-import { BiTimeFive, BiMailSend, BiPhone, BiPlus } from "react-icons/bi";
+import {
+  BiTimeFive,
+  BiMailSend,
+  BiPhone,
+  BiPlus,
+  BiCalendar,
+} from "react-icons/bi";
 const EventCard = ({
   name,
   role,
@@ -19,27 +25,17 @@ const EventCard = ({
   edit,
   slug,
   imgUrl,
+  eventDate,
 }) => {
   return (
     <>
       <div className='bg-white border-gray-600 p-5 rounded-md shadow-sm my-5'>
-        <div className='flex items-center'>
-          <Image
-            className='rounded-full'
-            src={imgUrl}
-            alt='Picture of the author'
-            width={45}
-            height={45}
-          />
-          <div className=' leading-none'>
-            <h1 className='ml-4 text-lg font-medium'>
-              {name && name} <span>{role ? " | " + role : null}</span>
-            </h1>
-            <span className=' text-xs font-normal p-0 ml-4'>
-              {date && date}
-            </span>
-          </div>
-        </div>
+        <UserInfoAndDate
+          name={name && name}
+          //role={UserData.role}
+          imgUrl={imgUrl && imgUrl}
+          date={date && date}
+        />
         <div className='flex mt-3 leading-relaxed'>
           <div style={{ height: "auto", width: "45px" }}></div>
           <div>
@@ -62,6 +58,12 @@ const EventCard = ({
             <div className='flex items-center ml-4'>
               <BiTimeFive className=' text-sm' />
               <p className='ml-1'>Time: {time && time}</p>
+            </div>
+            <div className='flex items-center ml-4'>
+              <BiCalendar className=' text-sm' />
+              <p className='ml-1'>
+                Date: {eventDate ? dayjs(eventDate).format("DD-MM-YYYY") : ""}
+              </p>
             </div>
             <div className='flex items-center ml-4'>
               <BiMailSend className=' text-sm' />

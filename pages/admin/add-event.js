@@ -110,7 +110,9 @@ const AddEvent = ({ postEvent }) => {
       email,
       contactNumber,
       imageObj,
-      eventBody: eventBody ? convertToRaw(eventBody?.getCurrentContent()) : "",
+      eventBody: eventBody
+        ? JSON.stringify(convertToRaw(eventBody.getCurrentContent()))
+        : "",
       isPublic,
       eventType: eventId,
     });

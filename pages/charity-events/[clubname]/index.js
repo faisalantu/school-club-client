@@ -25,6 +25,7 @@ const Index = ({ posts }) => {
                   email={post.email}
                   phone={post.contactNumber}
                   slug={post.slug}
+                  eventDate={post.eventDate}
                   edit={false}
                 />
               </div>
