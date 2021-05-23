@@ -1,5 +1,5 @@
 import ContainerWrapper from "../../components/containerWrapper";
-import AddPost from "../../components/global/addPost";
+import AddPost from "../../components/admin/addPost";
 
 const AdminPost = (props) => {
   //tag data from tag component

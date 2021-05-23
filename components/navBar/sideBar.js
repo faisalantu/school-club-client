@@ -26,15 +26,15 @@ export default function SideBar() {
           icon={<MdEventNote />}
           iconClass='sm:text-md'
         >
-          <SubSidebarLink name='Club Events' route='/events' />
-          <SubSidebarLink name='Charity Events' route='/events' />
+          <SubSidebarLink name='Club Events' route='/club-events' />
+          <SubSidebarLink name='Charity Events' route='/charity-events' />
         </ExtendedLink>
 
         {/* Club Posts sidebar*/}
         <NonExtendedLink
           icon={<BsFileText />}
-          name='Posts'
-          route='/posts'
+          name='Club Posts'
+          route='/club-posts'
         />
 
         

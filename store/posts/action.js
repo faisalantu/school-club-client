@@ -15,6 +15,20 @@ export const addPosts = (inputValues) => {
       });
   };
 };
+export const addAdminPost = (inputValues) => {
+  console.log(inputValues);
+  return (dispatch) => {
+    axios
+      .post(`/posts/admin`, inputValues)
+      .then((response) => {
+        console.log("Success:", response.data);
+      })
+      .catch((error) => {
+        console.error("Oo no Error!:", error);
+        console.error("Error!:", error?.response?.data);
+      });
+  };
+};
 export const editPost = (inputValues,postId) => {
   console.log(inputValues);
   return (dispatch) => {

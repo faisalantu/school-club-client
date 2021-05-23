@@ -1,4 +1,5 @@
 import Image from "next/image";
+import dayjs from "dayjs";
 
 function userInfoAndDate({ name, role, imgUrl, date }) {
   return (
@@ -19,7 +20,7 @@ function userInfoAndDate({ name, role, imgUrl, date }) {
             <span>{role ? "| " + role : ""}</span>
           </h1>
           <span className=' text-xs font-normal p-0 ml-4'>
-            {date ? date : "err"}
+            {date ? dayjs(date).format('DD-MM-YYYY') : "err"}
           </span>
         </div>
       </div>

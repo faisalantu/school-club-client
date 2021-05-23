@@ -1,42 +1,51 @@
-import PostCard from "../../components/global/postCard";
 import ContainerWrapper from "../../components/containerWrapper";
+import axios from "../../axios";
+import { useEffect, useState } from "react";
+import PostCard from "../../components/global/postCard";
 
-const EditPost = (props) => {
+const Index = () => {
+  const [posts, setPosts] = useState();
+  useEffect(() => {
+    (async function () {
+      try {
+        let res = await axios.get("/posts?club=cse-club");
+        setPosts(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  }, []);
   return (
     <>
       <ContainerWrapper>
         <div className='px-5'>
-          <PostCard
-            name='Faisal Antu'
-            role='CSE Club President'
-            imgUrl='/portrait-1.jpg'
-            date='3 Feb 2021'
-            title='10 Trending projects on GitHub for web developer'
-            tags={["git", "gitHub", "nodeJs", "nextJs"]}
-            edit={true}
-          />
-          <PostCard
-            name='Faisal Antu'
-            role='CSE Club President'
-            imgUrl='/portrait-1.jpg'
-            date='3 Feb 2021'
-            title='10 Trending projects on GitHub for web developer'
-            tags={["git", "gitHub", "nodeJs", "nextJs"]}
-            edit={true}
-          />
-          <PostCard
-            name='Faisal Antu'
-            role='CSE Club President'
-            imgUrl='/portrait-1.jpg'
-            date='3 Feb 2021'
-            title='10 Trending projects on GitHub for web developer'
-            tags={["git", "gitHub", "nodeJs", "nextJs"]}
-            edit={true}
-          />
+          {posts
+            ? posts.map((post) => {
+                return (
+                  <div key={post._id}>
+                    <PostCard
+                      tags={post.tags}
+                      imgUrl={post.userlist[0].imageObj.url}
+                      name={
+                        post.userlist[0].firstname +
+                        " " +
+                        post.userlist[0].lastname
+                      }
+                      date={post.date}
+                      title={post.title}
+                      slug={post.slug}
+                      postId={post._id}
+                      edit={false}
+                      deleteMode={true}
+                    />
+                  </div>
+                );
+              })
+            : "loading"}
         </div>
       </ContainerWrapper>
     </>
   );
 };
 
-export default EditPost;
+export default Index;
