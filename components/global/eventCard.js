@@ -1,6 +1,8 @@
 import Link from "next/link";
 import UserInfoAndDate from "./userInfoAndDate";
 import dayjs from "dayjs";
+import axios from "../../axios";
+import Router from "next/router";
 import { ImLocation } from "react-icons/im";
 import { RiMoneyDollarCircleFill } from "react-icons/ri";
 import { GiTicket, GiHand } from "react-icons/gi";
@@ -11,6 +13,8 @@ import {
   BiPlus,
   BiCalendar,
 } from "react-icons/bi";
+import { confirmAlert } from "react-confirm-alert"; // Import
+import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
 const EventCard = ({
   name,
   role,
@@ -26,7 +30,27 @@ const EventCard = ({
   slug,
   imgUrl,
   eventDate,
+  eventId,
 }) => {
+  const deletePost = () => {
+    confirmAlert({
+      title: "Confirm to Delete post",
+      message: "Are you sure to do this.",
+      buttons: [
+        {
+          label: "Yes",
+          onClick: async () => {
+            const res = await axios.delete(`/events/one?postId=${eventId}`);
+            console.log(res);
+            Router.reload(window.location.pathname);
+          },
+        },
+        {
+          label: "No",
+        },
+      ],
+    });
+  };
   return (
     <>
       <div className='bg-white border-gray-600 p-5 rounded-md shadow-sm my-5'>
@@ -82,7 +106,10 @@ const EventCard = ({
               <button className=' border bg-yellow-200 hover:bg-yellow-300 px-3 py-0.5 rounded mx-2'>
                 Edit
               </button>
-              <button className=' border bg-red-300 hover:bg-red-400 px-3 py-0.5 rounded mx-2'>
+              <button
+                onClick={deletePost}
+                className=' border bg-red-300 hover:bg-red-400 px-3 py-0.5 rounded mx-2'
+              >
                 Delete
               </button>
             </>

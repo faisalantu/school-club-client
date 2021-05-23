@@ -1,5 +1,4 @@
 import ContainerWrapper from "../../../components/containerWrapper";
-import PostCard from "../../../components/global/postCard";
 import EventCard from "../../../components/global/eventCard";
 import { API_URL } from "../../../config";
 import axios from "axios";
