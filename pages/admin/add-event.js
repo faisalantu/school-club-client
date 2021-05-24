@@ -8,6 +8,9 @@ import "react-datepicker/dist/react-datepicker.css";
 import { convertToRaw } from "draft-js";
 import { connect } from "react-redux";
 import { postEvent } from "../../store/events/action";
+import ToggleButton from "../../components/global/toggleButton";
+import DropdownCheckBoxs from "../../components/global/dropdownCheckBoxs";
+import axios from "../../axios";
 
 const AddEvent = ({ postEvent }) => {
   const [title, setTitle] = useState("");
@@ -22,26 +25,80 @@ const AddEvent = ({ postEvent }) => {
   const [imageObj, setImageObj] = useState(null);
   const [eventBody, setEventBody] = useState(null);
   const [isPublic, setIsPublic] = useState(true);
+  const [eventCategory, setEventCategory] = useState([]);
+  const [events, setEvents] = useState({});
 
+  //fetch all clubs
   useEffect(() => {
-    // console.log({
-    //   title,
-    //   location,
-    //   fee,
-    //   tickets,
-    //   startTime,
-    //   endTime,
-    //   eventDate,
-    //   email,
-    //   contactNumber,
-    //   imageObj,
-    //   eventBody,
-    //   isPublic,
-    // });
-  });
+    axios
+      .get("/eventcategory")
+      .then(function (response) {
+        setEventCategory(response.data);
+        response.data.forEach((event) => {
+          setEvents((prev) => {
+            return {
+              ...prev,
+              [event.name]: false,
+            };
+          });
+        });
+      })
+      .catch(function (error) {
+        //do someting with the error
+      });
+  }, []);
+
+  // useEffect(() => {
+  //   //getting event name
+  //   const eventName = [];
+  //   Object.entries(events).forEach(([key, value]) => {
+  //     if (value === true) {
+  //       eventName.push(key);
+  //     }
+  //   });
+  //   //getting selected event mongodbID
+  //   let eventId;
+  //   eventCategory.map((event) => {
+  //     if (eventName.includes(event.name)) {
+  //       eventId = event._id;
+  //     }
+  //   });
+
+  //   console.log({
+  //     title,
+  //     location,
+  //     fee,
+  //     tickets,
+  //     startTime,
+  //     endTime,
+  //     eventDate,
+  //     email,
+  //     contactNumber,
+  //     imageObj,
+  //     eventBody,
+  //     isPublic,
+  //     eventId,
+  //     eventName,
+  //   });
+  // });
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    //getting event name
+    const eventName = [];
+    Object.entries(events).forEach(([key, value]) => {
+      if (value === true) {
+        eventName.push(key);
+      }
+    });
+    //getting selected event mongodbID
+    let eventId;
+    eventCategory.map((event) => {
+      if (eventName.includes(event.name)) {
+        eventId = event._id;
+      }
+    });
+
     postEvent({
       title,
       location,
@@ -53,8 +110,11 @@ const AddEvent = ({ postEvent }) => {
       email,
       contactNumber,
       imageObj,
-      eventBody: eventBody ? convertToRaw(eventBody?.getCurrentContent()) : "",
+      eventBody: eventBody
+        ? JSON.stringify(convertToRaw(eventBody.getCurrentContent()))
+        : "",
       isPublic,
+      eventType: eventId,
     });
   };
 
@@ -156,14 +216,22 @@ const AddEvent = ({ postEvent }) => {
             <div className='border-2 border-gray-300 p-2 break-all'>
               <TextEditor changeHandle={setEventBody} />
             </div>
-            <div>
-              <input
-                type='checkbox'
-                id='vehicle1'
-                name='vehicle1'
-                value='Bike'
-              ></input>
-              <label htmlFor='vehicle1'> Publish</label>
+            <div className=' mt-4'>
+              <ToggleButton
+                value={isPublic}
+                setValue={setIsPublic}
+                forId='hide'
+              />
+              <span className=' text-gray-500'>Publish this post</span>
+            </div>
+            <div className='mt-5'>
+              <DropdownCheckBoxs
+                dropdownItems={events}
+                changeState={setEvents}
+                type='radiobutton'
+                label='Event Type'
+                editMode={true}
+              />
             </div>
             <div className='flex flex-row justify-center my-3'>
               <button

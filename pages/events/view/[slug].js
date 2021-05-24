@@ -6,24 +6,33 @@ import CommentForm from "../../../components/postComponent/commentForm";
 import PostBody from "../../../components/postComponent/postBody";
 import ContainerWrapper from "../../../components/containerWrapper";
 import Image from "next/image";
+import axios from "axios";
+import { API_URL } from "../../../config";
+import dayjs from "dayjs";
+import dynamic from "next/dynamic";
 
 import { ImLocation } from "react-icons/im";
 import { RiMoneyDollarCircleFill } from "react-icons/ri";
 import { GiTicket, GiHand } from "react-icons/gi";
 import { BiTimeFive, BiMailSend, BiPhone, BiPlus } from "react-icons/bi";
 import RoundedUserList from "../../../components/global/roundedUserList";
-const Post = () => {
-  const [eventData, setEventData] = useState({
-    title: "10 Trending projects on GitHub for web developer",
-    dateCreated: "3 Feb 2021",
-    location: "Dhaka, Bangladesh",
-    fee: "100",
-    tickets: "34",
-    time: "4:00pm - 5:30pm",
-    email: "hello@faisalantu.com",
-    phone: "88017 XXX XXXX",
-    imgUrl: "/event-banner.webp",
-  });
+const Post = ({ post }) => {
+  const {
+    title,
+    date,
+    location,
+    tickets,
+    fee,
+    startTime,
+    endTime,
+    eventDate,
+    email,
+    contactNumber,
+    imageObj,
+    eventBody,
+    imageObj: { url },
+    userlist,
+  } = post;
   const [UserData, setUserData] = useState({
     name: "Faisal Antu",
     role: "CSE Club President",
@@ -34,61 +43,61 @@ const Post = () => {
       <ContainerWrapper>
         <div className='py-2 mx-5'>
           <div className=' border-b pb-4'>
-            <h1 className=' text-3xl font-medium'>
-              {eventData.title && eventData.title}
-            </h1>
-            <div className='mt-3'>
-              <UserInfoAndDate
-                name={UserData.name}
-                role={UserData.role}
-                imgUrl={UserData.imgUrl ? UserData.imgUrl : "/user.png"}
-                date={eventData.dateCreated}
-              />
-            </div>
+            <h1 className=' text-3xl font-medium'>{title && title}</h1>
+            {userlist && date && (
+              <div className='mt-3'>
+                <UserInfoAndDate
+                  name={userlist.firstname + " " + userlist.lastname}
+                  //role={UserData.role}
+                  imgUrl={userlist.imageObj.url}
+                  date={date && date}
+                />
+              </div>
+            )}
 
             <div className='mt-3 leading-relaxed'>
               <div className='flex flex-wrap'>
                 <div className='flex items-center mr-5'>
                   <ImLocation className=' text-sm' />
-                  <h3 className='ml-1'>
-                    {eventData.location && eventData.location}
-                  </h3>
+                  <h3 className='ml-1'>{location && location}</h3>
                 </div>
                 <div className='flex items-center mr-5'>
                   <RiMoneyDollarCircleFill className=' text-sm' />
-                  <p className='ml-1'>
-                    Fee {eventData.fee && eventData.fee} taka
-                  </p>
+                  <p className='ml-1'>Fee {fee && fee} taka</p>
                 </div>
                 <div className='flex items-center mr-5'>
                   <GiTicket className='text-sm' />
+                  <p className='ml-1'>{tickets && tickets} tickets left</p>
+                </div>
+                <div className='flex items-center mr-5'>
+                  <BiTimeFive className=' text-sm' />
                   <p className='ml-1'>
-                    {eventData.tickets && eventData.tickets} tickets left
+                    Time:{" "}
+                    {startTime && endTime ? startTime + " - " + endTime : null}
                   </p>
                 </div>
                 <div className='flex items-center mr-5'>
                   <BiTimeFive className=' text-sm' />
                   <p className='ml-1'>
-                    Time: {eventData.time && eventData.time}
+                    date:{" "}
+                    {eventDate ? dayjs(eventDate).format("DD-MM-YYYY") : null}
                   </p>
                 </div>
                 <div className='flex items-center mr-5'>
                   <BiMailSend className=' text-sm' />
-                  <p className='ml-1'>{eventData.email && eventData.email}</p>
+                  <p className='ml-1'>{email && email}</p>
                 </div>
                 <div className='flex items-center mr-5'>
                   <BiPhone className=' text-sm' />
-                  <p className='ml-1'>{eventData.phone && eventData.phone}</p>
+                  <p className='ml-1'>{contactNumber && contactNumber}</p>
                 </div>
               </div>
             </div>
 
-            {eventData.imgUrl && (
-              <div className=' w-full '>
+            {url && (
+              <div className=' w-full my-5'>
                 <Image
-                  src={
-                    eventData.imgUrl ? eventData.imgUrl : "/event-banner.webp"
-                  }
+                  src={url ? url : "/event-banner.webp"}
                   layout='responsive'
                   objectFit='contain'
                   height={10}
@@ -98,7 +107,7 @@ const Post = () => {
                 ></Image>
               </div>
             )}
-            <PostBody />
+            {eventBody && <PostBody body={eventBody} />}
             <div>
               <h1 className='text-2xl font-medium mt-5 mb-3'>
                 Volunteers{" "}
@@ -179,5 +188,31 @@ const Post = () => {
     </>
   );
 };
+
+export async function getServerSideProps({ params: { slug } }) {
+  try {
+    const response = await axios.get(`${API_URL}/events/one?slug=${slug}`);
+    if (response.data.length < 1) {
+      return {
+        redirect: {
+          permanent: false,
+          destination: "/404",
+        },
+      };
+    } else {
+      return {
+        props: { post: response.data[0] },
+      };
+    }
+  } catch (error) {
+    console.log(error);
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/",
+      },
+    };
+  }
+}
 
 export default Post;

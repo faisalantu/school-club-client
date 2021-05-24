@@ -43,6 +43,7 @@ function SideBar(props) {
             icon={<MdEdit />}
             route="/admin/edit-event"
           />
+
         </ExtendedLink>
 
         <ExtendedLink

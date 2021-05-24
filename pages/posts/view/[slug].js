@@ -39,7 +39,7 @@ const Post = ({ post }) => {
                   quality={50}
                 ></Image>
               </div>
-              <PostBody body={post.eventBody}/>
+              <PostBody body={post.eventBody} />
               <Reaction reactions='12' className='mt-4' />
             </div>
             <div>
@@ -67,14 +67,26 @@ const Post = ({ post }) => {
 
 export async function getServerSideProps({ params: { slug } }) {
   try {
-    const res = await axios.get(`${API_URL}/posts/one?slug=${slug}`);
-    return {
-      props: { post: res.data[0] },
-    };
+    const response = await axios.get(`${API_URL}/posts/one?slug=${slug}`);
+    if (response.data.length < 1) {
+      return {
+        redirect: {
+          permanent: false,
+          destination: "/404",
+        },
+      };
+    } else {
+      return {
+        props: { post: response.data[0] },
+      };
+    }
   } catch (error) {
     console.log(error);
     return {
-      props: {},
+      redirect: {
+        permanent: false,
+        destination: "/",
+      },
     };
   }
 }

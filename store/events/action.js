@@ -1,6 +1,5 @@
 import { LOGIN, LOGOUT } from "../actionsType";
-import axios from "axios";
-import config from '../../config'
+import axios from "../../axios";
 
 export const postEvent = (inputValues) => {
   console.log(inputValues);

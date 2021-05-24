@@ -1,14 +1,14 @@
-import ContainerWrapper from "../../../components/containerWrapper";
-import axios from "../../../axios";
+import ContainerWrapper from "../../components/containerWrapper";
+import axios from "../../axios";
 import { useEffect, useState } from "react";
-import PostCard from "../../../components/global/postCard";
+import EventCard from "../../components/global/eventCard";
 
 const Index = () => {
   const [posts, setPosts] = useState();
   useEffect(() => {
     (async function () {
       try {
-        let res = await axios.get("/posts/user");
+        let res = await axios.get("/events/user");
         setPosts(res.data);
       } catch (error) {
         console.log(error);
@@ -23,20 +23,24 @@ const Index = () => {
             ? posts.map((post) => {
                 return (
                   <div key={post._id}>
-                    <PostCard
-                      tags={post.tags}
-                      imgUrl={post.userlist[0].imageObj.url}
+                    <EventCard
+                      imgUrl={post.userlist.imageObj.url}
                       name={
-                        post.userlist[0].firstname +
-                        " " +
-                        post.userlist[0].lastname
+                        post.userlist.firstname + " " + post.userlist.lastname
                       }
+                      //role='CSE Club President'
                       date={post.date}
                       title={post.title}
+                      location={post.location}
+                      fee={post.fee}
+                      tickets={post.tickets}
+                      time={post.startTime + " - " + post.endTime}
+                      email={post.email}
+                      phone={post.contactNumber}
                       slug={post.slug}
-                      postId={post._id}
+                      eventId={post._id}
+                      eventDate={post.eventDate}
                       edit={true}
-                      deleteMode={true}
                     />
                   </div>
                 );

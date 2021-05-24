@@ -4,12 +4,13 @@ import UserInfoAndDate from "./userInfoAndDate";
 import Tags from "./tags";
 import Reaction from "../postComponent/reaction";
 import axios from "../../axios";
-import Router from 'next/router'
+import Router from "next/router";
 import { confirmAlert } from "react-confirm-alert"; // Import
 import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
 
 const Container = ({
   edit,
+  deleteMode,
   name,
   role,
   imgUrl,
@@ -56,19 +57,19 @@ const Container = ({
               </div>
               <div className='flex gap-3 items-center my-2'>
                 {edit ? (
-                  <>
-                    <Link href={`/posts/edit/${postId}`}>
-                      <a className=' border bg-yellow-200 hover:bg-yellow-300 px-2 py-0.5 rounded flex items-center'>
-                        <span className='ml-1'>Edit</span>
-                      </a>
-                    </Link>
-                    <button
-                      onClick={deletePost}
-                      className=' border bg-red-300 hover:bg-red-400 px-3 py-0.5 rounded'
-                    >
-                      Delete
-                    </button>
-                  </>
+                  <Link href={`/posts/edit/${postId}`}>
+                    <a className=' border bg-yellow-200 hover:bg-yellow-300 px-2 py-0.5 rounded flex items-center'>
+                      <span className='ml-1'>Edit</span>
+                    </a>
+                  </Link>
+                ) : null}
+                {deleteMode ? (
+                  <button
+                    onClick={deletePost}
+                    className=' border bg-red-300 hover:bg-red-400 px-3 py-0.5 rounded'
+                  >
+                    Delete
+                  </button>
                 ) : (
                   ""
                 )}
