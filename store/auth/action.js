@@ -1,12 +1,12 @@
-import { LOGIN, LOGOUT ,SAVE_USER ,SET_LOADING} from "../actionsType";
+import { LOGIN, LOGOUT, SAVE_USER, SET_LOADING } from "../actionsType";
 import axios from "../../axios";
 // import { showLoading, hideLoading } from 'react-redux-loading-bar'
 
 export const signupAction = (inputValues) => {
   //console.log(inputValues);
-  return (dispatch) => {    
+  return (dispatch) => {
     axios
-      .post("/users",inputValues)
+      .post("/users", inputValues)
       .then((response) => {
         //console.log("Success:", response.data);
         localStorage.setItem("token", response.data.token);
@@ -53,7 +53,7 @@ export const loginAction = (email, password) => {
         dispatch(getUser());
       })
       .catch((err) => {
-        console.log( err.response.data.msg);
+        console.log(err.response.data.msg);
       });
   };
 };
@@ -71,11 +71,10 @@ export const logout = () => {
 };
 export const authCheckState = () => {
   return (dispatch) => {
-    SetLoadingData(true)
-    
+    SetLoadingData(true);
+
     const token = localStorage.getItem("token");
     if (!token) {
-      
       dispatch(logout());
     } else {
       dispatch(getUser());
@@ -85,27 +84,28 @@ export const authCheckState = () => {
 };
 
 export const getUser = () => {
-  return (dispatch) => {    
+  return (dispatch) => {
     axios
-      .get("/users",)
+      .get("/users")
       .then((response) => {
-        //console.log("[getUser  -redux] Success:", response.data);
-
         dispatch(saveUser(response.data));
+
         dispatch(SetLoadingData(false));
       })
       .catch((error) => {
+        dispatch(logout);
         dispatch(SetLoadingData(false));
         console.error("Oo no Error![getUser  -redux]:", error);
         // console.error("Error![getUser  -redux]:", error.response.data);
+        location.reload();
       });
   };
 };
 export const SetLoadingData = (loading) => {
   return {
-    type: SET_LOADING, 
+    type: SET_LOADING,
     loadingData: loading,
-    };
+  };
 };
 export const saveUser = (userData) => {
   return {
