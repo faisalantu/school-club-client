@@ -21,4 +21,17 @@ export const postEvent = (inputValues) => {
       });
   };
 };
-
+export const editEvent = (inputValues,postId) => {
+  console.log(inputValues);
+  return (dispatch) => {
+    axios
+      .put(`/events/one?postId=${postId}`, inputValues)
+      .then((response) => {
+        console.log("Success:", response.data);
+      })
+      .catch((error) => {
+        console.error("Oo no Error!:", error);
+        console.error("Error!:", error?.response?.data);
+      });
+  };
+};
