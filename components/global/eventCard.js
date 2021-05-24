@@ -103,9 +103,11 @@ const EventCard = ({
         <div className='flex items-center justify-end my-2'>
           {edit ? (
             <>
-              <button className=' border bg-yellow-200 hover:bg-yellow-300 px-3 py-0.5 rounded mx-2'>
-                Edit
-              </button>
+              <Link href={`/events/edit/${eventId}`}>
+                <a className=' border bg-yellow-200 hover:bg-yellow-300 px-2 py-0.5 rounded flex items-center'>
+                  <span className='ml-1'>Edit</span>
+                </a>
+              </Link>
               <button
                 onClick={deletePost}
                 className=' border bg-red-300 hover:bg-red-400 px-3 py-0.5 rounded mx-2'
