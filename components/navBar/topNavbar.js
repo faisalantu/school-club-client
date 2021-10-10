@@ -148,7 +148,7 @@ function topNavbar(props) {
                 </Link>
               ) : null}
 
-              <Link href='/dashboard'>
+              <Link href='/dashboard/user-posts'>
                 <a
                   className='flex justify-start px-4 py-2 mt-2 font-semibold bg-transparent rounded-lg hover:bg-gray-200'
                   href='#'

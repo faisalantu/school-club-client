@@ -8,7 +8,7 @@ const Index = () => {
   useEffect(() => {
     (async function () {
       try {
-        let res = await axios.get("/posts?club=cse-club");
+        let res = await axios.get("/posts");
         setPosts(res.data);
       } catch (error) {
         console.log(error);
