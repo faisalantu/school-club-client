@@ -163,18 +163,18 @@ const AddRoles = (props) => {
     return (
       <li
         key={role.slug + "1"}
-        className="flex justify-between items-center bg-gray-400 mx-1 my-1 py-4 px-2 rounded-lg"
+        className="flex justify-between items-center bg-gray-200 mx-1 my-2 py-4 px-5 rounded-lg hover:shadow-sm hover:bg-gray-300"
       >
         <p key={role.slug + "2"}>{role.name}</p>
         <div key={role.slug + "3"}>
           <span key={role.slug + "4"} onClick={deleteRole.bind(null, role._id)}>
-            <MdDelete className="text-gray-100 text-2xl inline  mx-1" />
+            <MdDelete className="text-red-600 text-2xl inline  mx-2 cursor-pointer" />
           </span>
           <span
             key={role.slug + "5"}
             onClick={editRole.bind(null, role._id, role.name, role.detail)}
           >
-            <MdEdit className="text-gray-100 text-2xl inline  mx-1" />
+            <MdEdit className=" text-yellow-600 text-2xl inline  ml-3 cursor-pointer" />
           </span>
         </div>
       </li>
@@ -194,12 +194,12 @@ const AddRoles = (props) => {
         <p className="text-lg mt-5 mb-2">Write role detail</p>
         <div>
           <textarea
-            className="box-border w-full p-4"
+            className="box-border w-full p-4 bg-gray-200"
             onChange={handelDetail}
             name="detail"
             id="detain"
             value={details}
-            rows="10"
+            rows="5"
           />
         </div>
         <button

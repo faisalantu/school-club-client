@@ -1,51 +1,45 @@
 import EventCard from "../../components/global/eventCard";
 import ContainerWrapper from "../../components/containerWrapper";
-
+import axios from "../../axios";
+import { useEffect, useState } from "react";
 const EditEvents = (props) => {
+  const [events, setEvents] = useState();
+  useEffect(() => {
+    (async function () {
+      try {
+        let res = await axios.get("/events");
+        setEvents(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  }, []);
   return (
     <>
       <ContainerWrapper>
-        <div className='px-5'>
-          <EventCard
-            name='Faisal Antu'
-            role='CSE Club President'
-            date='3 Feb 2021'
-            title='10 Trending projects on GitHub for web developer'
-            location='Dhaka,Bangladesh'
-            fee='100'
-            tickets='45'
-            time='4:00pm - 5:30pm'
-            email='hello@faisalantu.com'
-            phone='880 1776XXXXXX'
-            edit={true}
-          />
-          <EventCard
-            name='Faisal Antu'
-            role='CSE Club President'
-            date='3 Feb 2021'
-            title='10 Trending projects on GitHub for web developer'
-            location='Dhaka,Bangladesh'
-            fee='100'
-            tickets='45'
-            time='4:00pm - 5:30pm'
-            email='hello@faisalantu.com'
-            phone='880 1776XXXXXX'
-            edit={true}
-          />
-          <EventCard
-            name='Faisal Antu'
-            role='CSE Club President'
-            date='3 Feb 2021'
-            title='10 Trending projects on GitHub for web developer'
-            location='Dhaka,Bangladesh'
-            fee='100'
-            tickets='45'
-            time='4:00pm - 5:30pm'
-            email='hello@faisalantu.com'
-            phone='880 1776XXXXXX'
-            edit={true}
-          />
-        </div>
+        {events ? events.map((post) => {
+          return (
+            <div key={post._id}>
+              <EventCard
+                eventId={post._id}
+                imgUrl={post.userlist.imageObj.url}
+                name={post.userlist.firstname + " " + post.userlist.lastname}
+                //role='CSE Club President'
+                date={post.date}
+                title={post.title}
+                location={post.location}
+                fee={post.fee}
+                tickets={post.tickets}
+                time={post.startTime + " - " + post.endTime}
+                email={post.email}
+                phone={post.contactNumber}
+                slug={post.slug}
+                eventDate={post.eventDate}
+                edit={true}
+              />
+            </div>
+          );
+        }):""}
       </ContainerWrapper>
     </>
   );
