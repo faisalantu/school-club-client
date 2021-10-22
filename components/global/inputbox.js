@@ -17,17 +17,22 @@ export default function InputBox({
       ChangeHandel(e.target.value);
     } else if (type === "number" && ChangeHandel) {
       ChangeHandel(e.target.value);
+    } else if (type === "email" && ChangeHandel) {
+      ChangeHandel(e.target.value);
     }
   };
   return (
     <div className='flex flex-col mb-8'>
       {label ? (
-        <label className='mb-2 text-lg text-grey-darkest' htmlFor={name && name}>
+        <label
+          className='mb-2 text-lg text-grey-darkest'
+          htmlFor={name && name}
+        >
           {label && label}
         </label>
       ) : null}
       <input
-        id= {name && name}
+        id={name && name}
         className='rounded border-2 border-gray-300 bg-transparent py-2 px-3 text-grey-darkest outline-none'
         type={type && type}
         placeholder={placeholder && placeholder}
