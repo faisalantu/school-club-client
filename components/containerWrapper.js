@@ -1,6 +1,6 @@
 import TopNavbar from "./navBar/topNavbar";
 import setSidebarDynamically from "../components/utils/setSidebarDynamically";
-
+import { Toaster } from 'react-hot-toast';
 import RightSideBar from "./navBar/rightsidebar/rightSidBar";
 import { useRouter } from "next/router";
 import Breadcrumbs from "./global/breadcrumbs";
@@ -31,7 +31,7 @@ const ContainerWrapper = (props) => {
 
       <Backdrop show={isSideEventShown} zIndex='z-30' />
       <Backdrop show={isSidebarShown} zIndex='z-10'  clicked={SidebarShownHandler} />
-
+      <Toaster/>
 
       <div className=' top-0 sticky z-40  '>
         <TopNavbar SidebarHandler={SidebarShownHandler} isSidebarShown={isSidebarShown} />
