@@ -7,7 +7,7 @@ import getCroppedImg from "../utils/cropImage";
 import { dataURLtoFile } from "../utils/dataURLtoFile";
 import Image from "next/image";
 
-function ImageUpload({onImageChange }) {
+function ImageUpload({ onImageChange }) {
   const inputRef = useRef();
   const [image, setImage] = useState(null);
   const [croppedImageDataURL, setCroppedImageDataURL] = useState(null);
@@ -25,14 +25,13 @@ function ImageUpload({onImageChange }) {
     e.preventDefault();
     try {
       const tempCroppedImage = await getCroppedImg(image, croppedArea);
-
       const tempImgDataUrl = tempCroppedImage.toDataURL("image/jpeg");
+      setImage(tempImgDataUrl);
       setCroppedImageDataURL(tempImgDataUrl);
       const convertedUrlToFile = dataURLtoFile(
         tempImgDataUrl,
         "profile-img.jpeg"
       );
-      console.log("donee", { convertedUrlToFile });
       setCroppedImageFile(convertedUrlToFile);
       setEditMode(false);
     } catch (e) {
@@ -52,19 +51,16 @@ function ImageUpload({onImageChange }) {
       reader.readAsDataURL(e.target.files[0]);
       reader.addEventListener("load", () => {
         setImage(reader.result);
-        if (onImageChange) {
-          onImageChange(reader.result);
-        }
       });
     }
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     if (onImageChange) {
       onImageChange(image);
     }
-    console.log('image update')
-  },[image])
+    console.log("image update");
+  }, [image]);
 
   return (
     <div>
