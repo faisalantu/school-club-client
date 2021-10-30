@@ -85,7 +85,6 @@ function Signup({ signupAction }) {
   }, []);
 
   useEffect(() => {
-    console.log("depertmentObj changed");
     depertmentObj.forEach((depart) => {
       setDepertment((prev) => {
         return {
