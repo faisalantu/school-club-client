@@ -7,7 +7,8 @@ import getCroppedImg from "../utils/cropImage";
 import { dataURLtoFile } from "../utils/dataURLtoFile";
 import Image from "next/image";
 
-function ImageUpload({ onImageChange }) {
+function ImageUpload({ onImageChange,imageUrl }) {
+  console.log(imageUrl);
   const inputRef = useRef();
   const [image, setImage] = useState(null);
   const [croppedImageDataURL, setCroppedImageDataURL] = useState(null);
@@ -110,7 +111,7 @@ function ImageUpload({ onImageChange }) {
               ) : (
                 <Image
                   className='rounded-full'
-                  src={"/user.png"}
+                  src={imageUrl?imageUrl:"/user.png"}
                   alt='Picture of the author'
                   layout='fill'
                   objectFit='cover'
