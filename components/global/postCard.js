@@ -29,7 +29,6 @@ const Container = ({
           label: "Yes",
           onClick: async () => {
             const res = await axios.delete(`/posts/one?postId=${postId}`);
-            console.log(res);
             Router.reload(window.location.pathname);
           },
         },
@@ -52,7 +51,7 @@ const Container = ({
             <Tags tags={tags} />
             <div className='flex justify-between flex-wrap'>
               <div className='flex items-center'>
-                <Reaction />
+                <Reaction reactions={1} active={false} postId={postId}/>
                 <CommentInfoBtn />
               </div>
               <div className='flex gap-3 items-center my-2'>
