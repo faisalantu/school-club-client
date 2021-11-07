@@ -19,6 +19,7 @@ const Container = ({
   tags,
   slug,
   postId,
+  apiUrl
 }) => {
   const deletePost = () => {
     confirmAlert({
@@ -51,7 +52,7 @@ const Container = ({
             <Tags tags={tags} />
             <div className='flex justify-between flex-wrap'>
               <div className='flex items-center'>
-                <Reaction reactions={1} active={false} postId={postId}/>
+                <Reaction reactions={1} active={false} apiUrl={apiUrl} postId={postId}/>
                 <CommentInfoBtn />
               </div>
               <div className='flex gap-3 items-center my-2'>

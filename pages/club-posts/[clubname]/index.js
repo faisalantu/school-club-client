@@ -21,6 +21,7 @@ const Index = ({ posts }) => {
                   title={post.title}
                   slug={post.slug}
                   postId={post._id}
+                  apiUrl={`/likepost?postId=${post._id}`}
                 />
               </div>
             );
