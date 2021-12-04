@@ -2,14 +2,20 @@ import { useState } from "react";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import toast from "react-hot-toast";
 import axios from "../../axios";
-function reaction({ reactions, active, postId, apiUrl }) {
+function reaction({ reactions, active, postId, apiUrl, changeLikeCount }) {
   const [like, setLike] = useState(active);
   const likePost = async () => {
     try {
-      const res = await axios.post(apiUrl);
-      if (res) {
+      const res = await axios.post(apiUrl, { postId: postId, isActive: !like });
+
+      if (res.data.success === true) {
+        if (like) {
+          changeLikeCount(reactions - 1);
+        } else {
+          changeLikeCount(reactions + 1);
+        }
+
         setLike(!like);
-        
       }
     } catch (err) {
       toast.error("Something went wrong please try again");
