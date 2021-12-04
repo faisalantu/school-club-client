@@ -20,6 +20,8 @@ const Index = ({ posts }) => {
                   date={post.date}
                   title={post.title}
                   slug={post.slug}
+                  postId={post._id}
+                  apiUrl={`/likepost`}
                 />
               </div>
             );
