@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import CommentInfoBtn from "../postComponent/commentInfoBtn";
 import UserInfoAndDate from "./userInfoAndDate";
@@ -19,8 +20,22 @@ const Container = ({
   tags,
   slug,
   postId,
-  apiUrl
+  apiUrl,
 }) => {
+  const [isLiked, setIsLiked] = useState(null);
+  const [likeCount, setLikeCount] = useState(null);
+  useEffect(() => {
+    const checkLike = async () => {
+      try {
+        const res = await axios.get(`/likepost?postId=${postId}`);
+        if (res.data.success === true) {
+          setLikeCount(res.data.message.likes);
+          setIsLiked(res.data.message.isActive);
+        }
+      } catch (err) {}
+    };
+    checkLike();
+  }, []);
   const deletePost = () => {
     confirmAlert({
       title: "Confirm to Delete post",
@@ -52,7 +67,18 @@ const Container = ({
             <Tags tags={tags} />
             <div className='flex justify-between flex-wrap'>
               <div className='flex items-center'>
-                <Reaction reactions={1} active={false} apiUrl={apiUrl} postId={postId}/>
+                {likeCount !== null && isLiked !== null ? (
+                  <Reaction
+                    reactions={likeCount}
+                    changeLikeCount={setLikeCount}
+                    active={isLiked}
+                    apiUrl={apiUrl}
+                    postId={postId}
+                  />
+                ) : (
+                  ""
+                )}
+
                 <CommentInfoBtn />
               </div>
               <div className='flex gap-3 items-center my-2'>
