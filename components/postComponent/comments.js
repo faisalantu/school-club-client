@@ -17,7 +17,6 @@ function commentArea({userName ,userImgUrl,date ,comments}) {
         <p className='mt-4'>
           {comments ? comments :' No comment'}
         </p>
-        <Reaction reactions='' className='mt-1' />
       </div>
     </>
   );

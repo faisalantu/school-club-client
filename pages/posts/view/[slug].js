@@ -8,7 +8,24 @@ import ContainerWrapper from "../../../components/containerWrapper";
 import Image from "next/image";
 import axios from "axios";
 import { API_URL } from "../../../config";
+import { useState } from "react";
+import { useEffect } from "react";
 const Post = ({ post }) => {
+  const [isLiked, setIsLiked] = useState(null);
+  const [likeCount, setLikeCount] = useState(null);
+  const postId = post._id;
+  useEffect(() => {
+    const checkLike = async () => {
+      try {
+        const res = await axios.get(`/likepost?postId=${postId}`);
+        if (res.data.success === true) {
+          setLikeCount(res.data.message.likes);
+          setIsLiked(res.data.message.isActive);
+        }
+      } catch (err) {}
+    };
+    checkLike();
+  }, []);
   return (
     <>
       <ContainerWrapper>
@@ -40,7 +57,14 @@ const Post = ({ post }) => {
                 ></Image>
               </div>
               <PostBody body={post.eventBody} />
-              <Reaction reactions='12' className='mt-4' />
+              <Reaction
+                reactions={likeCount}
+                changeLikeCount={setLikeCount}
+                active={isLiked}
+                postId={postId}
+                apiUrl={`/likepost`}
+                className='mt-4'
+              />
             </div>
             <div>
               <h1 className='pt-3 text-xl'>Comments</h1>
@@ -51,10 +75,10 @@ const Post = ({ post }) => {
               userImgUrl='/portrait-2.jpeg'
               date='3 Feb 2021'
               comments="We should start with HTML and CSs first , learn the absolute basics,
-          follow good channels like brad traversy on youtube or Colt Steele's
-          Web developer bootcamp on Udemy. You can spend around 2 weeks on HTML,
-          CSS basics and then start with javascript. Do more practicals and
-          understand the necessary theories and concepts."
+                follow good channels like brad traversy on youtube or Colt Steele's
+                Web developer bootcamp on Udemy. You can spend around 2 weeks on HTML,
+                CSS basics and then start with javascript. Do more practicals and
+                understand the necessary theories and concepts."
             />
             <Comments />
             <Comments />
