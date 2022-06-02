@@ -37,6 +37,7 @@ const Index = () => {
                       postId={post._id}
                       edit={true}
                       deleteMode={true}
+                      apiUrl={`/likepost`}
                     />
                   </div>
                 );
